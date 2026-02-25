@@ -1,0 +1,15 @@
+[
+  {
+    "json_path": "path/to/xiaohei_001.json",
+    "source_path": "path/to/raw_note_001.md",
+    "filename_base": "可选，不含.md；不写则用 core_topic+时间"
+  },
+  {
+    "json_path": "path/to/xiaohei_002.json"
+  },
+  {
+    "xiaohei": { "agent": "小黑", "archive_recommendation": { "suggested_type": "project_note" }, "core_topic": "示例", "content_type": "note" },
+    "source_content": "这里可以直接贴原文",
+    "filename_base": "my_note"
+  }
+]

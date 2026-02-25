@@ -1,0 +1,4 @@
+# Harvester V2 调度器依赖
+watchdog>=3.0.0
+httpx>=0.24.0
+python-frontmatter>=1.0.0
