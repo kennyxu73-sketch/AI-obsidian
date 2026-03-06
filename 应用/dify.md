@@ -16,8 +16,10 @@ tags:
 
 已在 2026年 在 3090 算力服务器上安装
 
-| 3090服务器地址 | `http://10.210.8.8:80` | 知识库管理、Agent 编排 |
-| --------- | ---------------------- | -------------- |
-API: app-sxV8YhZEhq4katjYg89JZb0y
 
-dify:  yiang@hotmail.com  pwd: kx63400220
+http://
+
+xuhongzhen@comficare.cn
+
+nykbIk-cocdut-1repwa
+

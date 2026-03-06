@@ -37,8 +37,8 @@ system_meta:
 ## 一、 层级定义 (The 4+1 Infrastructure)
 
 ### 层级 0：影子审计层 (Auditor Layer - 云端)
-- **物理环境**：Google Cloud Platform (GCP)
-- **核心组件**：Gemini 1.5 Pro / Flash (影子智能体)
+- **物理环境**：oneapi( dify git)
+- **核心组件**：豆包 deepseek (计划 gemini) (影子智能体)
 - **职责**：
   - **影子审计**：实时抽检本地 Dify 工作流逻辑与小酷的代码变更。
   - **合规拦截**：检测到逻辑漂移、非受控系统变更或安全红线时，强制挂起本地进程。
@@ -82,6 +82,6 @@ system_meta:
 
 ## 三、 任务路由 (Task Routing)
 
-- [ ] **@小酷** : 完成 GCP 影子审计接口的 API 对接压测。
+- [ ] **@小酷** : 完成 oneapi 影子审计接口的 API 对接压测。
 - [ ] **@小忆** : 更新“决策关口”交互模版，确保 Kenny 拥有清晰的知情权。
 - [ ] **@审计影子** : 对本画布 V2.0 进行合规性复核。
