@@ -1,20 +1,21 @@
 {
 	"nodes":[
-		{"id":"user","type":"text","text":"👤 **Human User**\n\n**工作方式：**\n- ✍️ 使用 Obsidian 写作\n- 🛡️ 管理 Cabinet\n- 📐 设计 System\n\n**AI 是内阁辅助系统**","x":280,"y":60,"width":320,"height":371,"color":"6"},
-		{"id":"cabinet","type":"text","text":"🌿 **CABINET**\n**用户知识库**\n\n**内容：**\n- 📂 project\n- 🧠 knowledge\n- 🔍 research\n- 📝 daily notes\n\n**特点：**\n- **Human Only**\n- AI 默认只读\n- 个人私有思考空间","x":-440,"y":-360,"width":320,"height":390,"color":"4"},
-		{"id":"runtime","type":"text","text":"⚙️ **RUNTIME**\n**AI 工作层**\n\n**内容：**\n- 🗂️ cards/\n- ⚖️ audits/\n- 🧬 embeddings/\n- 🧠 agent memory\n\n**特点：**\n- **AI 可写**\n- 物理分离、自动生成","x":-440,"y":-900,"width":320,"height":400,"color":"2"},
-		{"id":"mirrorcore","type":"text","text":"💎 **Mirror Core**\n**AI Agent Runtime**\n\n**能力：**\n- 🧠 Memory Orchestration\n- 🎓 Knowledge Synthesis\n- 🤖 Personal Agent\n- 接口层 (Interface)","x":280,"y":-900,"width":320,"height":400,"color":"3"},
-		{"id":"tools","type":"text","text":"🔧 **TOOLS**\n**基础设施层**\n\n**内容：**\n- 🐳 docker (Dify/n8n)\n- 🔌 API / OneAPI\n- 🖥️ Local 3090\n- 🐍 scripts\n\n**特点：**\n- 系统运行环境\n- AI 调用工具链","x":280,"y":-1480,"width":320,"height":390,"color":"3"},
-		{"id":"system","type":"text","text":"⚖️ **SYSTEM**\n**系统治理层**\n\n**内容：**\n- 📜 AI-OB Constitution\n- 🤖 Cursor Rules\n- 🏗️ Architecture Blueprint\n- 🛡️ Agent Policy\n\n**特点：**\n- **人类主导修改**\n- AI 仅提供提案","x":1020,"y":-900,"width":320,"height":390,"color":"1"}
+		{"id":"system","type":"text","text":"⚖️ **SYSTEM (治理层)**\n**数字宪法**\n\n**内容：**\n- 📜 AI-OB Constitution\n- 🤖 Cursor Rules v2.4\n- 🏗️ Blueprint\n- 🛡️ 安全分级 (L1-L4)\n\n**特点：**\n- **架构基石**\n- 约束所有 AI 行为","x":1080,"y":-1040,"width":320,"height":350,"color":"1"},
+		{"id":"tools","type":"text","text":"🔧 **TOOLS (基础设施)**\n**算力与工具链**\n\n**内容：**\n- 🖥️ **Local RTX 3090**\n- 🐳 Docker (Dify/n8n)\n- 🔌 OneAPI Gateway\n- 🐍 Automation Scripts\n\n**特点：**\n- 物理运行环境\n- 算力主权支撑","x":560,"y":-610,"width":320,"height":350,"color":"3"},
+		{"id":"user","type":"text","text":"👤 **Human User (Kenny)**\n\n**核心职责：**\n- ✍️ 原始创作 (Cabinet)\n- ⚖️ 宪法决策 (System)\n- 👁️ 最终审核 (Review)\n\n**\"统帅\" 级操作权限**","x":120,"y":-40,"width":320,"height":400,"color":"6"},
+		{"id":"cabinet","type":"text","text":"🌿 **CABINET (用户知识库)**\n**人类主权区**\n\n**内容：**\n- 📂 Projects\n- 🧠 Knowledge\n- 🔍 Research\n- 📝 Daily notes\n\n**特点：**\n- **AI 默认只读**\n- 严禁 AI 自动修改\n- 纯粹的个人思考空间","x":-520,"y":-435,"width":320,"height":395,"color":"4"},
+		{"id":"runtime","type":"text","text":"⚙️ **RUNTIME (AI 工作层)**\n**数字资产工厂**\n\n**内容：**\n- 🗂️ notes/ (AI 草稿)\n- ⚖️ cards/ (语义索引)\n- 🧬 audits/ (影子记录)\n\n**特点：**\n- **AI 可写**\n- Triple-A 物理分离\n- 支撑 RAG 检索","x":-520,"y":-1040,"width":320,"height":350,"color":"2"},
+		{"id":"mirrorcore","type":"text","text":"💎 **Mirror Core (中枢)**\n**AI Agent Runtime**\n\n**能力：**\n- 🧠 记忆调度 (Orchestration)\n- 🎓 知识合成 (Synthesis)\n- 🤖 内阁 Agent 分工\n- 接口层 (Interface)","x":120,"y":-1040,"width":320,"height":350,"color":"3"}
 	],
 	"edges":[
-		{"id":"e1","fromNode":"cabinet","fromSide":"top","toNode":"runtime","toSide":"bottom","color":"2","label":"读取并生成 Triple-A"},
-		{"id":"e2","fromNode":"runtime","fromSide":"right","toNode":"mirrorcore","toSide":"left","color":"2","label":"提供上下文 (RAG)"},
-		{"id":"e3","fromNode":"system","fromSide":"left","toNode":"mirrorcore","toSide":"right","color":"1","label":"注入规则约束"},
-		{"id":"e4","fromNode":"tools","fromSide":"bottom","toNode":"mirrorcore","toSide":"top","color":"3","label":"算力 & 环境支持"},
-		{"id":"e5","fromNode":"user","fromSide":"top","toNode":"cabinet","toSide":"bottom","color":"6","label":"核心创作与读取"},
-		{"id":"e6","fromNode":"mirrorcore","fromSide":"left","toNode":"runtime","toSide":"right","color":"2","label":"沉淀知识资产"},
-		{"id":"b9c6f527e7b675c3","fromNode":"user","fromSide":"right","toNode":"system","toSide":"bottom","label":"制定规则"},
-		{"id":"1efb493f8339beb1","fromNode":"user","fromSide":"top","toNode":"mirrorcore","toSide":"bottom","label":"agent 交互"}
+		{"id":"e1","fromNode":"cabinet","fromSide":"top","toNode":"runtime","toSide":"bottom","color":"2","label":"读取并提取语义"},
+		{"id":"e2","fromNode":"runtime","fromSide":"right","toNode":"mirrorcore","toSide":"left","color":"2","label":"提供增强检索 (RAG)"},
+		{"id":"e3","fromNode":"system","fromSide":"left","toNode":"mirrorcore","toSide":"right","color":"1","label":"行为准则约束"},
+		{"id":"e4","fromNode":"tools","fromSide":"right","toNode":"system","toSide":"left","color":"3","label":"执行环境匹配"},
+		{"id":"e5","fromNode":"user","fromSide":"left","toNode":"cabinet","toSide":"bottom","color":"6","label":"创作与管控"},
+		{"id":"e6","fromNode":"mirrorcore","fromSide":"bottom","toNode":"tools","toSide":"left","color":"3","label":"调用本地算力 (3090)"},
+		{"id":"e7","fromNode":"user","fromSide":"right","toNode":"system","toSide":"bottom","label":"修订宪法 (Rules)"},
+		{"id":"e8","fromNode":"user","fromSide":"top","toNode":"mirrorcore","toSide":"bottom","color":"6","label":"Agent 交互"},
+		{"id":"e10","fromNode":"runtime","fromSide":"bottom","toNode":"cabinet","toSide":"top","color":"4","label":"AI 草稿 → 审核 → 归档"}
 	]
 }

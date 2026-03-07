@@ -1,0 +1,20 @@
+{
+	"nodes":[
+		{"id":"runtime","type":"text","text":"⚙️ **RUNTIME (AI 工作层)**\n**语义层 & Triple-A 资产**\n\n**构成：**\n- 🗂️ cards/ (语义动力源)\n- 🧬 audits/ (影子审计存证)\n\n**强制红线：**\n- embedding_access: false (Audit)\n- 物理屏蔽向量化","x":-520,"y":-1020,"width":320,"height":350,"color":"2"},
+		{"id":"tools","type":"text","text":"🔧 **TOOLS (基础设施)**\n**算力引擎与自动化**\n\n**组件：**\n- 🖥️ Local RTX 3090\n- 🕵️ audit_check.py (增量审计)\n- 🧪 build_cards.py (裂变脚本)\n- 🐳 Docker / Dify / n8n","x":-200,"y":-1620,"width":320,"height":350,"color":"3"},
+		{"id":"mirrorcore","type":"text","text":"💎 **Mirror Core (中枢)**\n**AI Agent Runtime**\n\n**审计执行流：**\n1. 增量扫描 (file_id / version)\n2. 差异比对 (Diff Check)\n3. 血缘继承 (Ancestry)\n4. 异常挂起 (.halt)","x":280,"y":-1020,"width":320,"height":350,"color":"3"},
+		{"id":"user","type":"text","text":"👤 **Human User (Kenny)**\n\n**核心职责：**\n- ✍️ 原始创作 (Cabinet)\n- ⚖️ 宪法决策 (System)\n- 👁️ 内容终审权 (confirmed_by)\n\n**最高权限：拥有内容终审权**","x":280,"y":-350,"width":320,"height":300,"color":"6"},
+		{"id":"system","type":"text","text":"⚖️ **SYSTEM (治理层)**\n**架构蓝图与蓝皮书**\n\n**准则：**\n- 📜 本地笔记审计蓝皮书 v1.0\n- 🤖 YAML 处理规范 v2.0\n- 🛡️ 安全分级 (L1-L4)\n- 🏗️ 存储库治理准则","x":980,"y":-1020,"width":320,"height":350,"color":"1"},
+		{"id":"cabinet","type":"text","text":"🌿 **CABINET (用户知识库)**\n**人类主权区 / 展示层**\n\n**内容：**\n- 📂 projects / knowledge\n- 📝 note.md (极简路由)\n\n**审计原则：**\n- 仅限人工修改\n- 资产全息化起始点","x":-520,"y":-400,"width":320,"height":350,"color":"4"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"cabinet","fromSide":"top","toNode":"runtime","toSide":"bottom","color":"2","label":"读取并物理裂变 (AI Draft)"},
+		{"id":"e3","fromNode":"system","fromSide":"left","toNode":"mirrorcore","toSide":"right","color":"1","label":"注入蓝皮书审计规则"},
+		{"id":"e2","fromNode":"runtime","fromSide":"bottom","toNode":"cabinet","toSide":"top","color":"4","label":"人工复核 -> 归档"},
+		{"id":"e_audit_exec","fromNode":"mirrorcore","fromSide":"left","toNode":"runtime","toSide":"right","color":"1","label":"影子审计执行 (Shadow Audit)"},
+		{"id":"e_3090_scan","fromNode":"mirrorcore","fromSide":"top","toNode":"tools","toSide":"bottom","color":"3","label":"L1/L2 数据安全自检 (3090)"},
+		{"id":"e_halt_msg","fromNode":"tools","fromSide":"bottom","toNode":"runtime","toSide":"top","color":"1","label":"冲突熔断 (.halt)"},
+		{"id":"e_review_trigger","fromNode":"user","fromSide":"left","toNode":"runtime","toSide":"right","color":"1","label":"处理 Pending 状态申请"},
+		{"id":"e_rule_apply","fromNode":"user","fromSide":"right","toNode":"system","toSide":"bottom","color":"1","label":"修订架构宪法"}
+	]
+}
