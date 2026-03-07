@@ -1,0 +1,30 @@
+{
+	"nodes":[
+		{"id":"xiaobao","type":"text","text":"📰 **[[小报]] (情报官)**\n**触角 / 外部感知**\n- 抓取 RSS/网页/API\n- 初步过滤信息价值 (A/B/C/D)\n- 等 Kenny 点头才归档\n**SOP:** 存档与审核\n**状态:** 🔴 A/B 待审, 🟡 C 摘要, ⚪ D 丢弃","x":-700,"y":-120,"width":280,"height":240,"color":"2"},
+		{"id":"xiaohblack","type":"text","text":"🕵️ **[[小黑]] (内部分析 & 执行官)**\n**暗箱 / 执行层**\n- 执行小酷下发任务 / Skills\n- 冷静处理 Cabinet/Runtime 数据\n- 返回结构化 JSON\n**SOP:** 执行层 & 数据清理\n**状态:** 🔴 待分析, 🟠 分析中, 🟢 完成","x":-700,"y":-740,"width":280,"height":240,"color":"4"},
+		{"id":"xiaohua","type":"text","text":"🎨 **[[小画]] (Visual Agent)**\n**内阁面孔 / 交互界面**\n- 决定展示方式 (Canvas/Kanban)\n- 捕获用户操作并翻译为任务\n- 展示所有 Agent 状态\n**SOP:** 用户操作转任务指令\n**状态:** 🟢 实时可操作","x":80,"y":-140,"width":300,"height":240,"color":"3"},
+		{"id":"user","type":"text","text":"👤 **Human User (Kenny)**\n**最高决策位**\n- 下达任务指令\n- 最终审计与灵感输入\n**SOP:** 决策与审批\n**状态:** 🔴 等处理 / 🟢 审核完成","x":90,"y":320,"width":280,"height":200,"color":"6"},
+		{"id":"xiaoyi","type":"text","text":"🎙️ **[[小憶]] (秘书长)**\n**内阁大脑 / 总调度**\n- 拆解任务并呼叫专家\n- 汇总结果给 Kenny\n**SOP:** 紧急/重要排序 (P0-P2)\n**状态:** 🔴 P0, 🟠 P1, 🟡 P2","x":340,"y":-740,"width":300,"height":240,"color":"3"},
+		{"id":"xiaoku","type":"text","text":"🖥️ **[[小酷]] (执行官)**\n**拳头 / 物理执行**\n- 文件搬运与归档\n- 系统稳定性维护\n- 下发日常任务/Skills 给小黑\n**SOP:** 稳定性保障\n**状态:** 🔴 风险 / 🟠 处理中 / 🟢 稳定","x":-300,"y":-480,"width":280,"height":240,"color":"3"},
+		{"id":"xiaojing","type":"text","text":"🎭 **[[小镜]] (2C 专家)**\n**情感 / 回忆录负责人**\n- 挖掘记忆价值、逻辑自洽\n- 产出待审内容\n**SOP:** 深度产出\n**状态:** ⚪ 待审, 🟢 已审","x":640,"y":-480,"width":260,"height":200,"color":"5"},
+		{"id":"xiaokang","type":"text","text":"🏢 **[[小康]] (2B 专家)**\n**事业 / 养老平台**\n- 转化知识体系到业务逻辑\n- 产出高质量项目方案\n**SOP:** 深度产出\n**状态:** ⚪ 待审, 🟢 已审","x":1060,"y":-480,"width":260,"height":200,"color":"5"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"user","fromSide":"top","toNode":"xiaohua","toSide":"bottom","fromEnd":"arrow","color":"6","label":"点击确认 / 操作界面"},
+		{"id":"e2","fromNode":"xiaohua","fromSide":"top","toNode":"xiaoyi","toSide":"bottom","fromEnd":"arrow","color":"3","label":"转化交互为任务指令"},
+		{"id":"e3","fromNode":"xiaoyi","fromSide":"left","toNode":"xiaohblack","toSide":"right","color":"2","label":"分派数据清理任务 (高优先级)"},
+		{"id":"e4","fromNode":"xiaobao","fromSide":"top","toNode":"xiaohblack","toSide":"bottom","color":"2","label":"外部生肉 -> 分析"},
+		{"id":"e5","fromNode":"xiaoyi","fromSide":"bottom","toNode":"xiaoku","toSide":"right","color":"3","label":"分派物理搬运/脚本任务"},
+		{"id":"e6","fromNode":"xiaoyi","fromSide":"right","toNode":"xiaojing","toSide":"top","fromEnd":"arrow","color":"5","label":"分派叙事/数字人任务"},
+		{"id":"e7","fromNode":"xiaoyi","fromSide":"right","toNode":"xiaokang","toSide":"top","fromEnd":"arrow","color":"5","label":"分派商业/平台任务"},
+		{"id":"e9","fromNode":"xiaohblack","fromSide":"right","toNode":"xiaoyi","toSide":"left","color":"2","label":"返回分析 JSON"},
+		{"id":"e10","fromNode":"xiaoku","fromSide":"left","toNode":"xiaohblack","toSide":"bottom","color":"3","label":"下发日常任务 / Skills"},
+		{"id":"5f87a781a3b8b6bd","fromNode":"user","fromSide":"right","toNode":"xiaoyi","toSide":"bottom","fromEnd":"arrow","color":"6","label":"对话方式"},
+		{"id":"90eeb3c70476ef7e","fromNode":"user","fromSide":"left","toNode":"xiaobao","toSide":"bottom","color":"6","label":"资料收集"},
+		{"id":"c70c07e08fbe40e2","fromNode":"xiaoku","fromSide":"bottom","toNode":"xiaohua","toSide":"left","color":"1","label":"审计报告"},
+		{"id":"564bf24cc18cb523","fromNode":"xiaohua","fromSide":"top","toNode":"xiaoku","toSide":"right","color":"1","label":"人类系统指令"},
+		{"id":"7d9e994b82123a37","fromNode":"user","fromSide":"left","toNode":"xiaoku","toSide":"left","color":"1","label":"系统规则及代码修改等"},
+		{"id":"4ef7c7c3851ad6d3","fromNode":"xiaojing","fromSide":"bottom","toNode":"user","toSide":"right","fromEnd":"arrow","color":"6","label":"单独对话"},
+		{"id":"ce3759c8e4dd359b","fromNode":"xiaokang","fromSide":"bottom","toNode":"user","toSide":"right","fromEnd":"arrow","color":"6","label":"单独对话"}
+	]
+}
