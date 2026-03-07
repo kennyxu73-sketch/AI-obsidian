@@ -1,0 +1,26 @@
+{
+	"nodes":[
+		{"id":"xiaokang","type":"text","text":"🏢 **[[小康]] (2B 专家)**\n**\"事业\" / 养老平台**\n\n- 知识体系向业务逻辑转化\n- 负责养老平台 Kanban 任务","x":860,"y":-420,"width":260,"height":160,"color":"5"},
+		{"id":"xiaojing","type":"text","text":"🎭 **[[小镜]] (2C 专家)**\n**\"情感\" / 回忆录负责人**\n\n- 挖掘内容的记忆价值\n- 适配数字人与叙事风格","x":850,"y":-760,"width":260,"height":160,"color":"5"},
+		{"id":"xiaobao","type":"text","text":"📰 **[[小报]] (情报官)**\n**\"触角\" / 外部感知**\n\n- 负责抓取 RSS/网页/外部 API\n- 初步过滤信息价值\n- 将生肉交给小黑或小忆","x":-700,"y":-120,"width":280,"height":200,"color":"2"},
+		{"id":"xiaohblack","type":"text","text":"🕵️ **[[小黑]] (内部分析官)**\n**\"暗箱\" / 结构化引擎**\n\n- 冷静处理 Cabinet/Runtime 数据\n- 仅输出结构化 JSON\n- 决定内容是否值得存入系统","x":-700,"y":-740,"width":280,"height":200,"color":"2"},
+		{"id":"xiaohua","type":"text","text":"🎨 **[[小画]] (Visual Agent)**\n**\"内阁面孔\" / 交互界面**\n\n- 决定展示方式 (Canvas/Kanban)\n- 捕获用户操作并翻译为指令\n- 呈现所有 Agent 的运行状态","x":80,"y":-140,"width":300,"height":200,"color":"3"},
+		{"id":"user","type":"text","text":"👤 **Human User (Kenny)**\n\n**最高决策位**\n- 🚦 下达任务指令\n- 👁️ 最终内容审计\n- 💡 灵感输入","x":90,"y":320,"width":280,"height":180,"color":"6"},
+		{"id":"xiaoku","type":"text","text":"🖥️ **[[小酷]] (执行官)**\n**\"拳头\" / 物理执行**\n\n- 处理文件搬运与归档\n- 负责系统的长期稳定性","x":-240,"y":-520,"width":280,"height":200,"color":"3"},
+		{"id":"xiaoyi","type":"text","text":"🎙️ **[[小憶]] (秘书长)**\n**\"内阁大脑\" / 总调度**\n\n- 理解模糊意图并拆解任务\n- 呼叫各领域专家 Agent\n- 汇总结果报告给 Kenny","x":340,"y":-740,"width":300,"height":200,"color":"3"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"user","fromSide":"top","toNode":"xiaohua","toSide":"bottom","fromEnd":"arrow","color":"6","label":"点击确认 / 操作界面"},
+		{"id":"e2","fromNode":"xiaohua","fromSide":"top","toNode":"xiaoyi","toSide":"bottom","fromEnd":"arrow","color":"3","label":"转化交互为任务指令"},
+		{"id":"e3","fromNode":"xiaoyi","fromSide":"left","toNode":"xiaohblack","toSide":"right","color":"2","label":"分派数据清理任务"},
+		{"id":"e4","fromNode":"xiaobao","fromSide":"top","toNode":"xiaohblack","toSide":"bottom","color":"2","label":"外部生肉 -> 分析"},
+		{"id":"e5","fromNode":"xiaoyi","fromSide":"bottom","toNode":"xiaoku","toSide":"right","color":"3","label":"分派物理搬运/脚本任务"},
+		{"id":"e6","fromNode":"xiaoyi","fromSide":"right","toNode":"xiaojing","toSide":"left","fromEnd":"arrow","color":"5","label":"分派叙事/数字人任务"},
+		{"id":"e7","fromNode":"xiaoyi","fromSide":"right","toNode":"xiaokang","toSide":"left","fromEnd":"arrow","color":"5","label":"分派商业/平台任务"},
+		{"id":"e8","fromNode":"xiaoku","fromSide":"bottom","toNode":"xiaohua","toSide":"left","color":"1","label":"汇报执行状态/Halt预警"},
+		{"id":"e9","fromNode":"xiaohblack","fromSide":"right","toNode":"xiaoyi","toSide":"left","color":"2","label":"返回分析 JSON"},
+		{"id":"5f87a781a3b8b6bd","fromNode":"user","fromSide":"right","toNode":"xiaoyi","toSide":"bottom","fromEnd":"arrow","color":"6","label":"对话方式"},
+		{"id":"90eeb3c70476ef7e","fromNode":"user","fromSide":"left","toNode":"xiaobao","toSide":"bottom","color":"6","label":"资料收集"},
+		{"id":"aca3da71873d75aa","fromNode":"xiaoku","fromSide":"bottom","toNode":"xiaohblack","toSide":"bottom","color":"2","label":"操作执行命令"}
+	]
+}
