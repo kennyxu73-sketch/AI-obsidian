@@ -1,0 +1,115 @@
+{
+  "nodes": [
+    {
+      "id": "cabinet",
+      "type": "text",
+      "text": "🌿 **CABINET**\n**用户知识库**\n\n**内容:**\n- 📂 daily, projects, knowledge, research, archive\n- 📝 回忆录素材\n\n**特点:**\n- Human Only (AI只读)\n- AI生成草稿进入 runtime/drafts/ 后 Human 审核\n- 可单独在 Obsidian 打开",
+      "x": -800,
+      "y": -200,
+      "width": 320,
+      "height": 300,
+      "color": "4"
+    },
+    {
+      "id": "system",
+      "type": "text",
+      "text": "⚖️ **SYSTEM**\n**系统架构库**\n\n**内容:**\n- 📜 AI-OB Constitution\n- 🤖 Cursor Rules\n- 🏗️ Architecture Blueprints\n- 🛡️ Schemas / Workflows\n\n**特点:**\n- 人类主导修改\n- Cursor 提案辅助",
+      "x": -200,
+      "y": -450,
+      "width": 320,
+      "height": 260,
+      "color": "1"
+    },
+    {
+      "id": "runtime",
+      "type": "text",
+      "text": "⚙️ **RUNTIME**\n**AI运行数据**\n\n**内容:**\n- 🗂️ notes/\n- 🧬 cards/\n- ⚖️ audits/\n- 📝 drafts/ (AI生成草稿)\n- 🧠 embeddings/\n\n**特点:**\n- AI可写入 notes/cards/audits/drafts\n- Drafts经Human审核后可入Cabinet",
+      "x": -200,
+      "y": 100,
+      "width": 340,
+      "height": 300,
+      "color": "2"
+    },
+    {
+      "id": "tools",
+      "type": "text",
+      "text": "🔧 **TOOLS**\n**工具与基础设施**\n\n**内容:**\n- 🐳 Docker (Dify/n8n)\n- 🖥️ Local 3090\n- 🐍 scripts\n- pipeline / CLI\n\n**特点:**\n- 独立运行\n- 不依赖 Cabinet 或 Runtime",
+      "x": 450,
+      "y": -150,
+      "width": 320,
+      "height": 260,
+      "color": "3"
+    },
+    {
+      "id": "mirrorcore",
+      "type": "text",
+      "text": "💎 **Mirror Core / Agent**\n**AI智能体**\n\n**能力:**\n- Memory Orchestration\n- Knowledge Synthesis\n- Personal Agent\n- 接口层",
+      "x": 200,
+      "y": 250,
+      "width": 320,
+      "height": 240,
+      "color": "3"
+    },
+    {
+      "id": "user",
+      "type": "text",
+      "text": "👤 **Human User**\n\n**工作方式:**\n- ✍️ 使用 Obsidian 写作\n- 🛡️ 管理 Cabinet\n- 📐 设计 System\n\n**AI是辅助工具**",
+      "x": -850,
+      "y": 200,
+      "width": 320,
+      "height": 200,
+      "color": "6"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "fromNode": "cabinet",
+      "toNode": "runtime",
+      "label": "AI读取笔记 / 生成 Drafts",
+      "color": "2"
+    },
+    {
+      "id": "e2",
+      "fromNode": "runtime",
+      "toNode": "mirrorcore",
+      "label": "提供上下文 (RAG)",
+      "color": "2"
+    },
+    {
+      "id": "e3",
+      "fromNode": "system",
+      "toNode": "mirrorcore",
+      "label": "注入规则约束",
+      "color": "1"
+    },
+    {
+      "id": "e4",
+      "fromNode": "tools",
+      "toNode": "mirrorcore",
+      "label": "算力 & 环境支持",
+      "color": "3"
+    },
+    {
+      "id": "e5",
+      "fromNode": "user",
+      "toNode": "cabinet",
+      "label": "核心创作 / 审核 Drafts",
+      "color": "6"
+    },
+    {
+      "id": "e6",
+      "fromNode": "mirrorcore",
+      "toNode": "runtime",
+      "label": "沉淀知识资产",
+      "color": "2"
+    },
+    {
+      "id": "e7",
+      "fromNode": "runtime",
+      "toNode": "cabinet",
+      "label": "Human审核后入 Cabinet",
+      "color": "4"
+    }
+  ]
+}
