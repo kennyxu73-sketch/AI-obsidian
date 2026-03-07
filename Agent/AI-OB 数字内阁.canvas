@@ -5,9 +5,9 @@
 		{"id":"xiaohua","type":"text","text":"🎨 **[[小画]] (Visual Agent)**\n**\"内阁面孔\" / 交互界面**\n- 决定展示方式 (Canvas/Kanban)\n- 捕获用户操作并翻译为指令\n- 呈现所有 Agent 的运行状态","x":80,"y":-140,"width":300,"height":200,"color":"3"},
 		{"id":"user","type":"text","text":"👤 **Human User (Kenny)**\n**最高决策位**\n- 🚦 下达任务指令\n- 👁️ 最终内容审计\n- 💡 灵感输入","x":90,"y":320,"width":280,"height":180,"color":"6"},
 		{"id":"xiaoyi","type":"text","text":"🎙️ **[[小憶]] (秘书长)**\n**\"内阁大脑\" / 总调度**\n- 理解模糊意图并拆解任务\n- 呼叫各领域专家 Agent\n- 汇总结果报告给 Kenny","x":340,"y":-740,"width":300,"height":200,"color":"3"},
-		{"id":"xiaoku","type":"text","text":"🖥️ **[[小酷]] (执行官)**\n**\"拳头\" / 物理执行**\n- 处理文件搬运与归档\n- 负责系统长期稳定性\n- 下发日常任务/Skills 给小黑","x":-300,"y":-480,"width":280,"height":200,"color":"3"},
-		{"id":"xiaojing","type":"text","text":"🎭 **[[小镜]] (2C 专家)**\n**\"情感\" / 回忆录负责人**\n- 挖掘内容的记忆价值\n- 适配数字人与叙事风格","x":640,"y":-480,"width":260,"height":160,"color":"5"},
-		{"id":"xiaokang","type":"text","text":"🏢 **[[小康]] (2B 专家)**\n**\"事业\" / 养老平台**\n- 知识体系向业务逻辑转化\n- 负责养老平台 Kanban 任务","x":1060,"y":-480,"width":260,"height":160,"color":"5"}
+		{"id":"xiaoku","type":"text","text":"🖥️ **[[小酷]] (执行官)**\n**\"拳头\" / 物理执行**\n- 处理文件搬运与归档\n- 负责系统长期稳定性\n- 下发日常任务/Skills 给小黑","x":-280,"y":-460,"width":280,"height":200,"color":"3"},
+		{"id":"xiaojing","type":"text","text":"🎭 **[[小镜]] (2C 专家)**\n**\"情感\" / 回忆录负责人**\n- 挖掘内容的记忆价值\n- 适配数字人与叙事风格","x":640,"y":-260,"width":260,"height":160,"color":"5"},
+		{"id":"xiaokang","type":"text","text":"🏢 **[[小康]] (2B 专家)**\n**\"事业\" / 养老平台**\n- 知识体系向业务逻辑转化\n- 负责养老平台 Kanban 任务","x":1040,"y":-260,"width":260,"height":160,"color":"5"}
 	],
 	"edges":[
 		{"id":"e1","fromNode":"user","fromSide":"top","toNode":"xiaohua","toSide":"bottom","fromEnd":"arrow","color":"6","label":"点击确认 / 操作界面"},
