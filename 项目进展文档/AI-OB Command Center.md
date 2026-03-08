@@ -66,6 +66,6 @@ kanban-plugin: board
 
 %% kanban:settings
 ```
-{"kanban-plugin":"board","list-collapse":[null,null,null,false,true,true,true,true,true]}
+{"kanban-plugin":"board","list-collapse":[null,null,null,false,true,true,true,true,true],"hide-card-count":false,"archive-with-date":true}
 ```
 %%
