@@ -1,0 +1,20 @@
+{
+	"nodes":[
+		{"id":"dmz","type":"group","x":-650,"y":-120,"width":890,"height":300,"label":"DMZ 隔离区（小报系统）"},
+		{"id":"fetch","type":"text","text":"网页抓取\nSerper / Jina Reader","x":-300,"y":0,"width":220,"height":120},
+		{"id":"sanitize","type":"text","text":"数据净化层\nHTML清理 / 脱敏","x":0,"y":0,"width":220,"height":120},
+		{"id":"research","type":"text","text":"研究生成\n小报草稿","x":300,"y":0,"width":220,"height":120},
+		{"id":"human","type":"text","text":"人工审核\nHuman in the Loop","x":550,"y":0,"width":220,"height":120},
+		{"id":"vault","type":"text","text":"AI-OB 知识库\nStrategy / Knowledge","x":800,"y":0,"width":240,"height":120},
+		{"id":"signal","type":"text","text":"信号输入\nRSS / 手动链接 / 搜索关键词","x":-960,"y":0,"width":240,"height":120},
+		{"id":"search","type":"text","text":"小报搜索代理\n外部模型 / 联网执行","x":-600,"y":0,"width":240,"height":120}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"signal","fromSide":"right","toNode":"search","toSide":"left"},
+		{"id":"e2","fromNode":"search","fromSide":"right","toNode":"fetch","toSide":"left"},
+		{"id":"e3","fromNode":"fetch","fromSide":"right","toNode":"sanitize","toSide":"left"},
+		{"id":"e4","fromNode":"sanitize","fromSide":"right","toNode":"research","toSide":"left"},
+		{"id":"e5","fromNode":"research","fromSide":"right","toNode":"human","toSide":"left"},
+		{"id":"e6","fromNode":"human","fromSide":"right","toNode":"vault","toSide":"left"}
+	]
+}

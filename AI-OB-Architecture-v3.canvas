@@ -1,11 +1,11 @@
 {
 	"nodes":[
 		{"id":"system","type":"text","text":"⚖️ **SYSTEM (治理层)**\n**数字宪法**\n\n**内容：**\n- 📜 AI-OB Constitution\n- 🤖 Cursor Rules v2.4\n- 🏗️ Blueprint\n- 🛡️ 安全分级 (L1-L4)\n\n**特点：**\n- **架构基石**\n- 约束所有 AI 行为","x":1080,"y":-1040,"width":320,"height":350,"color":"1"},
-		{"id":"tools","type":"text","text":"🔧 **TOOLS (基础设施)**\n**算力与工具链**\n\n**内容：**\n- 🖥️ **Local RTX 3090**\n- 🐳 Docker (Dify/n8n)\n- 🔌 OneAPI Gateway\n- 🐍 Automation Scripts\n\n**特点：**\n- 物理运行环境\n- 算力主权支撑","x":560,"y":-610,"width":320,"height":350,"color":"3"},
 		{"id":"user","type":"text","text":"👤 **Human User (Kenny)**\n\n**核心职责：**\n- ✍️ 原始创作 (Cabinet)\n- ⚖️ 宪法决策 (System)\n- 👁️ 最终审核 (Review)\n\n**\"统帅\" 级操作权限**","x":120,"y":-40,"width":320,"height":400,"color":"6"},
 		{"id":"cabinet","type":"text","text":"🌿 **CABINET (用户知识库)**\n**人类主权区**\n\n**内容：**\n- 📂 Projects\n- 🧠 Knowledge\n- 🔍 Research\n- 📝 Daily notes\n\n**特点：**\n- **AI 默认只读**\n- 严禁 AI 自动修改\n- 纯粹的个人思考空间","x":-520,"y":-435,"width":320,"height":395,"color":"4"},
 		{"id":"runtime","type":"text","text":"⚙️ **RUNTIME (AI 工作层)**\n**数字资产工厂**\n\n**内容：**\n- 🗂️ notes/ (AI 草稿)\n- ⚖️ cards/ (语义索引)\n- 🧬 audits/ (影子记录)\n\n**特点：**\n- **AI 可写**\n- Triple-A 物理分离\n- 支撑 RAG 检索","x":-520,"y":-1040,"width":320,"height":350,"color":"2"},
-		{"id":"mirrorcore","type":"text","text":"💎 **Mirror Core (中枢)**\n**AI Agent Runtime**\n\n**能力：**\n- 🧠 记忆调度 (Orchestration)\n- 🎓 知识合成 (Synthesis)\n- 🤖 内阁 Agent 分工\n- 接口层 (Interface)","x":120,"y":-1040,"width":320,"height":350,"color":"3"}
+		{"id":"mirrorcore","type":"text","text":"💎 **Mirror Core (中枢)**\n**AI Agent Runtime**\n\n**能力：**\n- 🧠 记忆调度 (Orchestration)\n- 🎓 知识合成 (Synthesis)\n- 🤖 内阁 Agent 分工\n- 接口层 (Interface)","x":120,"y":-1040,"width":320,"height":350,"color":"3"},
+		{"id":"tools","type":"text","text":"🔧 **TOOLS (基础设施)**\n**算力与工具链**\n\n**内容：**\n- 🖥️ **Local RTX 3090**\n- 🐳 Docker (Dify/n8n)\n- 🔌 OneAPI Gateway\n- 🐍 Automation Scripts\n\n**特点：**\n- 物理运行环境\n- 算力主权支撑","x":560,"y":-610,"width":320,"height":350,"color":"3"}
 	],
 	"edges":[
 		{"id":"e1","fromNode":"cabinet","fromSide":"top","toNode":"runtime","toSide":"bottom","color":"2","label":"读取并提取语义"},

@@ -1,0 +1,19 @@
+{
+	"nodes":[
+		{"id":"group_c_engine","type":"group","x":-320,"y":-100,"width":1000,"height":350,"color":"#BBDEFB","label":"[🔵] C: 融合引擎 (Compute) - 需求->API"},
+		{"id":"group_l_governance","type":"group","x":-320,"y":400,"width":1000,"height":250,"color":"#FFFDE7","label":"[🟡] L: 治理与生态 (Governance) - 审计/接口"},
+		{"id":"group_l1_assets","type":"group","x":-320,"y":-540,"width":700,"height":300,"color":"#E1BEE7","label":"[🟣] L: 战略资产区 (SSOT) - 愿景/路线图"},
+		{"id":"audit_module","type":"text","text":"### [🕵️] 合规审计 (小黑)\n**隐私熔断机制**\n\n确保数据不出圈，安全第一。","x":-290,"y":450,"width":300,"height":150},
+		{"id":"demand_matrix","type":"text","text":"### [🔍] 需求分析矩阵\n- **小憶**: 记忆主权\n- **小康**: 跨域合规\n- **小镜**: 回忆录产品化","x":-290,"y":-30,"width":300,"height":180},
+		{"id":"vision_core","type":"text","text":"### [🏛️] OpenBT 愿景宣言\n**数据主权基础设施**\n\n- 代码即法律\n- 资产永续","x":-290,"y":-480,"width":300,"height":180},
+		{"id":"roadmap_timeline","type":"text","text":"### [📅] 演进路线图\n**本地单点 -> P2P -> 广域**\n\n- Stage 6: 账本\n- Stage 9: Web3","x":50,"y":-480,"width":300,"height":180},
+		{"id":"sdk_definition","type":"text","text":"### [💻] API SDK 极简定义\n`encrypt -> distribute` \n\n**平滑注入现有系统**\n降低 Agent 接入成本","x":350,"y":-30,"width":300,"height":180},
+		{"id":"ecosystem_hub","type":"text","text":"### [🌐] 生态协同\n- QNAP SDK\n- 硬件厂商对接\n- 分布式存储节点","x":350,"y":450,"width":300,"height":150}
+	],
+	"edges":[
+		{"id":"flow_demand_to_sdk","fromNode":"demand_matrix","fromSide":"right","toNode":"sdk_definition","toSide":"left","label":"[🔄] 需求驱动 API"},
+		{"id":"flow_sdk_to_assets","fromNode":"sdk_definition","fromSide":"top","toNode":"vision_core","toSide":"bottom","label":"[💾] 资产确权"},
+		{"id":"flow_ecosystem_to_audit","style":"dashed","fromNode":"ecosystem_hub","fromSide":"left","toNode":"audit_module","toSide":"right","label":"[🛑] 合规检查"},
+		{"id":"flow_feedback_loop","style":"dashed","fromNode":"ecosystem_hub","fromSide":"top","toNode":"demand_matrix","toSide":"bottom","label":"[🔄] 市场反馈"}
+	]
+}

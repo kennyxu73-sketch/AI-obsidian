@@ -1,0 +1,22 @@
+{
+	"nodes":[
+		{"id":"group_processing","type":"group","x":-450,"y":-400,"width":1130,"height":550,"color":"#1E90FF","label":"⚙️ 系统处理区 (L2 动态运行)"},
+		{"id":"group_storage","type":"group","x":-480,"y":-880,"width":1130,"height":290,"color":"6","label":"📁 文件存储区 (L1 静态资产)"},
+		{"id":"group_governance","type":"group","x":-1020,"y":-400,"width":350,"height":550,"color":"3","label":"⚖️ 治理闸门区 (人工审计)"},
+		{"id":"human_approval","type":"text","text":"🛡️ Human Approval\n角色: 准入闸门\n安全等级: L2\n职能: 审核 Drafts → 写入 Cabinet\n状态: 🟢 核心原则","x":-990,"y":-150,"width":290,"height":150,"color":"#FFD700"},
+		{"id":"pipeline_engine","type":"text","text":"🤖 AI-OB system\n角色: 自动化 Agent\n职能: 提取 Cabinet → 加工 → 生成 Draft\n状态: 🟠 运行中","x":-350,"y":-320,"width":360,"height":135,"color":"#1E90FF"},
+		{"id":"vault_tools","type":"text","text":"🛠️ Tools (执行基础设施)\n角色: 计算与自动化引擎\n安全等级: L2\n职能: Docker/n8n/Dify/Models/CLI\n状态: 🟢 独立运行","x":-345,"y":-112,"width":350,"height":225,"color":"#1E90FF"},
+		{"id":"vault_cabinet","type":"text","text":"🗄️ Cabinet (用户知识库)\n角色: 数据主权核心\n安全等级: L1 (Human Only)\n职能: 笔记/研究/日记素材\n状态: 🟢 只读/审核写","x":-350,"y":-830,"width":350,"height":180,"color":"#8A2BE2"},
+		{"id":"vault_system","type":"text","text":"📜 System (系统架构库)\n角色: AI-OB 宪法/规则\n安全等级: L1\n职能: 架构蓝图/Cursor Rules/规范\n状态: 🟢 人类主导","x":260,"y":-830,"width":320,"height":180,"color":"#8A2BE2"},
+		{"id":"vault_runtime","type":"text","text":"🧪 Runtime (运行数据库)\n角色: AI 动态工作区\n安全等级: L2\n职能: Drafts/Notes/Embeddings/Audits\n状态: 🟠 AI 可写","x":230,"y":-112,"width":350,"height":217,"color":"#1E90FF"}
+	],
+	"edges":[
+		{"id":"e1","style":"dashed","fromNode":"vault_cabinet","fromSide":"bottom","toNode":"pipeline_engine","toSide":"top","color":"#1E90FF","label":"只读读取"},
+		{"id":"e2","style":"dashed","fromNode":"vault_system","fromSide":"bottom","toNode":"pipeline_engine","toSide":"right","color":"#FFD700","label":"规则注入"},
+		{"id":"e3","style":"dashed","fromNode":"pipeline_engine","fromSide":"right","toNode":"vault_runtime","toSide":"left","color":"#1E90FF","label":"生成 Draft/Audit"},
+		{"id":"e4","style":"dashed","fromNode":"vault_tools","fromSide":"top","toNode":"pipeline_engine","toSide":"bottom","color":"#1E90FF","label":"算力支持"},
+		{"id":"e6","style":"solid","fromNode":"human_approval","fromSide":"top","toNode":"group_storage","toSide":"left","color":"#FFD700","label":"🔄 批准回写 (SSOT 更新)"},
+		{"id":"51484179bc4420e1","fromNode":"pipeline_engine","fromSide":"left","toNode":"group_governance","toSide":"right","color":"3","label":"人工审核"},
+		{"id":"6101a1c7ee1622f2","fromNode":"vault_tools","fromSide":"left","toNode":"group_governance","toSide":"right","color":"3","label":"人工审核"}
+	]
+}

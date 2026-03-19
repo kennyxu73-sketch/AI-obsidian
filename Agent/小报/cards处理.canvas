@@ -1,0 +1,31 @@
+{
+	"nodes":[
+		{"id":"group_processing","type":"group","x":-450,"y":-400,"width":1090,"height":720,"color":"#1E90FF","label":"⚙️ 系统处理区 (L2 动态运行)"},
+		{"id":"group_storage","type":"group","x":-450,"y":-1000,"width":1090,"height":500,"color":"#4658b4","label":"📁 文件存储区 (L1 静态资产)"},
+		{"id":"group_governance","type":"group","x":-900,"y":-400,"width":380,"height":700,"color":"#FFD700","label":"⚖️ 治理闸门区 (人工审计)"},
+		{"id":"human_approval","type":"text","text":"🛡️ Human Approval\n角色: 准入闸门\n安全等级: L2\n职能: 审核 Draft → 写入 Cabinet\n状态: 🟢 核心原则","x":-880,"y":-200,"width":300,"height":200,"color":"#FFD700"},
+		{"id":"vault_system","type":"text","text":"📜 System (系统架构库)\n角色: AI-OB 宪法\n安全等级: L1\n职能: 架构蓝图 / Rules / 协议\n状态: 🟢 人类主导","x":260,"y":-810,"width":350,"height":180,"color":"#8A2BE2"},
+		{"id":"vault_runtime","type":"text","text":"🧪 Runtime Workspace\n角色: AI 动态工作区\n安全等级: L2\n职能:\nDraft Workspace\nEmbedding Index\nAudit Cache\n状态: 🟠 AI 可写","x":-390,"y":-365,"width":360,"height":240,"color":"#1E90FF"},
+		{"id":"vault_tools","type":"text","text":"🛠️ Tools Infrastructure\n角色: 自动化基础设施\n安全等级: L2\n职能: Docker / n8n / Dify / Models\n状态: 🟢 独立运行","x":-385,"y":100,"width":350,"height":200,"color":"#1E90FF"},
+		{"id":"pipeline_engine","type":"text","text":"🤖 AI-OB System\n角色: 自动化 Agent\n职能: 提取 Cabinet → 加工 → 生成 Draft\n状态: 🟠 运行中","x":-80,"y":-80,"width":360,"height":160,"color":"#1E90FF"},
+		{"id":"8a09416b8dc29944","type":"text","text":"🗄️ Cabinet (用户知识库)\n角色: 数据主权核心\n安全等级: L1\n职能: docs 记录归档\n状态: 🟢 只读 / 审核写","x":-385,"y":-960,"width":350,"height":200,"color":"6"},
+		{"id":"vault_cabinet","type":"text","text":"🗄️ Cabinet (用户知识库)\n角色: 数据主权核心\n安全等级: L4\n职能: cards 零星记录\n状态: 🟢 只读 / 审核写","x":-385,"y":-720,"width":350,"height":180,"color":"#8A2BE2"},
+		{"id":"audit_log","type":"text","text":"📜 Audit Log\n角色: 操作审计\n安全等级: L2\n职能: AI行为记录 / Human审批记录\n状态: 🟢 持续记录","x":275,"y":100,"width":320,"height":200,"color":"#1E90FF"},
+		{"id":"future_agents","type":"text","text":"🚀 Future Agents\n角色: 架构自治系统\n职能:\nCanvas解析\nSSOT同步\n拓扑优化\n状态: 🟠 规划中","x":280,"y":-330,"width":330,"height":170,"color":"#1E90FF"}
+	],
+	"edges":[
+		{"id":"e1","style":"dashed","fromNode":"vault_cabinet","fromSide":"right","toNode":"pipeline_engine","toSide":"top","color":"#1E90FF","label":"只读读取"},
+		{"id":"e2","style":"dashed","fromNode":"vault_system","fromSide":"bottom","toNode":"pipeline_engine","toSide":"top","color":"#1E90FF","label":"规则注入"},
+		{"id":"e3","style":"dashed","fromNode":"pipeline_engine","fromSide":"left","toNode":"vault_runtime","toSide":"bottom","color":"#1E90FF","label":"生成 Draft"},
+		{"id":"e3b","style":"dashed","fromNode":"vault_runtime","fromSide":"right","toNode":"pipeline_engine","toSide":"top","color":"#1E90FF","label":"RAG / Context"},
+		{"id":"e4","style":"dashed","fromNode":"vault_tools","fromSide":"top","toNode":"pipeline_engine","toSide":"left","color":"#1E90FF","label":"算力支持"},
+		{"id":"e5","style":"solid","fromNode":"vault_runtime","fromSide":"left","toNode":"human_approval","toSide":"right","color":"#FFD700","label":"提案审核"},
+		{"id":"e6","style":"solid","fromNode":"group_governance","fromSide":"top","toNode":"8a09416b8dc29944","toSide":"left","color":"#FFD700","label":"🔄 批准回写 (SSOT更新)"},
+		{"id":"e7","style":"dashed","fromNode":"pipeline_engine","fromSide":"bottom","toNode":"audit_log","toSide":"left","color":"#1E90FF","label":"行为记录"},
+		{"id":"e8","style":"dashed","fromNode":"vault_runtime","fromSide":"right","toNode":"future_agents","toSide":"left","color":"#1E90FF","label":"运行数据"},
+		{"id":"e8b","style":"dashed","fromNode":"audit_log","fromSide":"top","toNode":"future_agents","toSide":"bottom","color":"#1E90FF","label":"行为学习"},
+		{"id":"e9","style":"dashed","fromNode":"future_agents","fromSide":"top","toNode":"vault_system","toSide":"bottom","color":"#1E90FF","label":"🔄 架构优化回流"},
+		{"id":"e10","style":"dashed","fromNode":"vault_cabinet","fromSide":"bottom","toNode":"vault_runtime","toSide":"top","color":"#1E90FF","label":"Embedding Sync"},
+		{"id":"cb254b3a843a5a91","fromNode":"human_approval","fromSide":"top","toNode":"vault_cabinet","toSide":"left","color":"3","label":"灵感记录"}
+	]
+}

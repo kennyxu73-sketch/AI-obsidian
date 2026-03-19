@@ -1,0 +1,23 @@
+{
+	"nodes":[
+		{"id":"2792742d53f122ed","x":-260,"y":-90,"width":920,"height":620,"color":"#4658b4","type":"group","label":"系统处理"},
+		{"id":"b6bc9c05c7d2a02c","x":-760,"y":-90,"width":360,"height":620,"color":"3","type":"group","label":"人工干预"},
+		{"id":"627d77e55a802ee5","x":-540,"y":-420,"width":870,"height":180,"color":"6","type":"group","label":"文件存储"},
+		{"id":"core_processing","type":"text","text":"⚙️ 核心处理引擎\n角色: 自动化执行节点\n安全等级: L2\n职能: 文档解析 → Canvas 生成 → 核心加工\n状态: 🟠","x":0,"y":-70,"width":320,"height":160,"color":"#1E90FF"},
+		{"id":"future_agent","type":"text","text":"🤖 未来自动化\n角色: Canvas Agent (小黑&小画)\n安全等级: L2\n职能: 解析 Canvas → 双向映射 → 差异检测 → 文档更新\n状态: 🟠","x":280,"y":330,"width":360,"height":180,"color":"#1E90FF"},
+		{"id":"storage_lifecycle","type":"text","text":"💾 存储与生命周期\n角色: 系统归档节点\n安全等级: L2\n职能: Canvas 文件管理、设计→稳定→归档\n状态: 🟢","x":-240,"y":370,"width":280,"height":140,"color":"#1E90FF"},
+		{"id":"principles","type":"text","text":"⚖️ 使用原则:人工加工图示而非文档\n角色: 治理参考节点\n安全等级: L2\n职能: 文档为真、Canvas 可推导、非核心数据流\n状态: 🟢","x":-740,"y":350,"width":320,"height":160,"color":"3"},
+		{"id":"design_spec","type":"text","text":"🎨 设计规范\n角色: 人工治理节点\n安全等级: L2\n职能: 规范节点结构、颜色、连线\n状态: 🟢","x":-720,"y":-60,"width":280,"height":140,"color":"3"},
+		{"id":"core_ssot","type":"text","text":"📚 SSOT 核心\n角色: 系统唯一事实来源\n安全等级: L1\n职能: 保存文档真值、知识资产\n状态: 🟢","x":10,"y":-400,"width":300,"height":140,"color":"#8A2BE2"},
+		{"id":"canvas_position","type":"text","text":"🖼️ Canvas 定位\n角色: 可视化框架\n安全等级: L1\n职能: 提供系统全局视角\n状态: 🟢","x":-520,"y":-400,"width":300,"height":140,"color":"#8A2BE2"}
+	],
+	"edges":[
+		{"id":"edge1","style":"dashed","fromNode":"canvas_position","fromSide":"right","toNode":"core_ssot","toSide":"left","color":"#1E90FF","label":"结构映射"},
+		{"id":"edge2","style":"solid","fromNode":"design_spec","fromSide":"right","toNode":"core_processing","toSide":"left","color":"#FFD700","label":"人工规范介入"},
+		{"id":"edge3","style":"dashed","fromNode":"core_ssot","fromSide":"bottom","toNode":"core_processing","toSide":"top","color":"#1E90FF","label":"自动加工"},
+		{"id":"edge4","style":"dashed","fromNode":"core_processing","fromSide":"bottom","toNode":"storage_lifecycle","toSide":"top","color":"#1E90FF","label":"存储归档"},
+		{"id":"edge5","style":"solid","fromNode":"principles","fromSide":"right","toNode":"core_processing","toSide":"left","color":"#FFD700","label":"人工流程图优化"},
+		{"id":"edge6","style":"dashed","fromNode":"core_processing","fromSide":"bottom","toNode":"future_agent","toSide":"top","color":"#1E90FF","label":"自动化愿景"},
+		{"id":"edge7","style":"dashed","fromNode":"future_agent","fromSide":"top","toNode":"core_ssot","toSide":"right","color":"#1E90FF","label":"🔄 真值回流"}
+	]
+}

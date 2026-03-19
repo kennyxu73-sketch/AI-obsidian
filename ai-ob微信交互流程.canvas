@@ -1,0 +1,101 @@
+{
+	"nodes":[
+		{
+			"id":"h5",
+			"type":"text",
+			"text":"H5 全局视角\n跨文件展示\n项目聚合\n可视化",
+			"header":{"title":"H5 全局视角","type":"Output / Visualization","status":"Active","owner":"System"},
+			"body":{"description":"跨文件展示、项目聚合、可视化展示","metadata":"#dashboard #visualization","security_level":"L2"},
+			"x":-1090,
+			"y":-607,
+			"width":240,
+			"height":140,
+			"color":"2"
+		},
+		{
+			"id":"skill",
+			"type":"text",
+			"text":"Dify Skill / CLI\n自动整理\n摘要\n结构化",
+			"header":{"title":"Dify Skill / CLI","type":"System Processing","status":"Active","owner":"Skill/Agent"},
+			"body":{"description":"自动整理、摘要、结构化笔记","metadata":"#daily #automation","security_level":"L2"},
+			"x":-1090,
+			"y":410,
+			"width":220,
+			"height":140,
+			"color":"#1E90FF"
+		},
+		{
+			"id":"wechat_mp",
+			"type":"text",
+			"text":"微信公众号\n成果展示\n确认 / 补充 / 否定",
+			"header":{"title":"微信公众号","type":"Human Review","status":"Pending","owner":"人工"},
+			"body":{"description":"成果展示、人工确认、补充或否定","metadata":"#output #review","security_level":"L2"},
+			"x":-1100,
+			"y":-155,
+			"width":240,
+			"height":140,
+			"color":"2"
+		},
+		{
+			"id":"obsidian",
+			"type":"text",
+			"text":"Obsidian\n核心笔记库\nSSOT",
+			"header":{"title":"Obsidian","type":"Knowledge Base","status":"Active","owner":"System"},
+			"body":{"description":"核心笔记库，单一可信来源","metadata":"#core #SSOT","security_level":"L1"},
+			"x":-620,
+			"y":-210,
+			"width":260,
+			"height":250,
+			"color":"#8A2BE2"
+		},
+		{
+			"id":"wechat",
+			"type":"text",
+			"text":"微信自然对话\n日常交互\n修改笔记",
+			"header":{"title":"微信自然对话","type":"Human Input","status":"Active","owner":"用户"},
+			"body":{"description":"日常口述交互，可修改 Obsidian 核心笔记","metadata":"#daily #conversation","security_level":"L2"},
+			"x":-120,
+			"y":410,
+			"width":220,
+			"height":120,
+			"color":"#32CD32"
+		},
+		{
+			"id":"index_layer",
+			"type":"text",
+			"text":"Index / Metadata\n笔记索引\n标签\n关系\n轻量查询层",
+			"header":{"title":"Index / Metadata","type":"Knowledge Base","status":"Active","owner":"System"},
+			"body":{"description":"生成笔记索引，标签和关系，支持轻量查询","metadata":"#index #metadata","security_level":"L1"},
+			"x":-200,
+			"y":-614,
+			"width":280,
+			"height":147,
+			"color":"#8A2BE2"
+		},
+		{
+			"id":"1aedc327be8ab1d9",
+			"type":"text",
+			"text":"外部咨询收集整理 (skill)",
+			"header":{"title":"外部咨询收集整理","type":"System Processing","status":"Active","owner":"Skill/Agent"},
+			"body":{"description":"定时收集外部咨询信息，整理存入 Obsidian","metadata":"#collection #automation","security_level":"L2"},
+			"x":-170,
+			"y":-115,
+			"width":250,
+			"height":60,
+			"color":"#1E90FF"
+		}
+	],
+	"edges":[
+		{"id":"e1","style":"solid","fromNode":"obsidian","fromSide":"top","toNode":"h5","toSide":"right","color":"#8A2BE2","label":"系统化展示"},
+		{"id":"e5","style":"solid","fromNode":"wechat","fromSide":"left","toNode":"skill","toSide":"right","color":"#32CD32","label":"口述结构化笔记"},
+		{"id":"e6","style":"solid","fromNode":"wechat","fromSide":"top","toNode":"obsidian","toSide":"right","color":"#32CD32","label":"日常口述笔记记录"},
+		{"id":"cc497ec4e35ae44c","style":"dashed","fromNode":"wechat_mp","fromSide":"right","toNode":"obsidian","toSide":"left","color":"#FFD700","label":"确认处理后存档"},
+		{"id":"017e05d77a943010","style":"solid","fromNode":"skill","fromSide":"right","toNode":"obsidian","toSide":"bottom","color":"#1E90FF","label":"整理存档(不需人工处理)"},
+		{"id":"bf24b9ca468783d5","style":"solid","fromNode":"1aedc327be8ab1d9","fromSide":"left","toNode":"obsidian","toSide":"right","color":"#1E90FF","label":"定时收集"},
+		{"id":"f79691965df46238","style":"solid","fromNode":"obsidian","fromSide":"left","toNode":"skill","toSide":"top","color":"#8A2BE2","label":"收集资料整理"},
+		{"id":"e8","style":"solid","fromNode":"skill","fromSide":"left","toNode":"h5","toSide":"left","color":"#1E90FF","label":"更新全局视图"},
+		{"id":"e9","style":"solid","fromNode":"obsidian","fromSide":"top","toNode":"index_layer","toSide":"left","color":"#8A2BE2","label":"生成索引"},
+		{"id":"e10","style":"solid","fromNode":"index_layer","fromSide":"left","toNode":"h5","toSide":"right","color":"#8A2BE2","label":"快速查询"},
+		{"id":"df2b4b34dfd63927","fromNode":"skill","fromSide":"top","toNode":"wechat_mp","toSide":"bottom","color":"3","label":"整理后问吗待确认"}
+	]
+}

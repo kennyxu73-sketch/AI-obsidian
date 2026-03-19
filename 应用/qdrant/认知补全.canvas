@@ -1,0 +1,24 @@
+{
+	"nodes":[
+		{"id":"axis_refinery","type":"group","x":-50,"y":-650,"width":550,"height":1180,"color":"1","label":"⚙️ 【认知炼化主轴】 (Refinery Axis)"},
+		{"id":"tower_governance","type":"group","x":-500,"y":-650,"width":400,"height":1180,"color":"4","label":"🛡️ 【主权控制塔】 (Sovereignty & Governance)"},
+		{"id":"buffer_memory","type":"group","x":550,"y":-650,"width":450,"height":600,"color":"5","label":"📁 【记忆供应池】 (Context Buffer)"},
+		{"id":"intent_parser","type":"text","text":"### 🔍 语义感应器 (Sensor)\n- **职能**: 意图解析 + 潜台词过滤。\n- **技术**: Python Skill 关键词锚定。\n- **输入**: 统帅原始指令。","x":0,"y":-600,"width":450,"height":180},
+		{"id":"gap_detector","type":"text","text":"### ⚙️ 缺口自检引擎 (Detector)\n- **工程指令**: 维度冲突扫描。\n- **维度**: [技术可行性 | 商业闭环 | 用户场景]。\n- **原理**: 计算逻辑距离 Δ(Target - Current)。","x":0,"y":-320,"width":450,"height":400},
+		{"id":"vault_search","type":"text","text":"### 💾 本地 SSOT 检索\n- **策略**: 默认/快速优先。\n- **范围**: 当前 Vault 资产库。\n- **技术**: Dataview API 注入。","x":600,"y":-600,"width":350,"height":180},
+		{"id":"rag_qdrant","type":"text","text":"### 🧠 增强记忆 (Qdrant)\n- **触发**: 仅当复杂/跨项目关联时开启。\n- **状态**: ⚪ 备用/低能耗模式。","x":600,"y":-320,"width":350,"height":180},
+		{"id":"safety_gate","type":"text","text":"### 🛡️ L0: 逻辑截断器\n- **工程指令**: 宪法红线扫描。\n- **截断点**: IF (公有云上传 | 数据脱敏失效) -> BLOCK。\n- **状态**: 🟢 强力监控中","x":-470,"y":-490,"width":340,"height":350},
+		{"id":"report_sealer","type":"text","text":"### 🤖 报告封印 Agent (Sealer)\n- **职能**: 结构化资产封装。\n- **格式**: Missing (❌) / Deviation (⚠️) / Options (💡)。\n- **输出**: 认知补全报告 v2.0。","x":0,"y":120,"width":450,"height":290},
+		{"id":"user_decision","type":"text","text":"### 👤 L1: 人类在环 (Decision)\n- **工程指令**: 终极决策确认。\n- **职能**: 针对 Option A/B 进行权衡，注入统帅直觉。\n- **地位**: 系统最高优先级。","x":-470,"y":90,"width":340,"height":350},
+		{"id":"final_artifact","type":"text","text":"### 📄 封印资产 (Final Truth)\n- **存放**: [[项目名]]/Gap_Report/\n- **属性**: 具备溯源证据链的结构化资产。","x":550,"y":90,"width":450,"height":230}
+	],
+	"edges":[
+		{"id":"e_sensor_to_gate","fromNode":"intent_parser","fromSide":"left","toNode":"safety_gate","toSide":"top","label":"审计流"},
+		{"id":"e_gate_to_engine","fromNode":"safety_gate","fromSide":"right","toNode":"gap_detector","toSide":"left","label":"授权"},
+		{"id":"e_mem_to_engine","fromNode":"vault_search","fromSide":"bottom","toNode":"gap_detector","toSide":"top","label":"记忆流"},
+		{"id":"e_engine_to_agent","fromNode":"gap_detector","fromSide":"bottom","toNode":"report_sealer","toSide":"top","label":"炼化流"},
+		{"id":"e_agent_to_decide","fromNode":"report_sealer","fromSide":"left","toNode":"user_decision","toSide":"right","label":"提交裁决"},
+		{"id":"e_decide_to_seal","fromNode":"user_decision","fromSide":"bottom","toNode":"final_artifact","toSide":"bottom","label":"封印"},
+		{"id":"e_back","style":"dashed","fromNode":"final_artifact","fromSide":"right","toNode":"vault_search","toSide":"right","label":"🔄 经验回流 (SSOT 进化)"}
+	]
+}

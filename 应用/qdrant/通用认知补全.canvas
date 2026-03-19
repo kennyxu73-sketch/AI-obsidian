@@ -1,0 +1,23 @@
+{
+	"nodes":[
+		{"id":"axis_refinery","type":"group","x":0,"y":-700,"width":600,"height":1300,"color":"1","label":"⚙️ 【认知炼化主轴】 (Refinery Axis)"},
+		{"id":"tower_sovereignty","type":"group","x":-520,"y":-700,"width":400,"height":1300,"color":"4","label":"🛡️ 【主权控制塔】 (Sovereignty & Governance)"},
+		{"id":"buffer_memory","type":"group","x":650,"y":-700,"width":480,"height":650,"color":"5","label":"📁 【记忆供应池】 (Context Buffer)"},
+		{"id":"safety_gate","type":"text","text":"### 🛡️ L0: 逻辑截断器 (Interceptor)\n- **核心判据**: \n  - IF (涉及公有云上传) -> ⚠️ BLOCK\n  - IF (敏感 API Key 暴露) -> ⚠️ BLOCK\n- **状态**: 🟢 宪法级监控","x":-490,"y":-650,"width":340,"height":400},
+		{"id":"user_decision","type":"text","text":"### 👤 L1: 人类在环 (User Decision)\n- **职能**: 终极决策确认。\n- **动作**: 点选 Option A (MVP) 或 Option B (Upgrade)。\n- **地位**: 系统的最高意志终点。","x":-490,"y":180,"width":340,"height":380},
+		{"id":"intent_parser","type":"text","text":"### 🔍 语义感应器 (Sensor)\n- **职能**: 解析显性目标 + 捕捉潜台词信号。\n- **Kenny 专属逻辑**: \n  - 提到养老 → 关联 [[慰康]]\n  - 纠结网络 → 转交 [[小酷]]","x":30,"y":-650,"width":540,"height":200},
+		{"id":"vault_search","type":"text","text":"### 💾 本地 SSOT 检索 (Quick)\n- **策略**: 默认优先检索本地 Vault。\n- **技术**: Dataview API / Native Search。\n- **原则**: 数据不出境。","x":680,"y":-650,"width":420,"height":180},
+		{"id":"rag_qdrant","type":"text","text":"### 🧠 增强记忆 (Qdrant RAG)\n- **触发**: 仅当涉及复杂跨项目关联时。\n- **定位**: 辅助索引，低优先级。","x":680,"y":-420,"width":420,"height":180},
+		{"id":"final_artifact","type":"text","text":"### 📄 最终封印资产 (Truth Artifact)\n- **属性**: 已审核的真值资产。\n- **归档**: [[项目名]]/Audit_Log/\n- **反馈**: 注入未来检索上下文。","x":650,"y":320,"width":480,"height":240},
+		{"id":"gap_detector","type":"text","text":"### ⚙️ 缺口自检引擎 (Detector)\n- **自检维度**: \n  - 🛠️ **技术**: RTX 3090 显存/驱动兼容性。\n  - 💰 **商业**: MVP 成本/盈利路径闭环。\n  - 👥 **用户**: 痛点验证 (老人端/管理端)。\n- **原理**: 计算逻辑距离 Δ(Target - Current)。","x":30,"y":-380,"width":540,"height":450},
+		{"id":"report_sealer","type":"text","text":"### 🤖 报告封印 Agent (Sealer)\n- **职能**: 封装结构化 MD 资产。\n- **产出**: 包含因果链的 [认知补全报告]。\n- **原则**: 拒绝结论，仅供选项。","x":30,"y":100,"width":540,"height":310}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"intent_parser","fromSide":"left","toNode":"safety_gate","toSide":"top","label":"审计流"},
+		{"id":"e3","fromNode":"vault_search","fromSide":"bottom","toNode":"gap_detector","toSide":"top","label":"记忆流"},
+		{"id":"e4","fromNode":"gap_detector","fromSide":"bottom","toNode":"report_sealer","toSide":"top","label":"逻辑流"},
+		{"id":"e5","fromNode":"report_sealer","fromSide":"left","toNode":"user_decision","toSide":"right","label":"提交裁决"},
+		{"id":"e6","fromNode":"user_decision","fromSide":"right","toNode":"final_artifact","toSide":"left","label":"封印入库"},
+		{"id":"e7","style":"dashed","fromNode":"final_artifact","fromSide":"top","toNode":"vault_search","toSide":"right","label":"🔄 经验回流 (SSOT 进化)"}
+	]
+}
