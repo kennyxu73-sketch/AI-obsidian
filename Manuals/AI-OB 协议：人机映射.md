@@ -175,7 +175,7 @@ graph TD
     
 ---
     
-![[人机映射.canvas]]
+![[obsidian_vault/000_Cabinet_System/Manuals/人机映射.canvas]]
 
 ## 7. 🎨 战略蓝图规范 (Canvas v2.2 Standard)
 

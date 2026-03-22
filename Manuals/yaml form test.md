@@ -16,7 +16,7 @@ audit_status: 🚀 V1.6 协议全量封顶
 audit_summary: |
   本规范定义了内阁资产治理的终极 YAML 标准。V1.6 核心引入“时间二元论”，通过 Created Date 锁定物理起源，通过 Deadline 锁定任务目标。确立了 history_logs 的全量说明义务，严禁 AI 臆断历史，确保每一份资产的演进脉络清晰、真实、可审计。
 audit_keywords:
-  - "[[时间戳主权]]"
+  - "[[obsidian_vault/000_Cabinet_System/Manuals/时间戳主权]]"
   - "[[时间二元论]]"
   - "[[V1.0 溯源原则]]"
   - "[[静默重塑]]"

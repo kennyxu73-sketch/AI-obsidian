@@ -2,7 +2,7 @@
 
 ### 1. 项目愿景 (The Vision)
 
-利用本地 3090 算力（[[dify]]  8189 端口）+ 云端算力 [[One-API]]+[[deepseek]]/[[doubao]] 构建 Kenny 的数字灵魂仓库。实现“信息抓取、专家分析、统帅审核、永久入库”的闭环，最终支撑 **[憶镜项目]**（感性/回忆录）与 **[慰康项目]**（理性/养老平台）两大事业。
+利用本地 3090 算力（[[obsidian_vault/000_Cabinet_System/应用/dify]]  8189 端口）+ 云端算力 [[obsidian_vault/000_Cabinet_System/应用/One-API]]+[[obsidian_vault/000_Cabinet_System/模型/deepseek]]/[[obsidian_vault/000_Cabinet_System/模型/doubao]] 构建 Kenny 的数字灵魂仓库。实现“信息抓取、专家分析、统帅审核、永久入库”的闭环，最终支撑 **[憶镜项目]**（感性/回忆录）与 **[慰康项目]**（理性/养老平台）两大事业。
 
 ### 2. 组织架构 (Cabinet Structure)
 

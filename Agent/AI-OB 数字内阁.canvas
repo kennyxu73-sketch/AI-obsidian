@@ -1,13 +1,13 @@
 {
 	"nodes":[
-		{"id":"xiaoyi","type":"text","text":"🎙️ **[[小憶]] (秘书长)**\n**\"内阁大脑\" / 总调度**\n- 理解模糊意图并拆解任务\n- 呼叫各领域专家 Agent\n- 汇总结果报告给 Kenny","x":70,"y":-1080,"width":300,"height":200,"color":"3"},
-		{"id":"xiaoou","type":"text","text":"⛓️ **[[小欧]] (OpenBT 项目经理)**\n**\"数据资产顾问\" / Web3 枢纽**\n- 负责数据确权、加密分片与纠删码\n- 管理全内阁 MC/MP 积分映射体系\n- 确保数据在分布式节点中的永续性","x":440,"y":-260,"width":300,"height":200,"color":"4"},
-		{"id":"xiaoji","type":"text","text":"🏗️ **[[小记]] (硬件专家 & PM)**\n**\"基座\" / 物理主权落地**\n- 掌管 Memory OS 内核与硬件绑定\n- 推进项目量产进程，对接硬件厂\n- 维护物理计算资源 (3090/OpenBT)","x":-280,"y":-510,"width":300,"height":200,"color":"1"},
-		{"id":"xiaohblack","type":"text","text":"🕵️ **[[小黑]] (内部分析 & 执行官)**\n**\"暗箱\" / 执行层**\n- 冷静处理 Cabinet/Runtime 数据\n- 执行小酷下达的日常任务 / Skills\n- 仅输出结构化 JSON\n- 决定内容是否值得存入系统","x":-880,"y":-1080,"width":280,"height":200,"color":"4"},
-		{"id":"xiaobao","type":"text","text":"📰 **[[小报]] (情报官)**\n**\"触角\" / 外部感知**\n- 负责抓取 RSS/网页/外部 API\n- 初步过滤信息价值\n- 将生肉交给小黑或小忆","x":-880,"y":-310,"width":280,"height":200,"color":"2"},
-		{"id":"xiaoku","type":"text","text":"🖥️ **[[小酷]] (执行官)**\n**\"拳头\" / 物理执行**\n- 处理文件搬运与归档\n- 负责系统长期稳定性\n- 下发日常任务/Skills 给小黑","x":-680,"y":-520,"width":280,"height":200,"color":"3"},
+		{"id":"xiaoyi","type":"text","text":"🎙️ **[[obsidian_vault/000_Cabinet_System/Agent/小忆/小憶]] (秘书长)**\n**\"内阁大脑\" / 总调度**\n- 理解模糊意图并拆解任务\n- 呼叫各领域专家 Agent\n- 汇总结果报告给 Kenny","x":70,"y":-1080,"width":300,"height":200,"color":"3"},
+		{"id":"xiaoou","type":"text","text":"⛓️ **[[obsidian_vault/000_Cabinet_System/Agent/小欧]] (OpenBT 项目经理)**\n**\"数据资产顾问\" / Web3 枢纽**\n- 负责数据确权、加密分片与纠删码\n- 管理全内阁 MC/MP 积分映射体系\n- 确保数据在分布式节点中的永续性","x":440,"y":-260,"width":300,"height":200,"color":"4"},
+		{"id":"xiaoji","type":"text","text":"🏗️ **[[obsidian_vault/000_Cabinet_System/Agent/小记]] (硬件专家 & PM)**\n**\"基座\" / 物理主权落地**\n- 掌管 Memory OS 内核与硬件绑定\n- 推进项目量产进程，对接硬件厂\n- 维护物理计算资源 (3090/OpenBT)","x":-280,"y":-510,"width":300,"height":200,"color":"1"},
+		{"id":"xiaohblack","type":"text","text":"🕵️ **[[obsidian_vault/000_Cabinet_System/Agent/小黑/小黑]] (内部分析 & 执行官)**\n**\"暗箱\" / 执行层**\n- 冷静处理 Cabinet/Runtime 数据\n- 执行小酷下达的日常任务 / Skills\n- 仅输出结构化 JSON\n- 决定内容是否值得存入系统","x":-880,"y":-1080,"width":280,"height":200,"color":"4"},
+		{"id":"xiaobao","type":"text","text":"📰 **[[obsidian_vault/000_Cabinet_System/Agent/小报/小报]] (情报官)**\n**\"触角\" / 外部感知**\n- 负责抓取 RSS/网页/外部 API\n- 初步过滤信息价值\n- 将生肉交给小黑或小忆","x":-880,"y":-310,"width":280,"height":200,"color":"2"},
+		{"id":"xiaoku","type":"text","text":"🖥️ **[[obsidian_vault/000_Cabinet_System/Agent/小酷/小酷]] (执行官)**\n**\"拳头\" / 物理执行**\n- 处理文件搬运与归档\n- 负责系统长期稳定性\n- 下发日常任务/Skills 给小黑","x":-680,"y":-520,"width":280,"height":200,"color":"3"},
 		{"id":"user","type":"text","text":"👤 **Human User (Kenny)**\n**最高决策位**\n- 🚦 下达任务指令\n- 👁️ 最终内容审计\n- 💡 灵感输入","x":80,"y":200,"width":280,"height":180,"color":"6"},
-		{"id":"xiaohua","type":"text","text":"🎨 **[[小画]] (Visual Agent)**\n**\"内阁面孔\" / 交互界面**\n- 决定展示方式 (Canvas/Kanban)\n- 捕获用户操作并翻译为指令\n- 呈现所有 Agent 的运行状态","x":60,"y":-160,"width":300,"height":200,"color":"3"},
+		{"id":"xiaohua","type":"text","text":"🎨 **[[obsidian_vault/000_Cabinet_System/Agent/小画/小画]] (Visual Agent)**\n**\"内阁面孔\" / 交互界面**\n- 决定展示方式 (Canvas/Kanban)\n- 捕获用户操作并翻译为指令\n- 呈现所有 Agent 的运行状态","x":60,"y":-160,"width":300,"height":200,"color":"3"},
 		{"id":"xiaokang","type":"text","text":"🏢 **[[小康]] (2B 专家)**\n**\"事业\" / 养老平台**\n- 知识体系向业务逻辑转化\n- 负责养老平台 Kanban 任务\n- 与 OpenBT 结算医疗数据存储","x":1120,"y":-1080,"width":260,"height":240,"color":"5"},
 		{"id":"xiaojing","type":"text","text":"🎭 **[[小镜]] (2C 专家)**\n**\"情感\" / 回忆录负责人**\n- 挖掘内容的记忆价值\n- 适配数字人与叙事风格\n- 接入 OpenBT 确权数字遗产","x":740,"y":-670,"width":260,"height":260,"color":"5"}
 	],

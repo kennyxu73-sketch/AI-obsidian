@@ -4,4 +4,4 @@
 | **MacBook** | `10.210.8.18`   | **生产力中心**：运行 Cursor 写代码，Obsidian 整理笔记。            |
 | **iPad**    | `10.210.8.88`   | **移动看板**：远程监控 Dify 状态，查看视频知识卡片。                   |
 | **iPhone**  | `10.210.8.68`   | **语音入口**：通过 Siri 快捷指令直接下令给 3090。                  |
-| 3090        | 10.210.8.8      | 私有算力与sync 中心, [[n8n]](独立ducker), [[dify]], 独立duck |
+| 3090        | 10.210.8.8      | 私有算力与sync 中心, [[obsidian_vault/000_Cabinet_System/应用/n8n]](独立ducker), [[obsidian_vault/000_Cabinet_System/应用/dify]], 独立duck |

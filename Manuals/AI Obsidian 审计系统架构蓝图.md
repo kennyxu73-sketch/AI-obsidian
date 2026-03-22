@@ -1,21 +1,18 @@
 ---
-# --- 1. Core View (核心定位区) ---
-title: "内阁备忘录：AI Obsidian 审计系统架构蓝图"
-date: 2026-02-10                       # 🔴 依据正文 cite 锁定物理起源日期
-deadline: 2026-02-27                   # 🟢 当前架构版本演进节点 (v2.3)
-本文件版本: 2.3.0                     # 🔴 对应蓝图 v2.3 版本号
-primary_agent: "审计小酷"              # 🔴 审计分身主责
-file_type: "doc/strategy"              # 🔴 属于顶层架构策略
-project_ref: "[[AI obsidian]]"         # 🟡 关联内阁基建项目
-importance: 5                        # 🟡 决定内阁治理合规性的核心资产
-review_status: "Approved"            # 🔴 架构逻辑已通过统帅初核
+title: 内阁备忘录：AI Obsidian 审计系统架构蓝图
+date: 2026-02-10
+deadline: 2026-02-27
+本文件版本: 2.3.0
+primary_agent: 审计小酷
+file_type: doc/strategy
+project_ref: "[[obsidian_vault/000_Cabinet_System/AI obsidian]]"
+importance: 5
+review_status: Approved
 tags:
   - "#内阁基建/审计"
   - "#安全/合规性"
   - "#治理/V1.6.1升级"
-
-# --- 2. Audit Layer (深度审计层) ---
-audit_status: "🚀 V2.3 核心把控与学习模式"
+audit_status: 🚀 V2.3 核心把控与学习模式
 audit_summary: |
   [V2.3 升级报告]:
   - 角色转换：审计系统从“Gatekeeper(拦截器)”升级为“Mentor(导师)”，侧重预检分析而非强制拦截。
@@ -29,17 +26,15 @@ audit_keywords:
   - "[[知识总结]]"
   - "[[Kenny_in_the_Loop]]"
   - "[[核心把控]]"
-
-# --- 3. System Meta (系统追踪层) ---
 system_meta:
-  file_id: "CABINET-AUDIT-BLUEPRINT-001"
+  file_id: CABINET-AUDIT-BLUEPRINT-001
   parent_doc: "[[内阁数字化治理大纲]]"
-  protocol_v: "yaml 版本:1.6.1"        # 🔴 升级至最新协议水位
+  protocol_v: yaml 版本:1.6.1
   kenny_notes: |
     [2026-02-27]: 架构升级至 v2.3。调整为早期建设期模式，将LLM作为知识导师。强调通过交互式审计来实现统帅的学习与对系统的核心把控。
     [审计红线]: 任何涉及“库准入”的操作必须处于挂起态，直至 Kenny 显式授权 [cite: 2026-02-10]。
     [技术声明]: 审计系统需具备“影子分身”特征，确保本地执行与云端监察的物理隔离。
-  history_logs:                        # 🔴 全量编年史
+  history_logs:
     - V2.3.0 | 2026-02-27 | 升级跃迁：建立交互式预检与导师模式，强化统帅的核心把控能力。
     - V2.2.0 | 2026-02-26 | 架构跃迁：确立 Git Diff 驱动与影子审计注入逻辑，引入分身角色。
     - V1.0.0 | 2026-02-10 | 概念诞生：提出“本体干活，影子审计”的原始哲学。
@@ -60,7 +55,7 @@ system_meta:
 
 ### 📂 物理执行层 (The Executor)
 
-- **[[小黑]] (执行官)**：
+- **[[obsidian_vault/000_Cabinet_System/Agent/小黑/小黑]] (执行官)**：
     
     - **职责**：负责本地文件同步、Git 状态监测及数据搬运 [cite: 2026-02-26]。
         
@@ -77,9 +72,9 @@ system_meta:
 
 ### 🗣️ 交互代理层 (The Messenger)
 
-- **[[审计小酷]]·导师分身 (Chancellor Persona)**：
+- **[[obsidian_vault/000_Cabinet_System/Agent/审计 agents/审计小酷]]·导师分身 (Chancellor Persona)**：
     
-    - **身份**：[[小酷]]的理性化审计分身与导师，在 Dify 界面与 Kenny 直接对话。
+    - **身份**：[[obsidian_vault/000_Cabinet_System/Agent/小酷/小酷]]的理性化审计分身与导师，在 Dify 界面与 Kenny 直接对话。
         
     - **定位**：内阁秘书长/技术导师，负责解释 Git 变动的合规性与设计意图，与 Kenny 进行“对话提问”式的深度分析 [cite: 2026-02-27]。
 

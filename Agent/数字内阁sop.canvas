@@ -1,11 +1,11 @@
 {
 	"nodes":[
-		{"id":"xiaobao","type":"text","text":"📰 **[[小报]] (情报官)**\n**触角 / 外部感知**\n- 抓取 RSS/网页/API\n- 初步过滤信息价值 (A/B/C/D)\n- 等 Kenny 点头才归档\n**SOP:** 存档与审核\n**状态:** 🔴 A/B 待审, 🟡 C 摘要, ⚪ D 丢弃","x":-700,"y":-120,"width":280,"height":240,"color":"2"},
-		{"id":"xiaohblack","type":"text","text":"🕵️ **[[小黑]] (内部分析 & 执行官)**\n**暗箱 / 执行层**\n- 执行小酷下发任务 / Skills\n- 冷静处理 Cabinet/Runtime 数据\n- 返回结构化 JSON\n**SOP:** 执行层 & 数据清理\n**状态:** 🔴 待分析, 🟠 分析中, 🟢 完成","x":-700,"y":-740,"width":280,"height":240,"color":"4"},
-		{"id":"xiaohua","type":"text","text":"🎨 **[[小画]] (Visual Agent)**\n**内阁面孔 / 交互界面**\n- 决定展示方式 (Canvas/Kanban)\n- 捕获用户操作并翻译为任务\n- 展示所有 Agent 状态\n**SOP:** 用户操作转任务指令\n**状态:** 🟢 实时可操作","x":80,"y":-140,"width":300,"height":240,"color":"3"},
+		{"id":"xiaobao","type":"text","text":"📰 **[[obsidian_vault/000_Cabinet_System/Agent/小报/小报]] (情报官)**\n**触角 / 外部感知**\n- 抓取 RSS/网页/API\n- 初步过滤信息价值 (A/B/C/D)\n- 等 Kenny 点头才归档\n**SOP:** 存档与审核\n**状态:** 🔴 A/B 待审, 🟡 C 摘要, ⚪ D 丢弃","x":-700,"y":-120,"width":280,"height":240,"color":"2"},
+		{"id":"xiaohblack","type":"text","text":"🕵️ **[[obsidian_vault/000_Cabinet_System/Agent/小黑/小黑]] (内部分析 & 执行官)**\n**暗箱 / 执行层**\n- 执行小酷下发任务 / Skills\n- 冷静处理 Cabinet/Runtime 数据\n- 返回结构化 JSON\n**SOP:** 执行层 & 数据清理\n**状态:** 🔴 待分析, 🟠 分析中, 🟢 完成","x":-700,"y":-740,"width":280,"height":240,"color":"4"},
+		{"id":"xiaohua","type":"text","text":"🎨 **[[obsidian_vault/000_Cabinet_System/Agent/小画/小画]] (Visual Agent)**\n**内阁面孔 / 交互界面**\n- 决定展示方式 (Canvas/Kanban)\n- 捕获用户操作并翻译为任务\n- 展示所有 Agent 状态\n**SOP:** 用户操作转任务指令\n**状态:** 🟢 实时可操作","x":80,"y":-140,"width":300,"height":240,"color":"3"},
 		{"id":"user","type":"text","text":"👤 **Human User (Kenny)**\n**最高决策位**\n- 下达任务指令\n- 最终审计与灵感输入\n**SOP:** 决策与审批\n**状态:** 🔴 等处理 / 🟢 审核完成","x":90,"y":320,"width":280,"height":200,"color":"6"},
-		{"id":"xiaoyi","type":"text","text":"🎙️ **[[小憶]] (秘书长)**\n**内阁大脑 / 总调度**\n- 拆解任务并呼叫专家\n- 汇总结果给 Kenny\n**SOP:** 紧急/重要排序 (P0-P2)\n**状态:** 🔴 P0, 🟠 P1, 🟡 P2","x":340,"y":-740,"width":300,"height":240,"color":"3"},
-		{"id":"xiaoku","type":"text","text":"🖥️ **[[小酷]] (执行官)**\n**拳头 / 物理执行**\n- 文件搬运与归档\n- 系统稳定性维护\n- 下发日常任务/Skills 给小黑\n**SOP:** 稳定性保障\n**状态:** 🔴 风险 / 🟠 处理中 / 🟢 稳定","x":-300,"y":-480,"width":280,"height":240,"color":"3"},
+		{"id":"xiaoyi","type":"text","text":"🎙️ **[[obsidian_vault/000_Cabinet_System/Agent/小忆/小憶]] (秘书长)**\n**内阁大脑 / 总调度**\n- 拆解任务并呼叫专家\n- 汇总结果给 Kenny\n**SOP:** 紧急/重要排序 (P0-P2)\n**状态:** 🔴 P0, 🟠 P1, 🟡 P2","x":340,"y":-740,"width":300,"height":240,"color":"3"},
+		{"id":"xiaoku","type":"text","text":"🖥️ **[[obsidian_vault/000_Cabinet_System/Agent/小酷/小酷]] (执行官)**\n**拳头 / 物理执行**\n- 文件搬运与归档\n- 系统稳定性维护\n- 下发日常任务/Skills 给小黑\n**SOP:** 稳定性保障\n**状态:** 🔴 风险 / 🟠 处理中 / 🟢 稳定","x":-300,"y":-480,"width":280,"height":240,"color":"3"},
 		{"id":"xiaojing","type":"text","text":"🎭 **[[小镜]] (2C 专家)**\n**情感 / 回忆录负责人**\n- 挖掘记忆价值、逻辑自洽\n- 产出待审内容\n**SOP:** 深度产出\n**状态:** ⚪ 待审, 🟢 已审","x":640,"y":-480,"width":260,"height":200,"color":"5"},
 		{"id":"xiaokang","type":"text","text":"🏢 **[[小康]] (2B 专家)**\n**事业 / 养老平台**\n- 转化知识体系到业务逻辑\n- 产出高质量项目方案\n**SOP:** 深度产出\n**状态:** ⚪ 待审, 🟢 已审","x":1060,"y":-480,"width":260,"height":200,"color":"5"}
 	],

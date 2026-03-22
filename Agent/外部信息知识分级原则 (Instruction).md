@@ -1,6 +1,6 @@
 ###  外部信息知识分级原则 (Instruction)
 
-**由 Agent[[小报]]在处理任何信息(尤其是外部信息)时，必须参照以下标准给出“定级建议”：**
+**由 Agent[[obsidian_vault/000_Cabinet_System/Agent/小报/小报]]在处理任何信息(尤其是外部信息)时，必须参照以下标准给出“定级建议”：**
 
 1. **级别 A（战略级 / Core Knowledge）**
     
