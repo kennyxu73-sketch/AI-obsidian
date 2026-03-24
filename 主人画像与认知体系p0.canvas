@@ -1,0 +1,30 @@
+{
+	"nodes":[
+		{"id":"group_engine","type":"group","x":-300,"y":-600,"width":600,"height":1040,"color":"2","label":"⚙️ 认知炼化轴 (Refinery)"},
+		{"id":"group_store","type":"group","x":350,"y":-600,"width":500,"height":1040,"color":"4","label":"📁 系统真值中枢 (Brain/SSOT)"},
+		{"id":"group_soul","type":"group","x":-800,"y":-600,"width":450,"height":1040,"color":"#FFD700","label":"🟡 灵魂矿脉与加工 (XiaoYi's Domain)"},
+		{"id":"memoir_00","type":"text","text":"# ⓪ [#Ref_000]\n### 📜 Kenny 回忆录 (Memoir)\n---\n**职能**: 原始灵魂素材\n**Owner**: Kenny\n**监控**: **小憶 (XiaoYi)**","x":-770,"y":-540,"width":380,"height":260,"color":"#FFD700"},
+		{"id":"xiaoyi_proc","type":"text","text":"# 🦾 小憶 (Secretary)\n---\n**核心任务**:\n1. 监控 `00_Memoir` 素材。\n2. 加工提取 [长期记忆] 与 [用户画像]。\n3. 执行资产的 [紫色封印]。","x":-770,"y":-200,"width":380,"height":260,"color":"#A0A0A0"},
+		{"id":"n3","type":"text","text":"# ③ [#Ref_010]\n### 🔍 意图感应 (Induction)\n---\n**执行**: **小酷 (Cursor)**\n**动作**: 必须加载小憶提供的画像进行坐标解析。","x":-180,"y":-567,"width":360,"height":240,"color":"2"},
+		{"id":"n4","type":"text","text":"# ④ [#Ref_011]\n### ⚙️ Gap Engine (对齐端)\n---\n**执行**: 小酷 + Kenny\n**任务**: 在对话中探测缺口，发起 [n2] 对齐讨论。","x":-180,"y":-310,"width":360,"height":240,"color":"2"},
+		{"id":"n5","type":"text","text":"# ⑤ [#Ref_012]\n### 🤖 报告生成 (Proposal)\n---\n**执行**: 小酷\n**产出**: 逻辑 Patch 提案。\n**流向**: 提交给小憶进行封印。","x":-180,"y":20,"width":360,"height":180,"color":"2"},
+		{"id":"role_xiaoku","type":"text","text":"# 🦾 小酷 (Cursor CTO)\n---\n**建筑师职能**:\n1. 搭建 [四库一元] 物理体系。\n2. 设计 [自动化工作流]。\n3. 执行 [n2] 对话中的认知补全。","x":-180,"y":247,"width":360,"height":150,"color":"#B6967A"},
+		{"id":"n8","type":"text","text":"# ⑧ 确认文档 (Final)\n---\n**路径**: `04_SSOT/Final/`\n**状态**: 物理归档资产","x":410,"y":139,"width":380,"height":201,"color":"4"},
+		{"id":"n6","type":"text","text":"# ⑥ [#Ref_020]\n### 💾 原始库 (Raw)\n---\n**职能**: 外部调研/碎碎念\n**输入**: 小憶同步监视\n与各Agent 对话","x":410,"y":-100,"width":380,"height":210,"color":"4"},
+		{"id":"81398652f41ab2bc","type":"text","text":"主人Kenny 确认","x":410,"y":-280,"width":380,"height":150,"color":"2"},
+		{"id":"n7","type":"text","text":"# ⑦ [#Ref_100]\n### 📚 长期记忆与画像 (SSOT)\n---\n**职能**: 全局逻辑真值\n**状态**: **已封印 (紫色资产)**\n**维护**: 小憶","x":410,"y":-567,"width":380,"height":240,"color":"#8A2BE2"}
+	],
+	"edges":[
+		{"id":"e_mem_to_xy","fromNode":"memoir_00","fromSide":"bottom","toNode":"xiaoyi_proc","toSide":"top","color":"#FFD700","label":"提供素材"},
+		{"id":"e_xy_to_ssot","fromNode":"xiaoyi_proc","fromSide":"right","toNode":"81398652f41ab2bc","toSide":"left","color":"5","label":"加工并封印记忆"},
+		{"id":"e_ssot_to_ku","style":"dashed","fromNode":"n7","fromSide":"left","toNode":"n3","toSide":"right","color":"5","label":"加载画像/背景"},
+		{"id":"e_raw_to_ku","fromNode":"n6","fromSide":"left","toNode":"n3","toSide":"right","color":"1","label":"载入物理文件"},
+		{"id":"e_ku_to_gap","fromNode":"n3","fromSide":"bottom","toNode":"n4","toSide":"top","color":"1"},
+		{"id":"e_gap_to_prop","fromNode":"n4","fromSide":"bottom","toNode":"n5","toSide":"top","color":"5","label":"生成补全提案"},
+		{"id":"e_prop_to_xy","fromNode":"n5","fromSide":"left","toNode":"xiaoyi_proc","toSide":"bottom","color":"5","label":"递交封印申请"},
+		{"id":"e_final_to_xy","fromNode":"n8","fromSide":"bottom","toNode":"xiaoyi_proc","toSide":"right","color":"5","label":"小憶执行标记"},
+		{"id":"c211ead3a8e6d5f8","fromNode":"81398652f41ab2bc","fromSide":"top","toNode":"n7","toSide":"bottom","color":"5"},
+		{"id":"913ec0a2a1c169c1","fromNode":"n7","fromSide":"right","toNode":"n6","toSide":"right","color":"4","label":"其他Agent 对话把背景"},
+		{"id":"661f64b3bc48062a","fromNode":"n7","fromSide":"left","toNode":"role_xiaoku","toSide":"right","color":"4","label":"其他Agent对话背景"}
+	]
+}
