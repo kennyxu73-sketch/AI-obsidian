@@ -1,0 +1,29 @@
+{
+	"nodes":[
+		{"id":"group-108","type":"group","x":-480,"y":-360,"width":840,"height":860,"label":"💻 108节点 (Windows 工作站)"},
+		{"id":"group-3090","type":"group","x":460,"y":-360,"width":320,"height":860,"label":"🧠 3090 核心 (大脑)"},
+		{"id":"xiaoyi","type":"text","text":"秘书长 **小憶**\n---\n画像对齐/审计","x":500,"y":-280,"width":240,"height":120,"color":"1"},
+		{"id":"kenny","type":"text","text":"🧑‍🚀 **统帅 (Kenny)**\n决策与批注","x":500,"y":-560,"width":240,"height":100,"color":"5"},
+		{"id":"wb-agent","type":"text","text":"🛸 **Workbuddy (外勤)**\n---\n负责: 采样/发布\n权限: 微信/云端\n云端算力理解多媒体内容","x":-440,"y":-320,"width":240,"height":180,"color":"2"},
+		{"id":"gate-01","type":"text","text":"📂 **[01_Gate]**\n采样首站 (P5)","x":-410,"y":-40,"width":180,"height":120},
+		{"id":"oc-agent","type":"text","text":"🛠️ **OpenClaw (内务)**\n---\n负责: 分拣/清洗/归档\n权限: 本地FS/3090对接\n可用云端算力理解多媒体内容","x":50,"y":-320,"width":270,"height":165,"color":"4"},
+		{"id":"proc-02","type":"text","text":"🧪 **[02_Processor]**\n多模态脱水 (MD)","x":-100,"y":-40,"width":180,"height":120},
+		{"id":"red-04","type":"text","text":"🚨 **[04_Red_Zone]**\nP3 多媒体内容加密隔离区","x":95,"y":200,"width":180,"height":140},
+		{"id":"ob-vault","type":"text","text":"💎 **Obsidian 核心库**\nP1-P3 灵魂资产\n多媒体索引","x":500,"y":210,"width":240,"height":120,"color":"3"},
+		{"id":"lib-03","type":"text","text":"📚 **[03_Library_L2]**\nP4/P5 本地库\n多媒体/obsidian","x":-320,"y":210,"width":180,"height":140}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"kenny","fromSide":"left","toNode":"wb-agent","toSide":"top","label":"1. 微信发图 (P5)"},
+		{"id":"e2","fromNode":"wb-agent","fromSide":"bottom","toNode":"gate-01","toSide":"top","label":"2. 落地"},
+		{"id":"e3","fromNode":"gate-01","fromSide":"right","toNode":"proc-02","toSide":"left","label":"3. 扫描"},
+		{"id":"e4","fromNode":"oc-agent","fromSide":"bottom","toNode":"proc-02","toSide":"top","label":"4. 多模态清洗"},
+		{"id":"e5","fromNode":"proc-02","fromSide":"right","toNode":"xiaoyi","toSide":"left","label":"5. 摘要审计"},
+		{"id":"e6","fromNode":"xiaoyi","fromSide":"top","toNode":"kenny","toSide":"bottom","label":"6. 企微讨论(P3)"},
+		{"id":"e7","fromNode":"xiaoyi","fromSide":"bottom","toNode":"ob-vault","toSide":"top","label":"7. 归档批注"},
+		{"id":"e8","fromNode":"oc-agent","fromSide":"bottom","toNode":"red-04","toSide":"top","label":"8a. P3原图入库"},
+		{"id":"e9","fromNode":"oc-agent","fromSide":"left","toNode":"lib-03","toSide":"top","label":"8b. P4素材留存"},
+		{"id":"e10","fromNode":"ob-vault","fromSide":"left","toNode":"red-04","toSide":"right","label":"影子链接"},
+		{"id":"dfd8c4994a5001d9","fromNode":"ob-vault","fromSide":"bottom","toNode":"lib-03","toSide":"bottom","label":"可调用,对外发布资料"},
+		{"id":"56774b38144e4297","fromNode":"lib-03","fromSide":"left","toNode":"wb-agent","toSide":"left","label":"发布"}
+	]
+}
