@@ -18,7 +18,7 @@
 | 小报 | `小报/小报.md` | `小报/小报 prompt.md`、联网脱敏规范、Cards 工作流 | 同上目录内流程文档为专项 | 多以外部/Dify 为主；Cursor 可引用主入口 |
 | 小黑 | `小黑/小黑.md` | `小黑/小黑prompt.md`、`4g梳理/` 下脚本说明 | `小黑/小黑（XiaoHei）说明文档补充.md` | 分析轨；通常不当作对话主脑 |
 | 小画 | `小画/小画.md` | `小画/ 文档转Canvas prompt.md`、Canvas JSON 规范、小画与数字内阁 | — | 可视化轨 |
-| 小忆 | `小忆/小忆.md`（真库）；镜像仓库为 `小忆/小憶.md` | **L2 任务向**：`小忆/小忆_L2_inbox_enseal_patch.md`（inbox 炼化 / Patch 编排 / 转交小酷）；`小忆/小忆prompt.md`、`小忆 (XiaoYi) 系统提示词 .md`、议事守则、Obsidian 基建手册 | `小忆/Kenny画像/*` 为 **Kenny** 画像区（非小忆本体 prompt） | 秘书长；Kenny 画像路径见 `.cursorrules`；Dify L2 见 `Dify/01_Ingest_&_Memory/WF_InboxRefine_Patch.md` |
+| 小忆 | `小忆/小忆.md`（真库）；镜像仓库为 `小忆/小憶.md` | **L1 任务向**：`小忆/小忆_L1_inbox_summary.md`（L0→语义脱水小结；slug `xiaoyi_l1_inbox_summary`）。**L2 任务向**：`小忆/小忆_L2_inbox_enseal_patch.md`（L1 批量→Patch 编排 / Pre-Gap / Tiered Enseal 意识层）。另有 `小忆/小忆prompt.md`、`小忆 (XiaoYi) 系统提示词 .md`、议事守则、Obsidian 基建手册 | `小忆/Kenny画像/*` 为 **Kenny** 画像区（非小忆本体 prompt） | 秘书长；Kenny 画像路径见 `.cursorrules`；Dify L1 `WF_Inbox_L1_Summary.md`、L2 `WF_InboxRefine_Patch.md`；**ref_id** `INFRA-COGNITIVE-L1L2-20260329-01` |
 | 小记 | `小记/小记.md` | — | — | Memory OS / 硬件枢纽；**≠ 小忆** |
 | 小欧 | `小欧/小欧.md` | — | — | OpenBT / 数据资产顾问 |
 | 小镜 | `小镜/小镜.md`（占位） | — | — | `prompt_status: TBD` |

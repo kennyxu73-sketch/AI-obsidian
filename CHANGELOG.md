@@ -7,6 +7,18 @@
 
 ---
 
+## 2026-03-29 | 认知炼化 L0–L2 重整（v2.6 规划 + L1 工作流 + L2 调度与 Tiered Enseal）
+
+### 变更概述
+`Infrastructure/AI-OB 主人认知炼化流水线整体规划.md`：v2.6；L0 路径真源对照；L1 触发（50 轮 / 脱水 30k token / 16k）；四段框架映射；L2 调度（≥20 条 L1 OR 滚动 168h）；分级封印 Tiered Enseal；画像分流。新建 `200_Operations/summaries/README.md`、`Dify/01_Ingest_&_Memory/WF_Inbox_L1_Summary.md`；`WF_InboxRefine_Patch.md` 增强（调度、Pre-Gap、画像分流、Tiered Enseal Mermaid）。`Agent/小忆/小忆_L1_inbox_summary.md`；`小忆_L2_inbox_enseal_patch.md` 与 L2 设计对齐。`AGENT_L1_PROMPTS`、`AGENT_INDEX` 登记 L1。**ref_id**（与 TOOLS / 两份 WF / 双 Prompt）：
+
+### JSON（影子索引）
+```json
+{ "module": "cognitive-l1l2-pipeline-refresh-vault", "status": "done", "ref_id": "INFRA-COGNITIVE-L1L2-20260329-01" }
+```
+
+---
+
 ## 2026-03-29 | inbox→enseal→Patch 流水线文档与 L2 Dify 设计（TOOLS 配对）
 
 ### 变更概述

@@ -2,7 +2,9 @@
 
 > **小记 ≠ 小忆**：小记 = Memory OS / 硬件与生态枢纽；小忆 = 秘书长 / 调度与 Kenny 画像治理。  
 > **L1 prompt 权威矩阵**：见 [[AGENT_L1_PROMPTS]]。  
-> **L2 任务向（示例）**：小忆 `小忆/小忆_L2_inbox_enseal_patch.md`（inbox→Patch 炼化编排）；设计文档 `Dify/01_Ingest_&_Memory/WF_InboxRefine_Patch.md`。
+> **L1 任务向**：小忆 `小忆/小忆_L1_inbox_summary.md`（语义脱水小结）；设计 `Dify/01_Ingest_&_Memory/WF_Inbox_L1_Summary.md`。  
+> **L2 任务向**：小忆 `小忆/小忆_L2_inbox_enseal_patch.md`（L1 批量→Patch）；设计 `Dify/01_Ingest_&_Memory/WF_InboxRefine_Patch.md`。  
+> **ref_id**：`INFRA-COGNITIVE-L1L2-20260329-01`（与 CHANGELOG、两份 WF Frontmatter 配对）。
 
 ## 角色总表
 
@@ -44,5 +46,6 @@
 ## 与 Cursor_Workspace 镜像同步说明
 
 - **已同步**（约 2026-03-29）：`agent_slug` / `l1_entry`、占位 `小镜` `小康`、本索引与 `AGENT_L1_PROMPTS.md`。  
+- **已同步**（2026-03-29 晚）：认知炼化 **`小忆_L1_inbox_summary.md`** / **`小忆_L2_inbox_enseal_patch.md`**（`ref_id` `INFRA-COGNITIVE-L1L2-20260329-01`）；镜像 `000_Cabinet_System 1/Agent/小忆/` 同文。  
 - **真库差异**：小忆 L1 主入口文件名为 **`小忆.md`**；镜像 `Internal_Cabinet_Tools/000_Cabinet_System 1/Agent/小忆/` 使用 **`小憶.md`**。`.cursorrules` 仅约束目录名 `小忆/` 与 `Kenny画像/` 路径。  
 - 画布 `AI-ob 数字内阁.canvas` 内链已指向 `小欧/小欧`、`小记/小记` 主入口。
