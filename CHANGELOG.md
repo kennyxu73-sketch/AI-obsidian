@@ -7,6 +7,36 @@
 
 ---
 
+## 2026-03-28 | 工具工作区目录注释（配对记录）
+
+### 变更概述
+`TOOLS_PATH` 侧新增 `WORKSPACE_工作区目录注释.md`，对 `Cursor_Workspace` 与 `Internal_Cabinet_Tools` 做结构说明；SSOT 侧本条仅作配对审计，无 Vault 内文件移动。
+
+### JSON（影子索引）
+```json
+{ "module": "workspace-annotate", "status": "done", "risk_level": "low", "ref_id": "DOCS-WORKSPACE-20260328" }
+```
+
+---
+
+## 2026-03-28 | 路径熵减与 SSOT 结构扁平化
+
+### 变更概述
+清理自动化误操作产生的路径碎屑，消除 SSOT 下冗余嵌套目录，合并重复项目根，降低双链与检索歧义。
+
+### 关键动作
+1. 删除 `Cursor_Workspace/-p`（空目录，`mkdir` 参数误用遗迹）。
+2. 删除空目录 `obsidian_vault/200_Operationsmkdir`（路径拼接错误遗迹）。
+3. 删除 `000_Cabinet_System/000_Cabinet_System/`（内层仅空占位文件；权威文件已在 `000_Cabinet_System/基础背景 prompt.md`）。
+4. `Kenny's Projects 1` → 以 `Kenny's Projects/` 为主库，`rsync --ignore-existing` 合入增量后删除 `Kenny's Projects 1`。
+
+### JSON（影子索引）
+```json
+{ "module": "entropy-reduce", "status": "done", "risk_level": "low", "ref_id": "ENTROPY-20260328-REDUCE" }
+```
+
+---
+
 ## 2026-03-28 | 物理主库合并（嵌套副本已删除）
 
 ### 变更概述
