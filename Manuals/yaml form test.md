@@ -5,7 +5,7 @@ deadline: 2026-02-23
 本文件版本: 1.6.0
 primary_agent: 小酷
 file_type: doc/standard
-project_ref: "[[000_Cabinet_System/AI obsidian]]"
+project_ref: "[[obsidian_vault/000_Cabinet_System/核心定义/AI obsidian]]"
 importance: 5
 review_status: Approved
 tags:

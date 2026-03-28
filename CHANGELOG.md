@@ -7,6 +7,18 @@
 
 ---
 
+## 2026-03-28 | skill_manager / Dify 编排（TOOLS 侧，配对）
+
+### 变更概述
+`TOOLS_PATH` 已扩展 `skill_manager.py` 与 `dify_client.py`，支持 Dify 工作流 API 与内阁 `cabinet.*` 内置调用，供 HTTP/代码节点衔接。本条为配对审计。
+
+### JSON（影子索引）
+```json
+{ "module": "skill-manager-dify-orchestration", "status": "done", "risk_level": "low", "ref_id": "P0-SKILL-DIFY-20260328" }
+```
+
+---
+
 ## 2026-03-28 | enseal_skill：封印闭环（配对审计）
 
 ### 变更概述
