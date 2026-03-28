@@ -3,6 +3,8 @@
 > 与 `.cursorrules` **§ L1 · 画像与身份协议** 对齐：本表约定「对外默认引用哪一份」为 **L1 主入口**，与 Manuals 中 YAML「L1 展示层」术语无关。  
 > **全局 Kenny 画像（条件读取）**：`小忆/Kenny画像/Kenny_Cognitive_Profile.md`（规范名；见 `.cursorrules`）。
 
+**Dify / 编排可调用的 `cabinet.*`（按 `agent_slug` 白名单）**：见 [[L1_DIFY_CABINET_TOOLS]]；本库快照 [[agent_l1_registry.json]]（权威以 TOOLS `Internal_Cabinet_Tools/config/agent_l1_registry.json` 为准）；导出 [[dify_agent_tools_export.json]]。
+
 ## 维护规则
 
 - 新 prompt 若意图**取代**某角色 L1 主入口，须经 Kenny 确认，并同步改本表 + [[AGENT_INDEX]]。

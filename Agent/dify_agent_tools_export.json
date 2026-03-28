@@ -1,0 +1,422 @@
+[
+  {
+    "agent_slug": "xiaoku",
+    "agent_display": "小酷",
+    "cabinet_skill_key": "cabinet.enseal.materialize_draft",
+    "dify_suggested_name": "xiaoku__cabinet_enseal_materialize_draft",
+    "description": "从 Triple-A 草稿材料化 L1",
+    "parameters_schema": {
+      "type": "object",
+      "description": "{ \"draft_path\": \"...\" }",
+      "additionalProperties": true
+    }
+  },
+  {
+    "agent_slug": "xiaoku",
+    "agent_display": "小酷",
+    "cabinet_skill_key": "cabinet.enseal.materialize_from_inbox",
+    "dify_suggested_name": "xiaoku__cabinet_enseal_materialize_from_inbox",
+    "description": "从 inbox 炼化草稿",
+    "parameters_schema": {
+      "type": "object",
+      "description": "{ 见 enseal_skill / cabinet_builtins 入参 }",
+      "additionalProperties": true
+    }
+  },
+  {
+    "agent_slug": "xiaoku",
+    "agent_display": "小酷",
+    "cabinet_skill_key": "cabinet.enseal.materialize_from_cognitive_patch",
+    "dify_suggested_name": "xiaoku__cabinet_enseal_materialize_from_cognitive_patch",
+    "description": "从 Cognitive Patch 块炼化",
+    "parameters_schema": {
+      "type": "object",
+      "description": "{ 见 enseal_skill --materialize-from-cognitive-patch }",
+      "additionalProperties": true
+    }
+  },
+  {
+    "agent_slug": "xiaoku",
+    "agent_display": "小酷",
+    "cabinet_skill_key": "cabinet.enseal.seal_scan",
+    "dify_suggested_name": "xiaoku__cabinet_enseal_seal_scan",
+    "description": "封印扫描",
+    "parameters_schema": {
+      "type": "object",
+      "description": "{ 见 enseal_skill seal_scan 参数 }",
+      "additionalProperties": true
+    }
+  },
+  {
+    "agent_slug": "xiaoku",
+    "agent_display": "小酷",
+    "cabinet_skill_key": "cabinet.enseal.seal_batch",
+    "dify_suggested_name": "xiaoku__cabinet_enseal_seal_batch",
+    "description": "批量封印",
+    "parameters_schema": {
+      "type": "object",
+      "description": "{ 见 enseal_skill seal_batch 参数 }",
+      "additionalProperties": true
+    }
+  },
+  {
+    "agent_slug": "xiaoku",
+    "agent_display": "小酷",
+    "cabinet_skill_key": "cabinet.path_guardian.check_ssot",
+    "dify_suggested_name": "xiaoku__cabinet_path_guardian_check_ssot",
+    "description": "SSOT 路径合规检查",
+    "parameters_schema": {
+      "type": "object",
+      "description": "{ \"path\": \"相对 SSOT 或绝对路径\", \"as_dir\": false }",
+      "additionalProperties": true
+    }
+  },
+  {
+    "agent_slug": "xiaoku",
+    "agent_display": "小酷",
+    "cabinet_skill_key": "cabinet.psr.status",
+    "dify_suggested_name": "xiaoku__cabinet_psr_status",
+    "description": "物理主权哨兵诊断（只读）",
+    "parameters_schema": {
+      "type": "object",
+      "description": "{}",
+      "additionalProperties": true
+    }
+  },
+  {
+    "agent_slug": "xiaoku",
+    "agent_display": "小酷",
+    "cabinet_skill_key": "cabinet.metadata.extract_triple_a",
+    "dify_suggested_name": "xiaoku__cabinet_metadata_extract_triple_a",
+    "description": "Triple-A 元数据提取",
+    "parameters_schema": {
+      "type": "object",
+      "description": "{ \"path\": \"...\" }",
+      "additionalProperties": true
+    }
+  },
+  {
+    "agent_slug": "xiaoku",
+    "agent_display": "小酷",
+    "cabinet_skill_key": "cabinet.dialog.inbox_validate",
+    "dify_suggested_name": "xiaoku__cabinet_dialog_inbox_validate",
+    "description": "单文件 inbox 校验",
+    "parameters_schema": {
+      "type": "object",
+      "description": "{ \"path\": \"RUNTIME 下 inbox md 绝对或相对路径\" }",
+      "additionalProperties": true
+    }
+  },
+  {
+    "agent_slug": "xiaoku",
+    "agent_display": "小酷",
+    "cabinet_skill_key": "cabinet.dialog.append_wecom_dedup",
+    "dify_suggested_name": "xiaoku__cabinet_dialog_append_wecom_dedup",
+    "description": "企微去重后追加 inbox",
+    "parameters_schema": {
+      "type": "object",
+      "description": "{ \"msg_id\", \"source\", \"session_id\", \"role\", \"text\", ... }",
+      "additionalProperties": true
+    }
+  },
+  {
+    "agent_slug": "xiaobao",
+    "agent_display": "小报",
+    "cabinet_skill_key": "cabinet.dialog.inbox_validate",
+    "dify_suggested_name": "xiaobao__cabinet_dialog_inbox_validate",
+    "description": "入站 md 格式校验",
+    "parameters_schema": {
+      "type": "object",
+      "description": "{ \"path\": \"RUNTIME 下 inbox md 绝对或相对路径\" }",
+      "additionalProperties": true
+    }
+  },
+  {
+    "agent_slug": "xiaobao",
+    "agent_display": "小报",
+    "cabinet_skill_key": "cabinet.dialog.inbox_list",
+    "dify_suggested_name": "xiaobao__cabinet_dialog_inbox_list",
+    "description": "列出 manifest 会话",
+    "parameters_schema": {
+      "type": "object",
+      "description": "{ \"source\": \"\" }",
+      "additionalProperties": true
+    }
+  },
+  {
+    "agent_slug": "xiaobao",
+    "agent_display": "小报",
+    "cabinet_skill_key": "cabinet.metadata.extract_triple_a",
+    "dify_suggested_name": "xiaobao__cabinet_metadata_extract_triple_a",
+    "description": "元数据提取（定级辅助）",
+    "parameters_schema": {
+      "type": "object",
+      "description": "{ \"path\": \"...\" }",
+      "additionalProperties": true
+    }
+  },
+  {
+    "agent_slug": "xiaobao",
+    "agent_display": "小报",
+    "cabinet_skill_key": "cabinet.path_guardian.check_ssot",
+    "dify_suggested_name": "xiaobao__cabinet_path_guardian_check_ssot",
+    "description": "归档路径是否可写 SSOT 子路径",
+    "parameters_schema": {
+      "type": "object",
+      "description": "{ \"path\": \"相对 SSOT 或绝对路径\", \"as_dir\": false }",
+      "additionalProperties": true
+    }
+  },
+  {
+    "agent_slug": "xiaohei",
+    "agent_display": "小黑",
+    "cabinet_skill_key": "cabinet.dialog.inbox_validate",
+    "dify_suggested_name": "xiaohei__cabinet_dialog_inbox_validate",
+    "description": "inbox 块结构校验",
+    "parameters_schema": {
+      "type": "object",
+      "description": "{ \"path\": \"RUNTIME 下 inbox md 绝对或相对路径\" }",
+      "additionalProperties": true
+    }
+  },
+  {
+    "agent_slug": "xiaohei",
+    "agent_display": "小黑",
+    "cabinet_skill_key": "cabinet.metadata.extract_triple_a",
+    "dify_suggested_name": "xiaohei__cabinet_metadata_extract_triple_a",
+    "description": "Triple-A 提取",
+    "parameters_schema": {
+      "type": "object",
+      "description": "{ \"path\": \"...\" }",
+      "additionalProperties": true
+    }
+  },
+  {
+    "agent_slug": "xiaohei",
+    "agent_display": "小黑",
+    "cabinet_skill_key": "cabinet.enseal.materialize_draft",
+    "dify_suggested_name": "xiaohei__cabinet_enseal_materialize_draft",
+    "description": "材料化（经审批后）",
+    "parameters_schema": {
+      "type": "object",
+      "description": "{ \"draft_path\": \"...\" }",
+      "additionalProperties": true
+    }
+  },
+  {
+    "agent_slug": "xiaohei",
+    "agent_display": "小黑",
+    "cabinet_skill_key": "cabinet.enseal.seal_scan",
+    "dify_suggested_name": "xiaohei__cabinet_enseal_seal_scan",
+    "description": "封印扫描",
+    "parameters_schema": {
+      "type": "object",
+      "description": "{ 见 enseal_skill seal_scan 参数 }",
+      "additionalProperties": true
+    }
+  },
+  {
+    "agent_slug": "xiaohua",
+    "agent_display": "小画",
+    "cabinet_skill_key": "cabinet.dialog.inbox_list",
+    "dify_suggested_name": "xiaohua__cabinet_dialog_inbox_list",
+    "description": "只读列举会话（展示用）",
+    "parameters_schema": {
+      "type": "object",
+      "description": "{ \"source\": \"\" }",
+      "additionalProperties": true
+    }
+  },
+  {
+    "agent_slug": "xiaohua",
+    "agent_display": "小画",
+    "cabinet_skill_key": "cabinet.path_guardian.check_ssot",
+    "dify_suggested_name": "xiaohua__cabinet_path_guardian_check_ssot",
+    "description": "路径合法性（Canvas 链路径）",
+    "parameters_schema": {
+      "type": "object",
+      "description": "{ \"path\": \"相对 SSOT 或绝对路径\", \"as_dir\": false }",
+      "additionalProperties": true
+    }
+  },
+  {
+    "agent_slug": "xiaoyi",
+    "agent_display": "小忆",
+    "cabinet_skill_key": "cabinet.owner.load_context",
+    "dify_suggested_name": "xiaoyi__cabinet_owner_load_context",
+    "description": "加载 Kenny 画像与 owner 上下文",
+    "parameters_schema": {
+      "type": "object",
+      "description": "{ \"max_chars\": 12000, \"profile_relative\": \"Agent/小忆/Kenny画像/Kenny_Cognitive_Profile.md\" }",
+      "additionalProperties": true
+    }
+  },
+  {
+    "agent_slug": "xiaoyi",
+    "agent_display": "小忆",
+    "cabinet_skill_key": "cabinet.patch.list_cognitive_blocks",
+    "dify_suggested_name": "xiaoyi__cabinet_patch_list_cognitive_blocks",
+    "description": "列举 Cognitive Patch 块",
+    "parameters_schema": {
+      "type": "object",
+      "description": "{ \"patch_heading_contains\": \"...\" 或 \"patch_slug\": \"...\" }",
+      "additionalProperties": true
+    }
+  },
+  {
+    "agent_slug": "xiaoyi",
+    "agent_display": "小忆",
+    "cabinet_skill_key": "cabinet.dialog.inbox_list",
+    "dify_suggested_name": "xiaoyi__cabinet_dialog_inbox_list",
+    "description": "多源会话列表",
+    "parameters_schema": {
+      "type": "object",
+      "description": "{ \"source\": \"\" }",
+      "additionalProperties": true
+    }
+  },
+  {
+    "agent_slug": "xiaoyi",
+    "agent_display": "小忆",
+    "cabinet_skill_key": "cabinet.dialog.inbox_merge_session",
+    "dify_suggested_name": "xiaoyi__cabinet_dialog_inbox_merge_session",
+    "description": "L3 合并时间线 + silence_hint",
+    "parameters_schema": {
+      "type": "object",
+      "description": "{ \"session_id\": \"wecom:room\", \"source_prefix\": \"wecom_\" }",
+      "additionalProperties": true
+    }
+  },
+  {
+    "agent_slug": "xiaoyi",
+    "agent_display": "小忆",
+    "cabinet_skill_key": "cabinet.dialog.inbox_validate",
+    "dify_suggested_name": "xiaoyi__cabinet_dialog_inbox_validate",
+    "description": "抽检 inbox 文件",
+    "parameters_schema": {
+      "type": "object",
+      "description": "{ \"path\": \"RUNTIME 下 inbox md 绝对或相对路径\" }",
+      "additionalProperties": true
+    }
+  },
+  {
+    "agent_slug": "xiaoji",
+    "agent_display": "小记",
+    "cabinet_skill_key": "cabinet.psr.status",
+    "dify_suggested_name": "xiaoji__cabinet_psr_status",
+    "description": "PSR 与挂载诊断",
+    "parameters_schema": {
+      "type": "object",
+      "description": "{}",
+      "additionalProperties": true
+    }
+  },
+  {
+    "agent_slug": "xiaoji",
+    "agent_display": "小记",
+    "cabinet_skill_key": "cabinet.path_guardian.check_ssot",
+    "dify_suggested_name": "xiaoji__cabinet_path_guardian_check_ssot",
+    "description": "路径护栏",
+    "parameters_schema": {
+      "type": "object",
+      "description": "{ \"path\": \"相对 SSOT 或绝对路径\", \"as_dir\": false }",
+      "additionalProperties": true
+    }
+  },
+  {
+    "agent_slug": "xiaoji",
+    "agent_display": "小记",
+    "cabinet_skill_key": "cabinet.metadata.extract_triple_a",
+    "dify_suggested_name": "xiaoji__cabinet_metadata_extract_triple_a",
+    "description": "元数据提取（资产登记辅助）",
+    "parameters_schema": {
+      "type": "object",
+      "description": "{ \"path\": \"...\" }",
+      "additionalProperties": true
+    }
+  },
+  {
+    "agent_slug": "xiaoou",
+    "agent_display": "小欧",
+    "cabinet_skill_key": "cabinet.path_guardian.check_ssot",
+    "dify_suggested_name": "xiaoou__cabinet_path_guardian_check_ssot",
+    "description": "SSOT 写入路径检查",
+    "parameters_schema": {
+      "type": "object",
+      "description": "{ \"path\": \"相对 SSOT 或绝对路径\", \"as_dir\": false }",
+      "additionalProperties": true
+    }
+  },
+  {
+    "agent_slug": "xiaoou",
+    "agent_display": "小欧",
+    "cabinet_skill_key": "cabinet.metadata.extract_triple_a",
+    "dify_suggested_name": "xiaoou__cabinet_metadata_extract_triple_a",
+    "description": "元数据提取",
+    "parameters_schema": {
+      "type": "object",
+      "description": "{ \"path\": \"...\" }",
+      "additionalProperties": true
+    }
+  },
+  {
+    "agent_slug": "audit_xiaoku",
+    "agent_display": "审计小酷",
+    "cabinet_skill_key": "cabinet.enseal.seal_scan",
+    "dify_suggested_name": "audit_xiaoku__cabinet_enseal_seal_scan",
+    "description": "封印与合规扫描",
+    "parameters_schema": {
+      "type": "object",
+      "description": "{ 见 enseal_skill seal_scan 参数 }",
+      "additionalProperties": true
+    }
+  },
+  {
+    "agent_slug": "audit_xiaoku",
+    "agent_display": "审计小酷",
+    "cabinet_skill_key": "cabinet.enseal.seal_batch",
+    "dify_suggested_name": "audit_xiaoku__cabinet_enseal_seal_batch",
+    "description": "批量封印审计",
+    "parameters_schema": {
+      "type": "object",
+      "description": "{ 见 enseal_skill seal_batch 参数 }",
+      "additionalProperties": true
+    }
+  },
+  {
+    "agent_slug": "audit_xiaoku",
+    "agent_display": "审计小酷",
+    "cabinet_skill_key": "cabinet.path_guardian.check_ssot",
+    "dify_suggested_name": "audit_xiaoku__cabinet_path_guardian_check_ssot",
+    "description": "路径违规检测",
+    "parameters_schema": {
+      "type": "object",
+      "description": "{ \"path\": \"相对 SSOT 或绝对路径\", \"as_dir\": false }",
+      "additionalProperties": true
+    }
+  },
+  {
+    "agent_slug": "audit_xiaoku",
+    "agent_display": "审计小酷",
+    "cabinet_skill_key": "cabinet.psr.status",
+    "dify_suggested_name": "audit_xiaoku__cabinet_psr_status",
+    "description": "PSR 状态",
+    "parameters_schema": {
+      "type": "object",
+      "description": "{}",
+      "additionalProperties": true
+    }
+  },
+  {
+    "agent_slug": "audit_xiaoku",
+    "agent_display": "审计小酷",
+    "cabinet_skill_key": "cabinet.dialog.inbox_validate",
+    "dify_suggested_name": "audit_xiaoku__cabinet_dialog_inbox_validate",
+    "description": "inbox 抽检",
+    "parameters_schema": {
+      "type": "object",
+      "description": "{ \"path\": \"RUNTIME 下 inbox md 绝对或相对路径\" }",
+      "additionalProperties": true
+    }
+  }
+]

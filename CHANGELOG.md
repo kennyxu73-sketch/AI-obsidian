@@ -7,6 +7,18 @@
 
 ---
 
+## 2026-03-29 | Agent L1：Dify cabinet.* 白名单（TOOLS 配对）
+
+### 变更概述
+新增 `Agent/L1_DIFY_CABINET_TOOLS.md`、`Agent/dify_agent_tools_export.json`（自 TOOLS 导出）；`AGENT_L1_PROMPTS` / `AGENT_INDEX` / `数字内阁（Digital Cabinet）` 增加链接。权威 JSON 在 `Internal_Cabinet_Tools/config/agent_l1_registry.json`。
+
+### JSON（影子索引）
+```json
+{ "module": "agent-l1-dify-registry-vault", "status": "done", "ref_id": "P1-AGENT-L1-DIFY-20260329" }
+```
+
+---
+
 ## 2026-03-29 | Agent 目录梳理同步（AGENT_INDEX / L1 矩阵 / agent_slug / 占位）
 
 ### 变更概述

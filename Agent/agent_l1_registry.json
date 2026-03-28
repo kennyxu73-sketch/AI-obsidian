@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "description": "各 agent_slug 与 cabinet.* 内置能力的 L1 绑定；供 Dify 代码节点 / 编排与文档生成。技能全集以 cabinet_builtins.list_builtin_keys() 为准。",
+  "invocation": {
+    "cwd": "Internal_Cabinet_Tools 根目录",
+    "cli": "python3 skill_manager.py cabinet-run <skill_key> [--inputs-json FILE | --inputs-inline JSON]",
+    "dify_note": "Dify 侧可在「代码」节点中 subprocess 调用上述 CLI，或由网关将同参映射为 HTTP POST（需自研薄封装）；本仓库不内置 HTTP 服务。"
+  },
+  "input_hints": {
+    "cabinet.owner.load_context": "{ \"max_chars\": 12000, \"profile_relative\": \"Agent/小忆/Kenny画像/Kenny_Cognitive_Profile.md\" }",
+    "cabinet.patch.list_cognitive_blocks": "{ \"patch_heading_contains\": \"...\" 或 \"patch_slug\": \"...\" }",
+    "cabinet.dialog.inbox_validate": "{ \"path\": \"RUNTIME 下 inbox md 绝对或相对路径\" }",
+    "cabinet.dialog.inbox_list": "{ \"source\": \"\" }",
+    "cabinet.dialog.inbox_merge_session": "{ \"session_id\": \"wecom:room\", \"source_prefix\": \"wecom_\" }",
+    "cabinet.dialog.append_wecom_dedup": "{ \"msg_id\", \"source\", \"session_id\", \"role\", \"text\", ... }",
+    "cabinet.enseal.materialize_draft": "{ \"draft_path\": \"...\" }",
+    "cabinet.enseal.materialize_from_inbox": "{ 见 enseal_skill / cabinet_builtins 入参 }",
+    "cabinet.enseal.materialize_from_cognitive_patch": "{ 见 enseal_skill --materialize-from-cognitive-patch }",
+    "cabinet.enseal.seal_scan": "{ 见 enseal_skill seal_scan 参数 }",
+    "cabinet.enseal.seal_batch": "{ 见 enseal_skill seal_batch 参数 }",
+    "cabinet.metadata.extract_triple_a": "{ \"path\": \"...\" }",
+    "cabinet.path_guardian.check_ssot": "{ \"path\": \"相对 SSOT 或绝对路径\", \"as_dir\": false }",
+    "cabinet.psr.status": "{}"
+  },
+  "agents": {
+    "xiaoku": {
+      "display_name": "小酷",
+      "persona_rel": "小酷/小酷.md",
+      "role": "CTO / 工具链 / 封印 / PSR / 路径护栏",
+      "cabinet_skills": [
+        { "key": "cabinet.enseal.materialize_draft", "summary": "从 Triple-A 草稿材料化 L1" },
+        { "key": "cabinet.enseal.materialize_from_inbox", "summary": "从 inbox 炼化草稿" },
+        { "key": "cabinet.enseal.materialize_from_cognitive_patch", "summary": "从 Cognitive Patch 块炼化" },
+        { "key": "cabinet.enseal.seal_scan", "summary": "封印扫描" },
+        { "key": "cabinet.enseal.seal_batch", "summary": "批量封印" },
+        { "key": "cabinet.path_guardian.check_ssot", "summary": "SSOT 路径合规检查" },
+        { "key": "cabinet.psr.status", "summary": "物理主权哨兵诊断（只读）" },
+        { "key": "cabinet.metadata.extract_triple_a", "summary": "Triple-A 元数据提取" },
+        { "key": "cabinet.dialog.inbox_validate", "summary": "单文件 inbox 校验" },
+        { "key": "cabinet.dialog.append_wecom_dedup", "summary": "企微去重后追加 inbox" }
+      ]
+    },
+    "xiaobao": {
+      "display_name": "小报",
+      "persona_rel": "小报/小报.md",
+      "role": "外情 / 入站质检 / 列表",
+      "cabinet_skills": [
+        { "key": "cabinet.dialog.inbox_validate", "summary": "入站 md 格式校验" },
+        { "key": "cabinet.dialog.inbox_list", "summary": "列出 manifest 会话" },
+        { "key": "cabinet.metadata.extract_triple_a", "summary": "元数据提取（定级辅助）" },
+        { "key": "cabinet.path_guardian.check_ssot", "summary": "归档路径是否可写 SSOT 子路径" }
+      ]
+    },
+    "xiaohei": {
+      "display_name": "小黑",
+      "persona_rel": "小黑/小黑.md",
+      "role": "分析 / 结构化 / 入库前控制",
+      "cabinet_skills": [
+        { "key": "cabinet.dialog.inbox_validate", "summary": "inbox 块结构校验" },
+        { "key": "cabinet.metadata.extract_triple_a", "summary": "Triple-A 提取" },
+        { "key": "cabinet.enseal.materialize_draft", "summary": "材料化（经审批后）" },
+        { "key": "cabinet.enseal.seal_scan", "summary": "封印扫描" }
+      ]
+    },
+    "xiaohua": {
+      "display_name": "小画",
+      "persona_rel": "小画/小画.md",
+      "role": "可视化 / 只读上下文",
+      "cabinet_skills": [
+        { "key": "cabinet.dialog.inbox_list", "summary": "只读列举会话（展示用）" },
+        { "key": "cabinet.path_guardian.check_ssot", "summary": "路径合法性（Canvas 链路径）" }
+      ]
+    },
+    "xiaoyi": {
+      "display_name": "小忆",
+      "persona_rel": "小忆/小忆.md",
+      "role": "秘书长 / Kenny 画像 / 调度上下文",
+      "cabinet_skills": [
+        { "key": "cabinet.owner.load_context", "summary": "加载 Kenny 画像与 owner 上下文" },
+        { "key": "cabinet.patch.list_cognitive_blocks", "summary": "列举 Cognitive Patch 块" },
+        { "key": "cabinet.dialog.inbox_list", "summary": "多源会话列表" },
+        { "key": "cabinet.dialog.inbox_merge_session", "summary": "L3 合并时间线 + silence_hint" },
+        { "key": "cabinet.dialog.inbox_validate", "summary": "抽检 inbox 文件" }
+      ]
+    },
+    "xiaoji": {
+      "display_name": "小记",
+      "persona_rel": "小记/小记.md",
+      "role": "Memory OS / 硬件 / 主权底座",
+      "cabinet_skills": [
+        { "key": "cabinet.psr.status", "summary": "PSR 与挂载诊断" },
+        { "key": "cabinet.path_guardian.check_ssot", "summary": "路径护栏" },
+        { "key": "cabinet.metadata.extract_triple_a", "summary": "元数据提取（资产登记辅助）" }
+      ]
+    },
+    "xiaoou": {
+      "display_name": "小欧",
+      "persona_rel": "小欧/小欧.md",
+      "role": "OpenBT / 数据资产路径",
+      "cabinet_skills": [
+        { "key": "cabinet.path_guardian.check_ssot", "summary": "SSOT 写入路径检查" },
+        { "key": "cabinet.metadata.extract_triple_a", "summary": "元数据提取" }
+      ]
+    },
+    "xiaojing": {
+      "display_name": "小镜",
+      "persona_rel": "小镜/小镜.md",
+      "role": "2C 占位",
+      "cabinet_skills": [],
+      "tbd": "prompt_status TBD；后续接入回忆录相关 cabinet.* 或工作流"
+    },
+    "xiaokang": {
+      "display_name": "小康",
+      "persona_rel": "小康/小康.md",
+      "role": "2B 占位",
+      "cabinet_skills": [],
+      "tbd": "prompt_status TBD；后续接入慰康业务 cabinet.* 或 Dify 工作流"
+    },
+    "audit_xiaoku": {
+      "display_name": "审计小酷",
+      "persona_rel": "审计 agents/审计小酷.md",
+      "role": "审计分身 / 合规扫描",
+      "cabinet_skills": [
+        { "key": "cabinet.enseal.seal_scan", "summary": "封印与合规扫描" },
+        { "key": "cabinet.enseal.seal_batch", "summary": "批量封印审计" },
+        { "key": "cabinet.path_guardian.check_ssot", "summary": "路径违规检测" },
+        { "key": "cabinet.psr.status", "summary": "PSR 状态" },
+        { "key": "cabinet.dialog.inbox_validate", "summary": "inbox 抽检" }
+      ]
+    }
+  }
+}

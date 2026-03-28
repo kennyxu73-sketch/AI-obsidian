@@ -2,7 +2,7 @@
 
 # AI-OB 数字内阁（Digital Cabinet）全量版 v2.0
 
-> 内阁 Agent 目录索引：[[AGENT_INDEX]] · L1 prompt 矩阵：[[AGENT_L1_PROMPTS]]
+> 内阁 Agent 目录索引：[[AGENT_INDEX]] · L1 prompt 矩阵：[[AGENT_L1_PROMPTS]] · Dify `cabinet.*` 白名单：[[L1_DIFY_CABINET_TOOLS]]
 
 **制度索引**：[[数字内阁-SSOT索引]] · [[数字内阁-索引]] · [[数字内阁-L1L2迁移对照]] · [[数字内阁-企微多Bot与会话策略]]
 
