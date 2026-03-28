@@ -115,3 +115,4 @@ last_sync: "2026-03-28"
 ## 六、与执行环境的关系（非本文详述，须一致）
 
 - **物理主权 (PSR)**、**inbox**、**晋升 SSOT** 等由 `cabinet_sentinel`、`dialog_inbox`、`enseal` 等工具与运维法典约束；本文件仅要求：**Prompt 层**不宣称绕过 Kenny 审批与 enseal 的自动升格。
+- **内阁制度与 SSOT 分层**（角色、议事、运维指针）：vault 内见 `Agent/数字内阁/数字内阁-SSOT索引.md`（Obsidian：`[[数字内阁-SSOT索引]]`）。
