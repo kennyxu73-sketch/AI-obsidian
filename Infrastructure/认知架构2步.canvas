@@ -1,0 +1,25 @@
+{
+	"nodes":[
+		{"id":"group_engine","type":"group","x":-300,"y":-650,"width":650,"height":1100,"color":"2","label":"⚙️ 认知炼化流水线 (Refinery P1->P2)"},
+		{"id":"group_store","type":"group","x":400,"y":-650,"width":550,"height":1100,"color":"4","label":"📁 混合记忆系统 (Hybrid Memory/SSOT)"},
+		{"id":"group_soul","type":"group","x":-850,"y":-650,"width":500,"height":1100,"color":"#FFD700","label":"🟡 灵魂矿脉与加工 (XiaoYi's Domain)"},
+		{"id":"memoir_00","type":"text","text":"# ⓪ L0: RAW\n### 📜 原始对话/碎碎念\n---\n**存储**: `100_Inbox_Intelligence/`\n**状态**: 只读追加\n**职能**: 原始灵魂素材\n**Owner**: **小憶 (XiaoYi)**","x":-800,"y":-580,"width":400,"height":220,"color":"#FFD700"},
+		{"id":"ssot_file","type":"text","text":"# 🟪 SSOT (紫色资产)\n---\n**路径**: `000_Cabinet_System/`\n**文件**: `Kenny_Cognitive_Profile.md`\n**状态**: 已封印真值 (Static Baseline)","x":480,"y":-580,"width":380,"height":220,"color":"#8A2BE2"},
+		{"id":"openbt_layer","type":"text","text":"# ⛓️ OpenBT (分布式底座)\n---\n**管理官**: 小欧 (Guardian)\n**任务**: \n1. RAW 数据加密分片下沉\n2. 跨节点数据自愈","x":480,"y":100,"width":380,"height":275,"color":"3"},
+		{"id":"xiaoyi_l2","type":"text","text":"# 🧪 L2: 跨度炼化\n---\n**任务**: 一致性对齐，锁定画像变量\n**输入**: 10条以上 L1 小结\n**输出**: 画像 Patch 提案","x":-800,"y":125,"width":400,"height":200,"color":"#FFD700"},
+		{"id":"n4_gap","type":"text","text":"# 🧠 Gap Engine (结构补全)\n---\n**逻辑**: 不做决策，只做结构师\n1. **识别缺口**: (技术/商业/用户)\n2. **标记偏差**: 检测违背 [本地优先] 处\n3. **提供选项**: 补全建议 A/B/C","x":-250,"y":125,"width":550,"height":250,"color":"5"},
+		{"id":"qdrant_db","type":"text","text":"# 🧬 Qdrant (向量库)\n---\n**属性**: 动态感应层 / 长期记忆\n**存储**: Payload {Metadata, Ref_ID}\n**检索**: 语义相似度召回","x":480,"y":-300,"width":380,"height":200,"color":"6"},
+		{"id":"n3_ku","type":"text","text":"# 🏗️ 小酷 (CTO/Architect)\n---\n**职责**: 系统执行与工作流搭建\n**启动前置**: 执行 [混合检索]\n1. 读取物理 SSOT 文件\n2. Query Qdrant 向量背景","x":-250,"y":-580,"width":550,"height":220,"color":"1"},
+		{"id":"xiaoyi_l1","type":"text","text":"# 🦾 L1: 语义脱水\n---\n**任务**: 识别 [原生灵魂] vs [复制噪音]\n**输出**: 脱水小结 (Summary)\n**埋点**: 生成 `Ref_ID` & `Metadata` ","x":-800,"y":-240,"width":400,"height":200,"color":"#FFD700"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"memoir_00","fromSide":"bottom","toNode":"xiaoyi_l1","toSide":"top","label":"原生感知"},
+		{"id":"e2","fromNode":"xiaoyi_l1","fromSide":"bottom","toNode":"xiaoyi_l2","toSide":"top","label":"脱水半成品"},
+		{"id":"e3","fromNode":"xiaoyi_l1","fromSide":"right","toNode":"qdrant_db","toSide":"left","color":"6","label":"异步 Upsert (灌库)"},
+		{"id":"e4","fromNode":"xiaoyi_l2","fromSide":"right","toNode":"ssot_file","toSide":"bottom","color":"5","label":"封印画像"},
+		{"id":"e5","style":"dashed","fromNode":"ssot_file","fromSide":"left","toNode":"n3_ku","toSide":"right","label":"加载静态基准"},
+		{"id":"e6","fromNode":"qdrant_db","fromSide":"left","toNode":"n3_ku","toSide":"right","color":"6","label":"语义召回 (感应)"},
+		{"id":"e7","fromNode":"n3_ku","fromSide":"bottom","toNode":"n4_gap","toSide":"top"},
+		{"id":"e8","fromNode":"memoir_00","fromSide":"right","toNode":"openbt_layer","toSide":"left","color":"3","label":"分片下沉"}
+	]
+}
