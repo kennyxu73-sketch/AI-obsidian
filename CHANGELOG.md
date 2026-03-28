@@ -7,6 +7,18 @@
 
 ---
 
+## 2026-03-28 | Kenny 主画像规范入口 + Cognitive Patch 防呆（TOOLS 配对）
+
+### 变更概述
+SSOT 新增 `Agent/小忆/Kenny画像/Kenny_Cognitive_Profile.md` 为规范主入口；`Infrastructure/AI-OB 主人身份与记忆.md` 增加 L0.5 路径勘误表；`RUNTIME/Cognitive_Patch_Draft.md` 增补 Gap Engine 模板块（`Target_SSOT_Path`）。工具侧见 TOOLS `CHANGELOG.md`，配对 `ref_id` 如下。
+
+### JSON（影子索引）
+```json
+{ "module": "owner-context-cognitive-patch", "status": "done", "ref_id": "P0-OWNER-CONTEXT-20260328" }
+```
+
+---
+
 ## 2026-03-28 | PSR 哨兵令牌 + 写权限（TOOLS，配对）
 
 ### JSON（影子索引）

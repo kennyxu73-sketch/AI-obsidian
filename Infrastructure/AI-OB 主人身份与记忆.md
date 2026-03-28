@@ -17,10 +17,22 @@ Markdown
     - `04_SSOT/`: **真值库**。存放由小憶封印的长期记忆与画像（紫色资产）。
 - **自动化流**：所有代码生成必须符合“四库隔离”与“草稿提案制”。
 
+### 路径勘误表（文档别名 → 现行 L0.5 真值）
+
+| 本文档历史写法 | 现行权威路径（`CABINET_ROOT` 下） |
+|----------------|-----------------------------------|
+| `04_SSOT/` | `obsidian_vault/000_Cabinet_System/`（`SSOT_ROOT`） |
+| `03_Process/` | `obsidian_vault/200_Operations/`（`RUNTIME_ROOT`） |
+| `01_Raw/` | `obsidian_vault/100_Inbox_Intelligence/`（与 `.cursorrules` L0.5 Raw 一致时可对照） |
+| `Kenny_画像` / `Kenny 画像` 混用 | `SSOT_ROOT/Agent/小忆/Kenny画像/`（目录名 **Kenny画像**，无下划线） |
+| `Kenny_Cognitive_Profile.md` | **`SSOT_ROOT/Agent/小忆/Kenny画像/Kenny_Cognitive_Profile.md`**（规范主入口；详见文内 `see_also` 链向历史笔记） |
+
+> 工具链与 Cursor 规则一律以 **`.cursorrules` L0.5 / L0.6** 变量为准；上表仅消解本文档旧版「四库」叙述与磁盘路径的差异。
+
 ## 2. 🧬 灵魂感应：小憶画像优先协议 (Identity Retrieval)
-- **强制先验加载**：在处理任何 [n3 感应] 任务前，小酷必须主动读取 `04_SSOT/Agent/Kenny_画像/Kenny_Cognitive_Profile.md`（由小憶维护）。
-- **画像偏好约束**:
-    - **视觉标准**：navy/charcoal 背景，玫瑰金 (#B6967A) 重点色。
+- **强制先验加载**：在处理任何 [n3 感应] 任务前，小酷必须主动读取 **`SSOT_ROOT/Agent/小忆/Kenny画像/Kenny_Cognitive_Profile.md`**（由小憶维护；历史材料见同目录双链）。
+- **目前画像偏好约束**:
+    - **视觉标准**：navy/charcoal 背景，待定义
     - **沟通标准**：逻辑严密，拒绝废话；Markdown 文档优先于 Canvas。
     - **技术堆栈**：默认采用 FastAPI + Docker + PostgreSQL；架构优先，预留未来升级空间。
 
