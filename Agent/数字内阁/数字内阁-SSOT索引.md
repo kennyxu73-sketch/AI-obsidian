@@ -18,6 +18,7 @@
 | Prompt 目录（L0/L1/L2）、Dify 同步 | [[内阁 Agent Prompt 维护法典]] | [[Base_L0]]、`Agent/Prompts/` |
 | Kenny 认知画像（工具链规范名） | `Agent/小忆/Kenny画像/Kenny_Cognitive_Profile.md` | [[基础背景 prompt]]、`owner_context` |
 | 多源对话收件、PSR、工具命令 | 见下节「运维指针」 | Internal_Cabinet_Tools 手册 |
+| **企微多 Bot、session_id、去重、防循环、L3 合并** | [[数字内阁-企微多Bot与会话策略]] | 运维指针；`dialog_inbox` 实现 |
 
 **说明**：`AI-ob 数字内阁.canvas` 含 **小欧、小记** 等扩展节点；[[数字内阁（Digital Cabinet）]] v2.0 正文未列出的成员，以画布与各 `Agent/[名]/` 说明为准，与 v2.0 冲突时 **优先以本表 SSOT 列 + 全量架构文** 对齐后再改画布或正文。
 
@@ -59,3 +60,4 @@ Tools 仓库路径（本机）：`Cursor_Workspace/Internal_Cabinet_Tools/`。
 | 日期 | 变更摘要 |
 |------|-----------|
 | 2026-03-28 | 初版：SSOT 矩阵、运维指针、季度清单；《自由议事》文件更名为 `内阁-自由议事与安全执行方案.md`（去除前导空格）。 |
+| 2026-03-28 | 矩阵增列：[[数字内阁-企微多Bot与会话策略]]（v1.1）。 |
