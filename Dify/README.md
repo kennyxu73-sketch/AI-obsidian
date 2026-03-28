@@ -11,3 +11,5 @@
 - **导出归档**：`_exports/` — Dify 导出的 JSON 等，与设计文档 Frontmatter 中 `dify_artifact` 对应。
 
 命名约定见规范 **§1**。
+
+**本批 L2 示例**：[`01_Ingest_&_Memory/WF_InboxRefine_Patch.md`](01_Ingest_%26_Memory/WF_InboxRefine_Patch.md)（`ref_id: INFRA-DIFY-INBOX-20260329-01`）；导出见 [`_exports/README.md`](_exports/README.md)。

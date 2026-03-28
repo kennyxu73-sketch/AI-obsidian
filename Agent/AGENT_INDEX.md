@@ -1,7 +1,8 @@
 # 内阁 Agent 目录索引
 
 > **小记 ≠ 小忆**：小记 = Memory OS / 硬件与生态枢纽；小忆 = 秘书长 / 调度与 Kenny 画像治理。  
-> **L1 prompt 权威矩阵**：见 [[AGENT_L1_PROMPTS]]。
+> **L1 prompt 权威矩阵**：见 [[AGENT_L1_PROMPTS]]。  
+> **L2 任务向（示例）**：小忆 `小忆/小忆_L2_inbox_enseal_patch.md`（inbox→Patch 炼化编排）；设计文档 `Dify/01_Ingest_&_Memory/WF_InboxRefine_Patch.md`。
 
 ## 角色总表
 

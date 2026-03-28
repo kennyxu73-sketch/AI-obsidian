@@ -7,6 +7,18 @@
 
 ---
 
+## 2026-03-29 | inbox→enseal→Patch 流水线文档与 L2 Dify 设计（TOOLS 配对）
+
+### 变更概述
+`Infrastructure/多源对话收件.md` 晋升路径（RAW→Triple-A drafts / 可选 Cognitive_Patch→TRUTH）；`Infrastructure/多源对话收件法典.md` 与 enseal 双径及 Runbook 链；`Agent/小忆/小忆_L2_inbox_enseal_patch.md`；`Dify/01_Ingest_&_Memory/WF_InboxRefine_Patch.md`；`Dify/_exports/README.md`；`Agent/AGENT_L1_PROMPTS.md`、`AGENT_INDEX.md` 增补 L2。TOOLS：`preflight_dify_zt.py`、`prompt_http_bridge.py`、`Manuals/inbox_enseal_seal_runbook.md`、`dialog_inbox.py` 注释。`ref_id` 三处一致如下。
+
+### JSON（影子索引）
+```json
+{ "module": "inbox-enseal-dify-l2-pipeline-vault", "status": "done", "ref_id": "INFRA-DIFY-INBOX-20260329-01" }
+```
+
+---
+
 ## 2026-03-29 | Agent L1：Dify cabinet.* 白名单（TOOLS 配对）
 
 ### 变更概述
