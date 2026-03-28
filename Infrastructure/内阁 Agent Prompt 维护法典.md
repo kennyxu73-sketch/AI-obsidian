@@ -1,31 +1,35 @@
 # 内阁 Agent Prompt 维护法典 (P2 规范版)
 
-**版本**：v2.2 (Function-Oriented)
+**版本**：v2.3 (Function-Oriented)
 
 **状态**：#Approved
 
 **核心原则**：**将 Prompt 视为代码；逻辑函数化，引用标准化。**
 
+**v2.3 修订**：存储拓扑与现网一致——目录名 **`Agent`**（单数）；L0 正文以 **`Agent/Prompts/Base_L0.md`** 为 SSOT，`Infrastructure/Prompts/Base_L0.md` 仅为转发桩。技能 YAML 示例中增补 **`imports` 符号 → vault 路径** 注释。
+
 ---
 
 ## 一、函数化存储拓扑 (Functional Topology)
 
-内阁 Prompt 体系按**层级调用**组织，类比函数库：
+内阁 Prompt 体系按**层级调用**组织，类比函数库；物理目录统一为 **`000_Cabinet_System/Agent/`**（不用 `Agents` 复数，避免文档与 vault 分叉）。
 
 ### 1. L0：静态基座 (Static Base)
 
-- **路径**：`000_Cabinet_System/Infrastructure/Prompts/Base_L0.md`（与 vault 实际目录一致即可；若尚未创建，以本路径为约定落点）。
+- **SSOT 路径**：`000_Cabinet_System/Agent/Prompts/Base_L0.md` —— **只在此处维护正文**。
+- **兼容桩**：`000_Cabinet_System/Infrastructure/Prompts/Base_L0.md` 指向上述真源，供旧链接与习惯路径；勿双写。
 - **内容**：全局常量——系统宪法、Kenny 身份底色、全局语气与禁忌的**唯一权威**；Workflow 级**禁止**复述同一段风格说明。
 
 ### 2. L1：职能类 (Agent Class)
 
-- **路径**：`000_Cabinet_System/Agents/[Agent名]/[Agent名]_职能定义.md`
+- **路径**：`000_Cabinet_System/Agent/[Agent名]/[Agent名]_职能定义.md`（若与现网「小憶说明书」等并存，可逐步收敛为此命名）。
 - **内容**：**实例化**一个 Agent：声明 **Inherit** 哪些 L0 准则；**Attributes**（负责域、默认边界、工具/数据范围等）宜短列表化，避免与 L2 冗长重复。
 
 ### 3. L2：执行函数 (Action Functions)
 
-- **路径**：`000_Cabinet_System/Agents/[Agent名]/Workflows/[技能名]_vX.md`
+- **路径**：`000_Cabinet_System/Agent/[Agent名]/Workflows/[技能名]_vX.md`
 - **内容**：原子化 **Implementation**，只解决一个明确业务问题；命名与版本后缀 `_vX` 与 Obsidian 文件名一致。
+- **现网兼容**：历史 Prompt、专题子目录（如 `Kenny画像/`、`4g梳理/`）可与 `Workflows` 同级存在；**新建**、且需同步 Dify 的技能，**优先**落入 `Workflows/`，便于检索与向量化。
 
 ---
 
@@ -38,13 +42,18 @@
 ```yaml
 ---
 fn_id: "REFINERY_CORE"
-version: "2.2"
+version: "2.3"
 implements: "Cognitive_Induction" # 受控词表或团队约定枚举，便于检索与向量化标签
+# imports：符号名 → Obsidian 真源路径（团队约定；同步 Dify 时展开正文，非把本行原样粘贴）
+#   Base_L0          → 000_Cabinet_System/Agent/Prompts/Base_L0.md（SSOT）
+#   Kenny_Profile_v1 → 如 Agent/小忆/Kenny画像/ 下既定画像 md，或 Dify 变量 {{KENNY_PROFILE}} 的供给源
 imports: ["Base_L0", "Kenny_Profile_v1"]
-runtime_binding: "Dify_Node_Refinery_Agent"
+runtime_binding: "Dify_Node_Refinery_Agent" # 对应 Dify 内节点/应用名，与运维表一致
 last_sync: "2026-03-28"
 ---
 ```
+
+`imports` 为**逻辑依赖名**；落盘时以第一节 L0/L1 路径为准，避免与 `Infrastructure/Prompts/Base_L0.md`（转发桩）混淆。
 
 ### 2. 逻辑体 (Logic Body)
 
@@ -87,7 +96,7 @@ last_sync: "2026-03-28"
 
 ## 四、维护操作流 (DevOps for Prompts)
 
-1. **单点维护**：修改某一技能逻辑时，**仅**改对应 `Agents/.../Workflows/[技能名]_vX.md`，避免在 Dify 上直接改漂移。
+1. **单点维护**：修改某一技能逻辑时，**仅**改对应 `Agent/.../Workflows/[技能名]_vX.md`（或该 Agent 目录下既有的同名技能文件），避免在 Dify 上直接改漂移。
 2. **Obsidian 为源码真相**：YAML、`[CONSTRAINTS]`、I/O 说明以 vault 为准。
 3. **同步至 Dify**：  
    - **默认**：仅将 **Logic Body**（`[IMPORT]` 展开后的必要片段 + `[ACTION]` + `[STEPS]` + `[CONSTRAINTS]`）粘贴/注入节点系统 Prompt，保持线上**脱水**。  
