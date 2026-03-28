@@ -7,6 +7,18 @@
 
 ---
 
+## 2026-03-29 | Agent 目录梳理同步（AGENT_INDEX / L1 矩阵 / agent_slug / 占位）
+
+### 变更概述
+`Agent/AGENT_INDEX.md`、`Agent/AGENT_L1_PROMPTS.md`；`小镜/`、`小康/` 占位；各角色 L1 主入口 YAML（`agent_slug`、`l1_entry`）；`数字内阁/AI-ob 数字内阁.canvas` 内链指向 `小欧/小欧`、`小记/小记`、`小镜/小镜`、`小康/小康`；`内阁-自由议事与安全执行方案.md` 增加 `aliases`。与 TOOLS 镜像 `000_Cabinet_System 1/Agent/` 配对；真库小忆主入口为 `小忆/小忆.md`。
+
+### JSON（影子索引）
+```json
+{ "module": "agent-catalog-l1-slug-vault", "status": "done", "ref_id": "P1-AGENT-CATALOG-20260329" }
+```
+
+---
+
 ## 2026-03-29 | 多源对话运维策略（PSR/锁/日志巡检，TOOLS 配对）
 
 ### 变更概述
