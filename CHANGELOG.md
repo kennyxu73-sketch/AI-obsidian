@@ -7,6 +7,18 @@
 
 ---
 
+## 2026-03-29 | 多源对话运维策略（PSR/锁/日志巡检，TOOLS 配对）
+
+### 变更概述
+`Infrastructure/多源对话收件法典.md` 增补运维小节；配对 TOOLS manifest **fcntl**、`health_check dialog-sync-errors`、Runbook。`ref_id` 如下。
+
+### JSON（影子索引）
+```json
+{ "module": "dialog-inbox-ops-balance", "status": "done", "ref_id": "P0-DIALOG-INBOX-OPS-20260329" }
+```
+
+---
+
 ## 2026-03-29 | 多源对话收件法典 + RUNTIME ai_dialogue_inbox（TOOLS 配对）
 
 ### 变更概述
