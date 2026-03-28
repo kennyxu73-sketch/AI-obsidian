@@ -7,6 +7,18 @@
 
 ---
 
+## 2026-03-29 | 多源对话收件法典 + RUNTIME ai_dialogue_inbox（TOOLS 配对）
+
+### 变更概述
+`Infrastructure/多源对话收件法典.md` 落地；`RUNTIME_ROOT/ai_dialogue_inbox/` 约定见 TOOLS `dialog_inbox.py` 与 `.cursorrules` L2。配对审计如下。
+
+### JSON（影子索引）
+```json
+{ "module": "dialog-inbox-multisource", "status": "done", "ref_id": "P0-DIALOG-INBOX-20260329" }
+```
+
+---
+
 ## 2026-03-28 | Kenny 主画像规范入口 + Cognitive Patch 防呆（TOOLS 配对）
 
 ### 变更概述
