@@ -7,6 +7,39 @@
 
 ---
 
+## 2026-03-28 | PSR 哨兵令牌 + 写权限（TOOLS，配对）
+
+### JSON（影子索引）
+```json
+{ "module": "psr-sentinel-token-wok", "status": "done", "ref_id": "P0-PSR-TOKEN-20260328" }
+```
+
+---
+
+## 2026-03-28 | PSR 物理主权（TOOLS 实施，配对）
+
+### 变更概述
+TOOLS 已实施 PSR：哨兵文件、`health_check`、自愈脚本草案及法典 L0.6.3；封印/路径日志写盘前自检。本条配对审计；专项正文仍以 `项目进展文档/P0进度/...物理主权与路径隔离协议.md` 为准。
+
+### JSON（影子索引）
+```json
+{ "module": "psr-physical-sovereignty", "status": "done", "ref_id": "P0-PSR-SENTINEL-20260328" }
+```
+
+---
+
+## 2026-03-28 | 编排策略：第一阶段 n8n 可选（配对）
+
+### 变更概述
+TOOLS 侧 `.cursorrules` / 工作区注释已写明：P0 不强制 n8n。本条配对审计。
+
+### JSON（影子索引）
+```json
+{ "module": "orchestration-pilot-n8n-optional", "status": "done", "ref_id": "POLICY-N8N-OPTIONAL-20260328" }
+```
+
+---
+
 ## 2026-03-28 | skill_manager / Dify 编排（TOOLS 侧，配对）
 
 ### 变更概述

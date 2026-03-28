@@ -5,7 +5,7 @@ deadline: 2026-02-27
 本文件版本: 2.3.0
 primary_agent: 审计小酷
 file_type: doc/strategy
-project_ref: "[[obsidian_vault/000_Cabinet_System/核心定义/AI obsidian]]"
+project_ref: "[[obsidian_vault/000_Cabinet_System/Infrastructure/AI obsidian]]"
 importance: 5
 review_status: Approved
 tags:

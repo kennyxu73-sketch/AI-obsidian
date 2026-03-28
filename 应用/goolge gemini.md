@@ -5,7 +5,7 @@ primary_agent: 小酷
 file_type: card/knowledge
 importance: 5
 review_status: Pending
-project_ref: "[[obsidian_vault/000_Cabinet_System/核心定义/AI obsidian]]"
+project_ref: "[[obsidian_vault/000_Cabinet_System/Infrastructure/AI obsidian]]"
 tags:
   - "#Archived/Restructured"
   - "#内阁基建/架构"
