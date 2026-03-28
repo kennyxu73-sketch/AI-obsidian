@@ -7,6 +7,54 @@
 
 ---
 
+## 2026-03-28 | enseal_skill：封印闭环（配对审计）
+
+### 变更概述
+`TOOLS_PATH` 侧 `enseal_skill.py` 已支持自 `drafts/` 校验并入库 SSOT（L0.7 + SHA-256 + 双 CHANGELOG）。本条为配对审计。
+
+### JSON（影子索引）
+```json
+{ "module": "enseal-seal-pipeline", "status": "done", "risk_level": "medium", "ref_id": "P0-ENSEAL-CLOSED-LOOP-20260328" }
+```
+
+---
+
+## 2026-03-28 | Triple-A：metadata_parser（TOOLS 侧 YAML 提取）
+
+### 变更概述
+`TOOLS_PATH` 新增 `metadata_parser.py`，解析 note.md Frontmatter 与 `.card.yaml` / `.audit.yaml`，供向量化与审计流水线读取。本条为配对审计。
+
+### JSON（影子索引）
+```json
+{ "module": "metadata-parser-triple-a", "status": "done", "risk_level": "low", "ref_id": "P0-METADATA-PARSER-20260328" }
+```
+
+---
+
+## 2026-03-28 | L0.7：path_guardian（TOOLS 侧物理护栏）
+
+### 变更概述
+`TOOLS_PATH` 新增 `path_guardian.py`，实现 L0.7 SSOT 结构校验与扫描；违规时可记 `200_Operations/logs/path_conflict.log` 并追加 `Cognitive_Patch_Draft.md`。本条为配对审计。
+
+### JSON（影子索引）
+```json
+{ "module": "path-guardian-l07", "status": "done", "risk_level": "low", "ref_id": "P0-PATH-GUARD-20260328" }
+```
+
+---
+
+## 2026-03-28 | P0：封印技能 MVP（TOOLS 侧实现）
+
+### 变更概述
+`TOOLS_PATH` 已落地 `enseal_skill.py` + `tag_schema.json` 校验；草稿输出至 `obsidian_vault/200_Operations/drafts/`（Triple-A）。本条为配对审计。
+
+### JSON（影子索引）
+```json
+{ "module": "enseal-mvp", "status": "done", "risk_level": "low", "ref_id": "P0-ENSEAL-20260328" }
+```
+
+---
+
 ## 2026-03-28 | 工具工作区目录注释（配对记录）
 
 ### 变更概述
