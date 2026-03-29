@@ -10,6 +10,7 @@
   - `99_Infrastructure` — 审计与维护
 - **导出归档**：`_exports/` — Dify 导出的 DSL / JSON 等 **工作流派生产物**，与设计文档 Frontmatter 中 `dify_artifact` 对应（**文档—产物双链**，见规范 §5）。
 - **知识库源树**：`_kb_sources/` — 供 RAG 的受控 Markdown（或扩展类型）根目录；由 TOOLS `sync_to_dify.py` 推送至 Dify Dataset，**非** DSL 归档。可与 `_exports` 并存；本地 `.sync_cache.json` 为派生状态，建议不提交 Git（见规范 §6）。
+  - **Kenny 画像 · Tier C 示例根**：[`_kb_sources/kenny_portrait_tier_c/README.md`](_kb_sources/kenny_portrait_tier_c/README.md)（`ref_id: INFRA-KENNY-TIERC-KB-20260329`）。
 
 命名约定见规范 **§1**、**§6**。
 
