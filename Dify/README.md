@@ -11,6 +11,8 @@
 - **导出归档**：`_exports/` — Dify 导出的 DSL / JSON 等 **工作流派生产物**，与设计文档 Frontmatter 中 `dify_artifact` 对应（**文档—产物双链**，见规范 §5）。
 - **知识库源树**：`_kb_sources/` — 供 RAG 的受控 Markdown（或扩展类型）根目录；由 TOOLS `sync_to_dify.py` 推送至 Dify Dataset，**非** DSL 归档。可与 `_exports` 并存；本地 `.sync_cache.json` 为派生状态，建议不提交 Git（见规范 §6）。
   - **Kenny 画像 · Tier C 示例根**：[`_kb_sources/kenny_portrait_tier_c/README.md`](_kb_sources/kenny_portrait_tier_c/README.md)（`ref_id: INFRA-KENNY-TIERC-KB-20260329`）。
+- **Knowledge Dataset 注册表**（总索引）：[`Knowledge_Dataset_Registry.md`](Knowledge_Dataset_Registry.md)（Dataset ↔ `_kb_sources` ↔ 工作流；`ref_id: INFRA-DIFY-KB-REGISTRY-20260329`）。
+- **知识库运维 SOP**：[`Manuals/AI-OB_Dify知识库运维手册.md`](../Manuals/AI-OB_Dify%E7%9F%A5%E8%AF%86%E5%BA%93%E8%BF%90%E7%BB%B4%E6%89%8B%E5%86%8C.md)（`ref_id: INFRA-DIFY-KB-RUNBOOK-20260329`）。
 
 命名约定见规范 **§1**、**§6**。
 

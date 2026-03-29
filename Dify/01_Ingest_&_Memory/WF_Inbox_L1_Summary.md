@@ -69,7 +69,7 @@ flowchart TD
 | 节点 / 说明 | Dataset ID | OB 源路径 | 同步方式 |
 |-------------|------------|-----------|----------|
 | **N/A** | — | — | 本工作流 **默认不绑定** Dify Knowledge。若后续启用 **Tier C** 检索，须填 Dataset、`_kb_sources` 并登记 `sync_to_dify.py`，见 [`Manuals/Dify_应用开发规范.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Manuals/Dify_%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83.md) §3.6 / §6。 |
-| **可选 · Tier C · Kenny 画像 RAG** | `TBD_控制台创建后填入` | `000_Cabinet_System/Dify/_kb_sources/kenny_portrait_tier_c/` | `sync_to_dify.py`（`TOOLS_PATH` / `Internal_Cabinet_Tools` 仓库根）；命令与禁令见 [`kenny_portrait_tier_c/README.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Dify/_kb_sources/kenny_portrait_tier_c/README.md)。**启用时**：在 Dify 增加 Knowledge 节点，将检索结果接入 **Context 变量**，**不替换** System 中 Tier A 及既有系统指令。 |
+| **可选 · Tier C · Kenny 画像 RAG** | `TBD_控制台创建后填入` | `000_Cabinet_System/Dify/_kb_sources/kenny_portrait_tier_c/` | `sync_to_dify.py`（`TOOLS_PATH` / `Internal_Cabinet_Tools` 仓库根）；命令、禁令与 **切片粒度**见 [`kenny_portrait_tier_c/README.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Dify/_kb_sources/kenny_portrait_tier_c/README.md)（§脱水切片粒度）。**启用时**：在 Dify 增加 Knowledge 节点，将检索结果接入 **Context 变量**，**不替换** System 中 Tier A 及既有系统指令。 |
 
 ## 网络（L0.6.2）
 
