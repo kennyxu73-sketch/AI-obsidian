@@ -111,6 +111,7 @@ workflow:
           top_k: 5
           score_threshold: null
           reranking_enable: false
+          reranking_mode: weighted_score
       height: 92
       id: '1885600100055'
       position:
@@ -138,7 +139,7 @@ workflow:
           name: qwen3.5:9b
           provider: ollama
         prompt_template:
-        - id: 447c0b79-0ee5-4907-af45-1827c99ce4fc
+        - id: 14637adb-58ab-4099-847b-4c3a15ad67c0
           role: system
           text: "# 小忆 L2 · inbox → 炼化 → Patch 草案\n\n> **真源**：Dify Workflow / HTTP 拉取须引用本文件或经 Kenny 批准的子集；L1 秘书人格仍以 `小忆/小忆.md`\
             \ 为准。  \n> **配对**：`Dify/01_Ingest_&_Memory/WF_InboxRefine_Patch.md`、`WF_Inbox_L1_Summary.md`、`Manuals/Dify_应用开发规范.md`\
@@ -159,7 +160,7 @@ workflow:
             \ 级隐私：**不得**将完整画像或未脱敏对话送入不可信云端；本链路默认 **3090 同机 Ollama + 自托管 Dify**。\n- **禁止**在工作流中自动 `seal_batch`；封印仅在人放置 `.seal_ready`\
             \ 或 `approved` 后由小酷/统帅执行（**方案 B**）。\n\n## 与路径 A 的差异\n\n若仅整段归档 inbox，**不**强制本 L2 全文；改用 `enseal_skill --materialize-from-inbox`（Mac\
             \ CLI），小忆 L2 可缩略为「提示用户选择路径 A/B」。"
-        - id: 5cef7eea-b990-4130-b088-af67b950c91a
+        - id: 0586360a-fd08-4468-9461-2ded503bf1f4
           role: user
           text: '请根据系统指令，基于下列输入生成 **认知 Patch 草案**（Markdown）。
 
