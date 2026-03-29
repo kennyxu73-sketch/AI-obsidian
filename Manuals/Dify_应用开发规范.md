@@ -1,4 +1,4 @@
-# Dify 应用开发规范 (V1.1)
+# Dify 应用开发规范 (V1.2)
 
 > **SSOT 声明**：本规范定义内阁在 Dify 平台构建应用（Chatbot / Workflow）的标准。路径均相对于 **Obsidian 库根**。
 >
@@ -28,6 +28,17 @@
 
 「双轨制」在本文中专指 **L1 / L2**。另有一套常用说法：**设计文档（`.md`）** 与 **Dify 导出 JSON** 的配对与归档，见 **§5**，勿与 L1/L2 混称；必要时可称 **文档—产物双链**。
 
+### 知识库契约（与 Dify Knowledge 节点）
+
+- **未使用** Dify 内置 **Knowledge / 知识库检索** 的应用（上下文仅靠 Prompt、HTTP、代码节点、`skill_manager`、外部向量库等）：**无需**在本文 §6 登记 OB→Dataset 同步，亦**无需**运行 `sync_to_dify.py`。
+- **一旦** 在工作流设计（Mermaid、节点说明或控制台配置）中 **约定使用 Dify 原生知识库检索**，则必须同时满足：
+  - **§6** 的数据源、Dataset、更新策略与验收；
+  - **§3.6** Knowledge 绑定表（可与 §3.5 合并自检）；
+  - **§5.1** 推荐 Frontmatter 中知识库相关字段；
+  - 与 `Internal_Cabinet_Tools/sync_to_dify.py` 或等价自动化 **路径一致**（若采用 OB 目录为 SSOT 的派生索引）。
+
+工作流侧 **不直接挂载本机磁盘路径**；**映射**体现为：设计文档中的 **Dataset ID + Vault 内源目录 + 同步策略**，与 Dify 控制台 Knowledge 节点所选 Dataset **一致**。
+
 ---
 
 ## 1. 物理目录与文件命名
@@ -46,6 +57,8 @@
 | `99_Infrastructure` | 系统审计、健康检查、日志同步 |
 
 **导出归档**（可选但推荐）：`000_Cabinet_System/Dify/_exports/`，与 Frontmatter 字段 `dify_artifact` 对应（见 §5.1）。
+
+**知识库源目录**（推荐，与 §6 一致）：`000_Cabinet_System/Dify/_kb_sources/{cabinet_dify_slug}/`（或按域再分子目录）。**仅同步受控树**，禁止以整库根为同步根扫描。
 
 ---
 
@@ -108,25 +121,43 @@ L2 设计文档**缺一不可**，否则视为 **不合规部署**：
 3. **函数解剖表**：全部 `cabinet.*` 调用、输入参数与预期输出。
 4. **身份切换点**：若存在小忆（编排）↔ 小酷（执行）切换，须在图与契约中显式标注。
 
+### 3.6 Knowledge 绑定表（使用 Dify 知识库时必填）
+
+当工作流 **使用 Dify 原生 Knowledge 检索** 时，除 §3.5 外须增加本节（不含知识库的可写 **N/A** 并简述理由）。
+
+| 列 | 说明 |
+|----|------|
+| 节点 / 说明 | 工作流中 Knowledge 节点名称或简述 |
+| Dataset 名称 / ID | Dify 控制台知识库标识与 UUID |
+| OB 源路径 | 相对库根的同步根（如 `000_Cabinet_System/Dify/_kb_sources/my_app/`） |
+| 同步方式 | 定时（cron/launchd）/ 事件（如封印后）/ 手动；对应命令示例 |
+| 责任人 | 运维归属 |
+
+须与 §5.1 中 `dify_knowledge_dataset_ids`、`dify_kb_source_paths` 等 **一致**。
+
 ---
 
 ## 4. 与内阁脚本 / API 集成
 
-与 `Internal_Cabinet_Tools/dify_client.py` 及 `.cursorrules` **L0.6.2** 对齐：
+与 `Internal_Cabinet_Tools/dify_client.py`、`Internal_Cabinet_Tools/sync_to_dify.py` 及 `.cursorrules` **L0.6.2** 对齐：
 
 | 项目 | 说明 |
 |------|------|
 | 服务 | `DIFY_SERVICE`：`10.210.8.8:5001`（自托管默认；与内阁算力节点定义一致） |
 | Base URL | 环境变量 `DIFY_API_BASE`，默认 `http://10.210.8.8:5001` |
-| 鉴权 | 环境变量 `DIFY_API_KEY`：在 Dify 控制台为 **工作流应用** 创建的 App API Key |
-| 调用路径 | `POST /v1/workflows/run`，`Authorization: Bearer <key>`，`Content-Type: application/json` |
-| 请求体 | `inputs`、`response_mode`（常用 `blocking`）、`user` 等（详见官方文档） |
-| 超时 | 长链路建议显式超时（参考代码默认 180s 量级，可按应用调整） |
-| 依赖 | 脚本侧调用需 `httpx`（见 `dify_client.py`） |
+| 工作流鉴权 | 环境变量 `DIFY_API_KEY`：在 Dify 控制台为 **工作流应用** 创建的 App API Key |
+| 工作流调用 | `POST /v1/workflows/run`，`Authorization: Bearer <key>`，`Content-Type: application/json` |
+| 知识库写入鉴权 | **`DIFY_DATASET_API_KEY`**（推荐）：Dify **Knowledge / Dataset** 专用 API Key；若控制台仅提供单一 Key，可暂用 `DIFY_API_KEY` 回退（以实例权限为准） |
+| 知识库 API | `POST /v1/datasets/{dataset_id}/document/create-by-text`；更新：`POST /v1/datasets/{dataset_id}/documents/{document_id}/update-by-text`（路径以 [Dify 官方 Knowledge API](https://docs.dify.ai/api-reference/documents/create-document-by-text) 与自建版本为准） |
+| 同步脚本 | `python3 sync_to_dify.py`（见 TOOLS 仓库根目录）；详见 §6 |
+| 超时 | 长链路建议显式超时（参考 `dify_client.py` 默认 180s）；同步单文件可单独设较短超时 |
+| 依赖 | `httpx`（见 `requirements_skill_manager.txt` / 工具环境） |
 
 **官方文档**：<https://docs.dify.ai/guides/application-publishing/developing-with-apis>
 
-**密钥**：`DIFY_API_KEY` **禁止**写入设计文档、导出 JSON 或 Git；仅环境变量或密钥管理工具。
+**密钥**：`DIFY_API_KEY`、`DIFY_DATASET_API_KEY` **禁止**写入设计文档、导出 JSON 或 Git；仅环境变量或密钥管理工具。
+
+**同步脚本安全（保守策略）**：`sync_to_dify.py` **强制跳过**路径中任一目录段为 **`private`** 或 **`_temp`** 的文件（大小写敏感，与常见 Vault 布局一致）。**宁可漏传，不可错传**。另与 `.cursorrules` **L0.6.3** 一致：完整路径含 **`/Volumes/Cabinet 1`** 或路径段含 **`副本`** 的，脚本 **拒绝同步**。
 
 **n8n 与 P0**：内阁 P0 闭环 **不强制** 经过 n8n；Dify Workflow API、脚本与 `skill_manager` 可先行闭环。**不得以「必须接入 n8n」作为 P0 验收前提**（详见 `.cursorrules`）。
 
@@ -145,6 +176,10 @@ L2 设计文档**缺一不可**，否则视为 **不合规部署**：
 | `dify_artifact` | 相对库根路径，指向**最近一次归档**的导出文件（如 `000_Cabinet_System/Dify/_exports/myapp_2026-03-28.json`） |
 | `dify_exported_at` | ISO 8601 时间戳 |
 | `dify_version_note` | 自托管版本号或 `Cloud` 等备注，便于兼容排查 |
+| `dify_knowledge_dataset_ids` | （可选）本应用绑定的知识库 Dataset ID 列表 |
+| `dify_kb_source_paths` | （可选）相对库根的 OB 同步根目录，多个则列表 |
+| `dify_kb_sync_mode` | （可选）如 `scheduled` / `event` / `manual` |
+| `dify_kb_last_synced_at` | （可选）上次成功同步的 ISO 8601 时间 |
 
 **JSON 侧**：Dify 导出结构**不一定**保留自定义扩展字段。可靠做法是：约定 **`_exports/` 下文件名** 或同目录 **README / sidecar** 写明对应 `.md` 路径与 `cabinet_dify_slug`，勿假设修改 JSON 内部即可被平台回传。
 
@@ -162,45 +197,43 @@ L2 设计文档**缺一不可**，否则视为 **不合规部署**：
   - **SSOT**：L2 以 **设计文档 + Registry + 代码** 为准；JSON 为派生物。
   - **主方向**：契约/文档更新 → 重生成或重导出 JSON → 再导入 Dify（人工或半自动即可）。
   - **反向（仅在 Dify 试改）**：再导出 → 更新 `dify_artifact` 与 `dify_exported_at`；L2 须保证与 `.md` 中 Mermaid / Skill 表 **最终一致**（草稿环境可暂不同步文档，上线前必须对齐）。
-- **进阶（未来）**：定时调用 Dify 导出 API、diff 后写回 `_exports/` 等——**不在 V1.1 实现范围内**，仅预留流程与字段。
+- **OB → Dify 知识库（正向）**：由 `sync_to_dify.py` 将 **§6 约定目录** 中的文件推送至 Dataset；**非 SSOT**，属派生索引更新。
+- **进阶（未来）**：定时调用 Dify 导出 API、diff 后写回 `_exports/` 等——**不在 V1.2 必选范围**，可单列工单。
 
 ---
 
-## 6. 知识库 (Dataset) 自动化运维协议 (V1.2 · 增强版)
+## 6. 知识库与同步（Obsidian → Dify Dataset）
 
-> **核心原则**：Dify 不生产知识，只做知识的“算力镜像”。Obsidian 库是唯一的 SSOT。任何进入 L2 的应用，其挂载的知识库必须配置自动化同步，严禁手动上传文件。
+### 6.1 方向与角色
 
-### 6.1 自动化同步机制 (The Sync Pipeline)
-- **工具承载**：由 `Internal_Cabinet_Tools/sync_to_dify.py` 统一承载。
-- **增量扫描逻辑**：脚本对比本地 MD 的 `mtime`（修改时间）与 Dify 侧 Document 的 `created_at`，仅同步变更文件。
-- **API 灌顶**：利用 Dify Knowledge API (`POST /v1/knowledge/documents`) 进行无感刷新索引。
-- **物理清理 **(Garbage Collection)：本地删除 MD 后，脚本必须通过 API 销毁 Dify 侧对应的虚空索引（`DELETE /v1/knowledge/datasets/{dataset_id}/documents/{doc_id}`），防止数据残留污染检索结果。
+- **SSOT**：Vault 内 **约定源目录** 中的 Markdown（及后续扩展类型）；**Dify Dataset** 为面向检索的 **派生产物**，不得反向视为规范真源。
+- **工作流**：Knowledge 节点仅引用 Dataset；磁盘路径只出现在 **设计文档 §3.6 / §5.1** 与运维命令中。
 
-### 6.2 目录与 Dataset 映射规范 (Mapping & Isolation)
-为防止主权数据污染，严格执行以下隔离策略：
+### 6.2 源目录与分级
 
-| Obsidian 物理路径 | Dify Dataset 名称 | 刷新频率 | 权限等级 (Auth) | 备注 |
-| :--- | :--- | :--- | :--- | :--- |
-| `000_Cabinet_System/Persona/` | `Persona_DB_Kenny` | **实时 **(Watchdog) | `System-Only` | 画像驱动，仅统帅可见。 |
-| `030_Knowledge/Standard/` | `Global_Knowledge_Base` | **每日 **(Cron) | `User-Level` | 公开标准知识，可对外分发。 |
-| `200_Operations/summaries/` | `L1_Summary_Archive` | **异步 **(Post-Enseal) | `System-Only` | 仅在 L1/L2 炼化完成后归档同步。 |
+- 使用 **`000_Cabinet_System/Dify/_kb_sources/...`** 或应用文档中 **明确写出** 的相对路径；**禁止**以整个 `obsidian_vault/` 为默认扫描根。
+- **L1 / L2**：实验应用与生产应用的 Dataset **建议分库**，避免 Draft 污染生产检索。
+- **与 YAML / 卡片**：遵循内阁 Embedding 与 `embedding_access` 等规约（见 `Manuals/Embedding & YAML 统一蓝图.md` 等）；**禁止**将 `.audit.yaml` 或明确 `embedding_access: false` 的敏感全文 **作为同步输入**（同步脚本不解析 YAML 时，须在 **源目录组织** 上物理隔离）。
 
-### 6.3 画像驱动 (Persona-Driven) 准则
-在 L1/L2 工作流中，调用知识库必须遵循以下逻辑：
-1.  **坐标系注入**：每个分析节点（如 `LLM_Call`）的 System Prompt 或 RAG 检索配置中，须显式关联 `Persona_DB_Kenny`。
-2.  **认知过滤 **(Cognitive Filter)：利用 RAG 检索到的主人特质（如：**主权优先、本地化偏好**）作为 LLM 的“思维过滤器”，而非仅仅是背景资料。**若检索结果违背画像原则，LLM 应拒绝回答或请求澄清**。
+### 6.3 更新策略（应用文档中单独立项）
 
-### 6.4 运维红线 (The Redlines)
-- **严禁同步对象**：禁止将 `_private/`、`.git/` 目录或包含密码的 `.env` 文件内容上传至任何 Dify Dataset。
-- **强制审计日志**：每次同步脚本必须生成 `sync_log.md`（含文件名、状态码、耗时），存入 `99_Infrastructure/审计/sync_logs/`，供 P2 自动化工具校验完整性。
+任选或组合，并在 §3.6 写明：
 
-### **6.5 性能对齐与幻觉护栏**
+- **全量重建**：定期清空 Dataset 后重传（简单，中断窗口大）。
+- **增量**：`sync_to_dify.py` 通过 **本地 `.sync_cache.json`**（见下）对比 **mtime / size / SHA256**，跳过未变文件；已绑定 `document_id` 的走 **更新 API**，避免重复文档与重复嵌入。
+- **事件触发**：如封印完成后执行一次同步。
 
-- **注入限制**：LLM 节点的 System Prompt 中引用的静态画像特征不得超过 500 tokens。
-    
-- **优先级声明**：必须明确指令优先级。_示例：[Primary: Sovereign Principles] > [Secondary: General Knowledge]_。
-    
-- **幻觉审计**：若发现 LLM 出现非预期的行为偏离，应首先检查是否因画像描述过于宽泛导致了“认知干扰”。
+### 6.4 本地缓存 `.sync_cache.json`（派生状态）
+
+- **非 SSOT**：不得当作契约真源；建议 **不提交 Git**，或置于 `200_Operations/` 等 RUNTIME，或通过 `--cache` 指定路径。
+- **内容**：针对 **当前 `dataset_id` + 规范化源根**，为每个同步文件记录相对路径 → **`mtime_ns`、`size`、`sha256`、`document_id`**（Dify 返回）。
+- **逻辑**（由 `sync_to_dify.py` 实现）：未变更则 **跳过 API**（节省 3090 嵌入算力）；变更则 **update**；无 `document_id` 则 **create**。若在控制台 **手工删除** 文档导致 update 404，使用 **`--invalidate`** 或清理对应缓存项后重试。
+- **哈希成本**：仅当 **mtime 或 size** 与缓存不一致时再计算 SHA256。
+
+### 6.5 验收
+
+- 上线或变更知识库后，保留 **抽样问答与召回** 检查（频率在应用文档或 Runbook 中自定）。
+
 ---
 
 ## 7. 设计文档模板与新人 Checklist
@@ -212,7 +245,8 @@ L2 设计文档**缺一不可**，否则视为 **不合规部署**：
 3. **Skill Map**：全部 `cabinet.*` 接口列表。
 4. **节点函数表**（见下表模板）。
 5. **节点 I/O**：机读输出结构，供后续节点引用（如 `{{Node_A.output.list[0].id}}`）。
-6. **Error Handling**：API 失败、权限拒绝时的用户回执话术。
+6. **§3.6 Knowledge 绑定表**（使用 Dify 知识库时；否则 **N/A**）。
+7. **Error Handling**：API 失败、权限拒绝时的用户回执话术。
 
 ### 7.2 Agent 与 Prompt
 
@@ -237,12 +271,13 @@ L2 设计文档**缺一不可**，否则视为 **不合规部署**：
 3. 写清 `agent_slug` 与 Prompt 真库路径。
 4. 画 Mermaid，**包含 `KennyGate` 子图**。
 5. 列出 Skill Map 与节点函数表、每节点 I/O。
-6. 标注凡调用 `skill_manager` 处均带 `--agent`。
-7. 标出所有路径经 `path_guardian`、变量含 `conversation_id` / `ref_id`。
-8. 小酷生成 JSON 初稿；你配置密钥与知识库绑定（不写回文档）。
-9. 导入 Dify 验证；导出到 `_exports/`，更新 `dify_artifact` 与 `dify_exported_at`。
-10. 填写 Error Handling 与企微 `#Review` 话术；L2 自检 §3.5 四要素。
+6. 若使用 **Dify Knowledge**：在 Dify 控制台创建 Dataset；在 Vault 建 `_kb_sources/{slug}/`（或约定路径）；填写 §3.6 与 §5.1 知识库字段；配置 `sync_to_dify.py`（见 §4、§6）。
+7. 标注凡调用 `skill_manager` 处均带 `--agent`。
+8. 标出所有路径经 `path_guardian`、变量含 `conversation_id` / `ref_id`。
+9. 小酷生成 JSON 初稿；你配置密钥与知识库绑定（敏感值不写回文档）。
+10. 导入 Dify 验证；导出到 `_exports/`，更新 `dify_artifact` 与 `dify_exported_at`。
+11. 填写 Error Handling 与企微 `#Review` 话术；L2 自检 §3.5；若用知识库则自检 §3.6。
 
 ---
 
-*规范版本 V1.1 · 与 `Internal_Cabinet_Tools/dify_client.py`、`.cursorrules` L0.6.2 对齐。*
+*规范版本 V1.2 · 与 `Internal_Cabinet_Tools/dify_client.py`、`Internal_Cabinet_Tools/sync_to_dify.py`、`.cursorrules` L0.6.2 / L0.6.3 对齐。*
