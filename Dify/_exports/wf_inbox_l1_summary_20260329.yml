@@ -1,5 +1,5 @@
 app:
-  description: 'L0 对话窗口 → L1 语义脱水小结；输出须含 ### [L1-Summary] Ref_ID: 机读块。配对 WF_Inbox_L1_Summary / 小忆_L1_inbox_summary。'
+  description: 'L0→L1 脱水小结（MVP DSL）。四输入+l1_summary_markdown；ref_id INFRA-COGNITIVE-L1L2-20260329-01。全量编排见 WF_Inbox_L1_Summary.md Mermaid。DIFY_API_BASE=http://10.210.8.8:5001 再拼 /v1/...'
   icon: umbrella_with_rain_drops
   icon_background: '#E4FBCC'
   mode: workflow

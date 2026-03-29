@@ -4,7 +4,7 @@ app_type: Workflow
 lead_agent: xiaoyi
 cabinet_dify_slug: wf_inbox_refine_patch
 ref_id: INFRA-COGNITIVE-L1L2-20260329-01
-version: "0.3"
+version: "0.4"
 dify_artifact: pending_export
 dify_exported_at: ""
 ---
@@ -13,7 +13,7 @@ dify_exported_at: ""
 
 > **L2**：须遵守 [`Manuals/Dify_应用开发规范.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Manuals/Dify_%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83.md)。控制台配置与导出 JSON 为派生产物。  
 > **主人画像分级**：[`Manuals/主人画像分级建立与使用规范.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Manuals/%E4%B8%BB%E4%BA%BA%E7%94%BB%E5%83%8F%E5%88%86%E7%BA%A7%E5%BB%BA%E7%AB%8B%E4%B8%8E%E4%BD%BF%E7%94%A8%E8%A7%84%E8%8C%83.md) —— Pre-Gap 对照 **Tier A**（`Kenny_Cognitive_Profile.md`）；可选 HTTP `GET /prompts/p_tier_a_main` 与变量 `kenny_profile_excerpt` **二选一或叠加**（须控制总上下文）。  
-> **Prompt 真源**：[`Agent/小忆/小忆_L2_inbox_enseal_patch.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Agent/%E5%B0%8F%E5%BF%86/%E5%B0%8F%E5%BF%86_L2_inbox_enseal_patch.md)（HTTP：`xiaoyi_l2_inbox_enseal_patch`）。  
+> **Prompt 真源**：[`Agent/小忆/小忆_L2_inbox_enseal_patch.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Agent/%E5%B0%8F%E5%BF%86/%E5%B0%8F%E5%BF%86_L2_inbox_enseal_patch.md)（HTTP：`GET /prompts/xiaoyi_l2_inbox_enseal_patch`，`prompt_http_bridge.py`）。  
 > **配对 ref_id**：与 L1 设计 [`WF_Inbox_L1_Summary.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Dify/01_Ingest_%26_Memory/WF_Inbox_L1_Summary.md)、规划 [`AI-OB 主人认知炼化流水线整体规划.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Infrastructure/AI-OB%20%E4%B8%BB%E4%BA%BA%E8%AE%A4%E7%9F%A5%E7%82%BC%E5%8C%96%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%95%B4%E4%BD%93%E8%A7%84%E5%88%92.md) §3（v2.7）一致。
 
 ## L2 调度（OR）
@@ -49,6 +49,16 @@ dify_exported_at: ""
 | **方案 B** | 紫色 SSOT、`000_Cabinet_System/` **核心区**、画像、战略公理、Agent 角色定义等 | **强制**：仅输出草案 / `.patch` 入待审区；对话 **Diff 预览**；Kenny **交互确认** 或 Obsidian 检阅后 `enseal_skill` / `seal-batch`。 |
 
 **红线**：`Target_SSOT_Path` 命中 **`000_Cabinet_System/` 核心区** → **仅方案 B**。
+
+## DSL 与 Mermaid 实现对照
+
+| 层级 | 说明 |
+|------|------|
+| **设计真源** | 本节 Mermaid、调度 OR、Pre-Gap、画像分流、Tiered Enseal、`check_ssot`、Error Handling |
+| **Prompt 真源** | [`Agent/小忆/小忆_L2_inbox_enseal_patch.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Agent/%E5%B0%8F%E5%BF%86/%E5%B0%8F%E5%BF%86_L2_inbox_enseal_patch.md)（内含 **Dify/DSL 配对**速查表） |
+| **当前归档 DSL** | **`pending_export`** — 尚无 `Dify/_exports/wf_inbox_refine_patch_*.yml`；实现以画布 + 本文件为准 |
+| **上游 L1** | [`WF_Inbox_L1_Summary.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Dify/01_Ingest_%26_Memory/WF_Inbox_L1_Summary.md) / [`小忆_L1_inbox_summary.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Agent/%E5%B0%8F%E5%BF%86/%E5%B0%8F%E5%BF%86_L1_inbox_summary.md) / 已归档 `wf_inbox_l1_summary_20260329.yml`（MVP） |
+| **导出后** | 将 DSL 放入 `_exports/`，Frontmatter 填写 `dify_artifact`、`dify_exported_at`（与规范 §5.1 双链） |
 
 ## Mermaid（逻辑）
 
@@ -98,7 +108,7 @@ flowchart TD
 | 节点 / 说明 | Dataset ID | OB 源路径 | 同步方式 |
 |-------------|------------|-----------|----------|
 | **N/A** | — | — | 默认 **不绑定** Knowledge。若启用 **Tier C** 辅助检索，须单独 Dataset + `_kb_sources` + `sync_to_dify.py`，见 [`Manuals/Dify_应用开发规范.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Manuals/Dify_%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83.md) §3.6。 |
-| **可选 · Tier C · Kenny 画像 RAG** | `TBD_控制台创建后填入` | `000_Cabinet_System/Dify/_kb_sources/kenny_portrait_tier_c/` | `sync_to_dify.py`（`TOOLS_PATH` / `Internal_Cabinet_Tools` 仓库根）；命令、禁令与 **切片粒度**见 [`kenny_portrait_tier_c/README.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Dify/_kb_sources/kenny_portrait_tier_c/README.md)（§脱水切片粒度）。**启用时**：在 Dify 增加 Knowledge 节点，将检索结果接入 **Context 变量**，**不替换** System 中 Tier A 及既有系统指令。 |
+| **可选 · Tier C · Kenny 画像 RAG** | `dataset-SLkcbzIPqlKfRjql3OH3JQKF` | `000_Cabinet_System/Dify/_kb_sources/kenny_portrait_tier_c/` | `sync_to_dify.py`（`TOOLS_PATH` / `Internal_Cabinet_Tools` 仓库根）；命令、禁令与 **切片粒度**见 [`kenny_portrait_tier_c/README.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Dify/_kb_sources/kenny_portrait_tier_c/README.md)（§脱水切片粒度）。**启用时**：在 Dify 增加 Knowledge 节点，将检索结果接入 **Context 变量**，**不替换** System 中 Tier A 及既有系统指令。 |
 
 ## Prompt HTTP 响应契约（§7.2）
 

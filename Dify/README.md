@@ -12,6 +12,7 @@
 - **知识库源树**：`_kb_sources/` — 供 RAG 的受控 Markdown（或扩展类型）根目录；由 TOOLS `sync_to_dify.py` 推送至 Dify Dataset，**非** DSL 归档。可与 `_exports` 并存；本地 `.sync_cache.json` 为派生状态，建议不提交 Git（见规范 §6）。
   - **Kenny 画像 · Tier C 示例根**：[`_kb_sources/kenny_portrait_tier_c/README.md`](_kb_sources/kenny_portrait_tier_c/README.md)（`ref_id: INFRA-KENNY-TIERC-KB-20260329`）。
 - **Knowledge Dataset 注册表**（总索引）：[`Knowledge_Dataset_Registry.md`](Knowledge_Dataset_Registry.md)（Dataset ↔ `_kb_sources` ↔ 工作流；`ref_id: INFRA-DIFY-KB-REGISTRY-20260329`）。
+- **Dataset ID 备用池**：控制台已建 **3** 个知识库 ID，按业务 **逐步绑定**；明细与槽位见注册表内 **「Dataset ID 备用池」**。**API Key 仅环境变量**，勿写入本库或 Git。
 - **知识库运维 SOP**：[`Manuals/AI-OB_Dify知识库运维手册.md`](../Manuals/AI-OB_Dify%E7%9F%A5%E8%AF%86%E5%BA%93%E8%BF%90%E7%BB%B4%E6%89%8B%E5%86%8C.md)（`ref_id: INFRA-DIFY-KB-RUNBOOK-20260329`）。
 
 命名约定见规范 **§1**、**§6**。

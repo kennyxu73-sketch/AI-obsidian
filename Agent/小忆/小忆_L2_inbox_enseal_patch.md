@@ -12,6 +12,16 @@ ref_id: INFRA-COGNITIVE-L1L2-20260329-01
 > **真源**：Dify Workflow / HTTP 拉取须引用本文件或经 Kenny 批准的子集；L1 秘书人格仍以 `小忆/小忆.md` 为准。  
 > **配对**：`Dify/01_Ingest_&_Memory/WF_InboxRefine_Patch.md`、`WF_Inbox_L1_Summary.md`、`Manuals/Dify_应用开发规范.md` §7.2、`Infrastructure/AI-OB 主人认知炼化流水线整体规划.md` §3（v2.7）、[`Manuals/主人画像分级建立与使用规范.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Manuals/%E4%B8%BB%E4%BA%BA%E7%94%BB%E5%83%8F%E5%88%86%E7%BA%A7%E5%BB%BA%E7%AB%8B%E4%B8%8E%E4%BD%BF%E7%94%A8%E8%A7%84%E8%8C%83.md)。
 
+## Dify / DSL 配对（运维速查）
+
+| 项 | 值 |
+|----|-----|
+| `ref_id` | 与 L1 真源、[`WF_InboxRefine_Patch.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Dify/01_Ingest_%26_Memory/WF_InboxRefine_Patch.md) 同为 **`INFRA-COGNITIVE-L1L2-20260329-01`** |
+| Prompt HTTP slug | `xiaoyi_l2_inbox_enseal_patch` → `GET /prompts/xiaoyi_l2_inbox_enseal_patch`（`prompt_http_bridge.py`） |
+| 工作流设计真源 | `Dify/01_Ingest_&_Memory/WF_InboxRefine_Patch.md`（`cabinet_dify_slug`: **`wf_inbox_refine_patch`**） |
+| 已归档 DSL | **尚未**：Frontmatter `dify_artifact: pending_export`；画布以 WF **Mermaid** 与节点表为准，定稿后导出至 `Dify/_exports/` 并回写 Frontmatter |
+| 工作流 / 知识库 API 基址 | 同 L1：**`DIFY_API_BASE`** → `http://10.210.8.8:5001` + `/v1/...` |
+
 ## 主人画像（Tier A / Pre-Gap）
 
 - **Pre-Gap** 须对照 **Tier A**（以 `Kenny画像/Kenny_Cognitive_Profile.md` 为准；可由变量 `kenny_profile_excerpt` 或 HTTP `p_tier_a_main` 提供正文）。

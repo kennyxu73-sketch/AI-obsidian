@@ -14,13 +14,27 @@ ref_id: INFRA-DIFY-KB-REGISTRY-20260329
 
 ---
 
+## Dataset ID 备用池（逐步应用）
+
+已在 Dify 控制台预留 **3** 个 Dataset；**槽位 B/C 未指派 `kb_slug` 前请勿向其中同步生产内容**，避免与表 A 漂移。不足时在控制台新建 Dataset，并在此表 **追加行**。
+
+| 槽位 | Dataset ID | 当前用途 |
+|------|------------|----------|
+| **A（首选）** | `dataset-SLkcbzIPqlKfRjql3OH3JQKF` | 表 A **`kenny_portrait_tier_c`**：`sync_to_dify.py --dataset-id`、启用 RAG 时工作流 Knowledge 绑定 |
+| **B** | `dataset-qG66BG3MRwykotn9Ua3TxTUl` | 预留（分配业务后填入表 A 新行并改本列） |
+| **C** | `dataset-ZzKcXRFZsIp4UCkG4kUaF0MW` | 预留（分配业务后填入表 A 新行并改本列） |
+
+`POST /v1/datasets/{dataset_id}/...` 中的 `dataset_id` **以你方实例 OpenAPI 为准**（整串常含 `dataset-` 前缀）；若 404，按控制台文档尝试仅 UUID 段。
+
+---
+
 ## 表 A · Knowledge Dataset 注册
 
 | kb_slug | Dify Dataset 显示名 | Dataset UUID | OB 同步根（库根相对） | 同步脚本 / 说明 | 默认绑定工作流 | 上次成功同步 | 责任人 / 备注 |
 |---------|---------------------|--------------|----------------------|-----------------|----------------|--------------|----------------|
-| `kenny_portrait_tier_c` | （控制台填写，如 Kenny_Portrait_TierC） | `TBD` | `000_Cabinet_System/Dify/_kb_sources/kenny_portrait_tier_c/` | [`README`](_kb_sources/kenny_portrait_tier_c/README.md) + `sync_to_dify.py`（`TOOLS_PATH`） | `WF_Inbox_L1_Summary` / `WF_InboxRefine_Patch`（**默认未绑** RAG；启用时见各 WF §3.6） | — | Tier C；`INFRA-KENNY-TIERC-KB-20260329` |
+| `kenny_portrait_tier_c` | （控制台填写，如 Kenny_Portrait_TierC） | `dataset-SLkcbzIPqlKfRjql3OH3JQKF` | `000_Cabinet_System/Dify/_kb_sources/kenny_portrait_tier_c/` | [`README`](_kb_sources/kenny_portrait_tier_c/README.md) + `sync_to_dify.py`（`TOOLS_PATH`） | `WF_Inbox_L1_Summary` / `WF_InboxRefine_Patch`（**默认未绑** RAG；启用时见各 WF §3.6） | — | Tier C；备用池槽位 **A**；`INFRA-KENNY-TIERC-KB-20260329` |
 
-> 新增 Dataset：在表末 **追加一行**；UUID 在 Dify 控制台创建后填回。
+> 新增 Dataset：在表末 **追加一行**；或从 **备用池** 槽位 B/C 指派后更新上表与备用池两表。
 
 ---
 
@@ -65,6 +79,7 @@ ref_id: INFRA-DIFY-KB-REGISTRY-20260329
 | 日期 | kb_slug | 变动摘要 | 备注 |
 |------|---------|----------|------|
 | 2026-03-29 | kenny_portrait_tier_c | 注册表与运维手册 scaffold；Dataset 未绑生产 UUID | 待首次生产同步后更新表 A「上次成功同步」 |
+| 2026-03-29 | — | 登记 Dataset 备用池 3 槽；`kenny_portrait_tier_c` 绑定槽位 A | 槽位 B/C 预留；`sync`/WF 绑定后更新「上次成功同步」 |
 
 ---
 

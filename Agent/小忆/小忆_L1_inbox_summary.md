@@ -12,6 +12,17 @@ ref_id: INFRA-COGNITIVE-L1L2-20260329-01
 > **真源**：`WF_Inbox_L1_Summary` 与 Dify HTTP 拉取须引用本文件；秘书人格仍以 `小忆/小忆.md` 为准。  
 > **配对**：`Infrastructure/AI-OB 主人认知炼化流水线整体规划.md` §2（v2.7）、`Dify/01_Ingest_&_Memory/WF_Inbox_L1_Summary.md`、`Manuals/Dify_应用开发规范.md` §7.2、[`Manuals/主人画像分级建立与使用规范.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Manuals/%E4%B8%BB%E4%BA%BA%E7%94%BB%E5%83%8F%E5%88%86%E7%BA%A7%E5%BB%BA%E7%AB%8B%E4%B8%8E%E4%BD%BF%E7%94%A8%E8%A7%84%E8%8C%83.md)。
 
+## Dify / DSL 配对（运维速查）
+
+| 项 | 值 |
+|----|-----|
+| `ref_id` | 与 [`WF_Inbox_L1_Summary.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Dify/01_Ingest_%26_Memory/WF_Inbox_L1_Summary.md) 同为 **`INFRA-COGNITIVE-L1L2-20260329-01`** |
+| Prompt HTTP slug | `xiaoyi_l1_inbox_summary` → `GET /prompts/xiaoyi_l1_inbox_summary`（`Internal_Cabinet_Tools/prompt_http_bridge.py`，Bearer 同 `CABINET_PROMPT_TOKEN`） |
+| 可选 Tier B | `GET /prompts/p_tier_b_l1_ctx`；与上 **并行拉取** 后在编排侧 **合并** 入上下文（见 WF Mermaid；**非**本 MD 内嵌义务） |
+| 工作流设计真源 | `Dify/01_Ingest_&_Memory/WF_Inbox_L1_Summary.md`（`cabinet_dify_slug`: **`wf_inbox_l1_summary`**） |
+| 已归档 DSL | `Dify/_exports/wf_inbox_l1_summary_20260329.yml` — **MVP**：Start→LLM→End，System 为本文 **内嵌镜像**；Mermaid 全量（HTTP 双拉、解析、TieredEnseal 写盘）**未**完全入该 YAML，须控制台补全后再导出覆盖 |
+| 工作流 / 知识库 API 基址 | **`DIFY_API_BASE`** 默认 **`http://10.210.8.8:5001`**，路径再拼 `/v1/...`（**非** `http://10.210.8.8/v1` 除非前置反向代理） |
+
 ## 主人画像（Tier B）
 
 - 若上下文含 **`Kenny画像/Kenny_Profile_L1_Context.md`**（或经 HTTP `p_tier_b_l1_ctx` 注入的同级正文）：**仅**用于指代锚定与消歧，**不**视为公理全集。
