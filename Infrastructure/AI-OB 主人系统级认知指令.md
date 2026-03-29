@@ -4,9 +4,7 @@
 
 ---
 
-### 📂 AI-OB Cursor Rules v1.8 · 主人画像优化注解
 
-Markdown
 
 # AI-OB 系统级认知指令 (Sovereign Architecture v2.2)
 # 版本: v1.8-Final | 状态: 生产就绪
@@ -103,3 +101,55 @@ graph TD
     class B,F refinery;
     class D human;
     class E ssot;
+```
+
+
+```mermaid
+
+graph TD
+    classDef raw fill:#FFD700,stroke:#333,stroke-width:2px;
+    classDef proc fill:#92C5F9,stroke:#333,stroke-width:2px;
+    classDef ssot fill:#8A2BE2,stroke:#fff,stroke-width:2px,color:#fff;
+    classDef p2 fill:#e8f5e9,stroke:#2e7d32,stroke-dasharray: 5 5;
+
+    subgraph 图甲_认知炼化["图甲 · 认知炼化（真源：炼化流水线 v2.7）"]
+        A["L0 · 原始对话 RAW<br/><small>RUNTIME/ai_dialogue_inbox</small>"] -->|脱水判别| B("小忆 · L1 节点<br/><small>WF_Inbox_L1_Summary</small>")
+        B -->|产出摘要| C["L1 · 语义小结 MD<br/><small>RUNTIME/summaries/</small>"]
+        C -->|一致性对齐| D("小忆 · L2 节点<br/><small>WF_InboxRefine_Patch</small>")
+        D -->|提案 / Kenny Gate| E["L3 · 系统真值 SSOT<br/><small>000_Cabinet_System · Kenny画像等</small>"]
+        C -.->|Upsert 预留| Q[("Qdrant 向量库")]
+        E -.->|基准对照| GE{{"Gap Engine"}}
+        Q -.->|语义检索| GE
+        GE -.->|发现缺口| D
+    end
+
+    class A raw;
+    class B,C,D proc;
+    class E ssot;
+    class Q,GE p2;
+```
+
+
+```mermaid
+
+graph TD
+    classDef ssot fill:#8A2BE2,stroke:#fff,stroke-width:2px,color:#fff;
+    classDef exec fill:#B0BEC5,stroke:#37474F,stroke-width:2px;
+    classDef agent fill:#92C5F9,stroke:#333,stroke-width:2px;
+    classDef raw fill:#FFD700,stroke:#333,stroke-width:2px;
+
+    subgraph 图乙_执行回流["图乙 · 执行回流（SSOT → 工具 → 再入 L0）"]
+        S["SSOT / 规范真源<br/><small>000_Cabinet_System</small>"] -->|读配置与边界| K["小酷 · 工具执行<br/><small>CLI / 自动化 / 落盘</small>"]
+        K -->|工件 · 日志 · 状态| W["运行痕迹与待汇报物"]
+        W -->|对话与调度| Y["小忆 · 交互 / 秘书层"]
+        Y -->|新轮次原料| L0["L0 RAW<br/><small>ai_dialogue_inbox</small>"]
+    end
+
+    L0 -.->|进入图甲| REF["↩ 图甲 L1 入口"]
+
+    class S ssot;
+    class K exec;
+    class Y agent;
+    class L0 raw;
+    class W,REF raw;
+```
