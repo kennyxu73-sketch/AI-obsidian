@@ -7,6 +7,18 @@
 
 ---
 
+## 2026-03-30 | Skills：用户画像运维（Tier C + Inbox L1/L2 DSL）
+
+### 变更概述
+新增 `Skills/02_用户画像运维/用户画像运维.md`、`用户画像运维_外链索引.md`；**§5.6** 配套 **`用户画像运维.canvas`**（与主 Skill 同 stem）；`Skills/README` 分区 A 第 02 行 Canvas 列已链。叙事约定 Path Guard、Run/Verify/Sync、无 Rerank（`weighted_score`）；与 TOOLS `gen_dify_inbox_workflows.py` 配对。Cursor 侧 `.cursor/skills/cabinet-user-portrait-ops` 为薄指针，真源以本目录为准。
+
+### JSON（影子索引）
+```json
+{ "module": "skills-02-user-portrait-ops", "status": "done", "ssot": "Skills/02_用户画像运维/用户画像运维.md", "canvas": "Skills/02_用户画像运维/用户画像运维.canvas" }
+```
+
+---
+
 ## 2026-03-29 | 认知炼化 L0–L2 重整（v2.6 规划 + L1 工作流 + L2 调度与 Tiered Enseal）
 
 ### 变更概述
