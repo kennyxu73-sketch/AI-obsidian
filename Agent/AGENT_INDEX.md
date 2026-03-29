@@ -35,7 +35,8 @@
 | `数字内阁/AI-ob 数字内阁.canvas` | 画布 |
 | `数字内阁/数字内阁sop.canvas` | 画布 |
 
-入口笔记：本文件 `Agent/AGENT_INDEX.md`、矩阵 `Agent/AGENT_L1_PROMPTS.md`、**Dify/cabinet 工具 L1** [[L1_DIFY_CABINET_TOOLS]]（快照：`agent_l1_registry.json`、`dify_agent_tools_export.json`；以 TOOLS 内 JSON 为权威）。
+入口笔记：本文件 `Agent/AGENT_INDEX.md`、矩阵 `Agent/AGENT_L1_PROMPTS.md`、**Dify/cabinet 工具 L1** [[L1_DIFY_CABINET_TOOLS]]（快照：`agent_l1_registry.json`、`dify_agent_tools_export.json`；以 TOOLS 内 JSON 为权威）。  
+**能力地图**（应用域 Standard / Legacy / Draft + Auth）：[[Skills/README]]。
 
 ## wecom_adapter 预埋（与企微策略 v1.1）
 

@@ -1,0 +1,19 @@
+{
+	"nodes":[
+		{"id":"brain_center","type":"text","text":"## 🧠 脑：应用域意图\n**多 Agent 企微讨论与会话编排**\n\n实现多 Bot 企微群内讨论的统一收件、去重与 L3 时间线合并。","x":0,"y":0,"width":300,"height":240,"color":"1"},
+		{"id":"strategy_rail","type":"file","file":"000_Cabinet_System/Agent/数字内阁/数字内阁-企微多Bot与会话策略.md","x":-400,"y":280,"width":300,"height":400},
+		{"id":"fallback_node","type":"text","text":"## ⚠️ 运行时降级\n若网关失效 -> 写入 `sync_errors.log` \n确保 L0 RAW 不丢失。","x":400,"y":320,"width":350,"height":200,"color":"1"},
+		{"id":"policy_rail","type":"file","file":"000_Cabinet_System/Infrastructure/多源对话收件法典.md","x":-400,"y":-300,"width":300,"height":400},
+		{"id":"glove_mapping","type":"text","text":"## 🧤 手套：Dify/MCP 接口映射\n\n- **写入**: `xiaoku__cabinet_dialog_append_wecom_dedup` \n- **合并**: `xiaoyi__cabinet_dialog_inbox_merge_session` \n- **校验**: `xiaoku__cabinet_dialog_inbox_validate` ","x":400,"y":-250,"width":350,"height":150,"color":"3"},
+		{"id":"hand_exec","type":"text","text":"## 🛠️ 手：物理执行 (cabinet.*)\n\n- `Internal_Cabinet_Tools/cabinet_builtins.py` \n- `Internal_Cabinet_Tools/dialog_inbox.py` ","x":400,"y":60,"width":350,"height":180,"color":"4"},
+		{"id":"result_l0","type":"text","text":"## 📦 资产产出\n**L0 RAW 存储路径**\n`RUNTIME_ROOT/ai_dialogue_inbox/` \n\n*状态：分片存储，已封印*","x":1000,"y":90,"width":300,"height":120,"color":"6"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"policy_rail","fromSide":"right","toNode":"brain_center","toSide":"left","label":"驱动"},
+		{"id":"e2","fromNode":"strategy_rail","fromSide":"right","toNode":"brain_center","toSide":"left","label":"策略约束"},
+		{"id":"e3","fromNode":"brain_center","fromSide":"right","toNode":"glove_mapping","toSide":"left","label":"接口封装"},
+		{"id":"e4","fromNode":"glove_mapping","fromSide":"bottom","toNode":"hand_exec","toSide":"top","label":"下发指令"},
+		{"id":"e5","fromNode":"hand_exec","fromSide":"right","toNode":"result_l0","toSide":"left","label":"物理落盘"},
+		{"id":"e6","fromNode":"hand_exec","fromSide":"bottom","toNode":"fallback_node","toSide":"top","label":"降级触发"}
+	]
+}

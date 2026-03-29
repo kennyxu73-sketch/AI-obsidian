@@ -1,0 +1,27 @@
+{
+	"nodes":[
+		{"id":"policy_note","type":"text","text":"📜 **[[数字内阁-企微多Bot与会话策略]]**\n会话键 · 去重库前提","x":-720,"y":-80,"width":280,"height":160,"color":"3"},
+		{"id":"canon_inbox","type":"text","text":"📜 **[[多源对话收件法典]]**\n收件契约 · `sync_errors.log`","x":-380,"y":-80,"width":280,"height":160,"color":"3"},
+		{"id":"wecom_rooms","type":"text","text":"💬 **企微多 Bot**\n同群共用 `session_id`\n`wecom:{roomid}`","x":-760,"y":-420,"width":220,"height":140,"color":"#32CD32"},
+		{"id":"adapter_gw","type":"text","text":"📡 **适配器 / 网关**\n非 Obsidian 执行\nskill_manager 入口","x":-420,"y":-420,"width":220,"height":140,"color":"#1E90FF"},
+		{"id":"append_skill","type":"text","text":"⚙️ **写侧 cabinet**\n`append_wecom_dedup`\n手套见 JSON `dify_suggested_name`","x":-100,"y":-420,"width":260,"height":140,"color":"#1E90FF"},
+		{"id":"inbox_runtime","type":"text","text":"📂 **RUNTIME**\n`ai_dialogue_inbox`\n`(source, session_id)` 多文件","x":320,"y":-420,"width":260,"height":140,"color":"#8A2BE2"},
+		{"id":"merge_skill","type":"text","text":"🔗 **读侧 cabinet**\n`inbox_merge_session`\nL3 时间线 + silence_hint","x":680,"y":-420,"width":280,"height":140,"color":"#1E90FF"},
+		{"id":"skills_readme","type":"text","text":"🗺️ **[[Skills/README]]**\n成熟度矩阵 · Auth · 分区 A/B","x":580,"y":-680,"width":260,"height":120,"color":"3"},
+		{"id":"audit_hint","type":"text","text":"🚧 **P2 导出审计区**\n见 Skill 文末\n线以下不对外打包","x":-420,"y":-680,"width":280,"height":100,"color":"#FFD700"},
+		{"id":"l1_tools","type":"text","text":"📜 **[[L1_DIFY_CABINET_TOOLS]]**\n+ `dify_agent_tools_export.json`\n手套真源","x":80,"y":-80,"width":280,"height":120,"color":"3"},
+		{"id":"skill_ssot","type":"text","text":"📄 **[[01_多Agent企微讨论/多Agent企微讨论_应用域Skill]]**\n**Standard · User-Level**\n脑/手套/手 · 能力对照表 · Mermaid 图示\n（Canvas 为导读；真值以正文与法典为准）","x":60,"y":-730,"width":320,"height":200,"color":"#8A2BE2"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"wecom_rooms","fromSide":"right","toNode":"adapter_gw","toSide":"left","color":"#32CD32","label":"事件入站"},
+		{"id":"e2","fromNode":"adapter_gw","fromSide":"right","toNode":"append_skill","toSide":"left","color":"#1E90FF","label":"内置调用"},
+		{"id":"e3","fromNode":"append_skill","fromSide":"right","toNode":"inbox_runtime","toSide":"left","color":"#1E90FF","label":"落盘"},
+		{"id":"e4","fromNode":"inbox_runtime","fromSide":"right","toNode":"merge_skill","toSide":"left","color":"#8A2BE2","label":"L3 合并读"},
+		{"id":"e5","style":"dashed","fromNode":"policy_note","fromSide":"top","toNode":"wecom_rooms","toSide":"bottom","color":"#FFD700","label":"约束"},
+		{"id":"e6","style":"dashed","fromNode":"canon_inbox","fromSide":"top","toNode":"adapter_gw","toSide":"bottom","color":"#FFD700","label":"降级/日志"},
+		{"id":"e7","style":"dashed","fromNode":"l1_tools","fromSide":"top","toNode":"append_skill","toSide":"bottom","color":"#FFD700","label":"手套映射"},
+		{"id":"e8","style":"dashed","fromNode":"skill_ssot","fromSide":"bottom","toNode":"l1_tools","toSide":"top","color":"#8A2BE2","label":"同目录 SSOT"},
+		{"id":"e9","style":"dashed","fromNode":"skills_readme","fromSide":"left","toNode":"skill_ssot","toSide":"right","color":"3","label":"能力地图"},
+		{"id":"e10","style":"dashed","fromNode":"audit_hint","fromSide":"right","toNode":"skill_ssot","toSide":"left","color":"#FFD700","label":"P2 裁剪界"}
+	]
+}
