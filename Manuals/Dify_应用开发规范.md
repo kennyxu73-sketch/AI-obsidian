@@ -166,14 +166,41 @@ L2 设计文档**缺一不可**，否则视为 **不合规部署**：
 
 ---
 
-## 6. 知识库与同步（原则与占位）
+## 6. 知识库 (Dataset) 自动化运维协议 (V1.2 · 增强版)
 
-- **数据源**：Obsidian 目录、受控导出物或后续专用管道；须标明是否与 SSOT 重叠、是否只读。
-- **更新策略**：全量重建、按文件增量（如 mtime）、或业务事件触发（如封印完成后刷新索引）——具体方案按应用单独立项。
-- **分级**：知识库须与 **L1/L2** 策略一致（实验库 vs 生产库、是否含敏感路径摘要）。
-- **切片与元数据**：与内阁 YAML / 卡片等笔记规范 **对齐原则**，避免检索噪声与泄露。
-- **验收**：自动化上线后应保留 **抽样问答与召回** 检查（脚本与频率另案，本规范不规定实现）。
+> **核心原则**：Dify 不生产知识，只做知识的“算力镜像”。Obsidian 库是唯一的 SSOT。任何进入 L2 的应用，其挂载的知识库必须配置自动化同步，严禁手动上传文件。
 
+### 6.1 自动化同步机制 (The Sync Pipeline)
+- **工具承载**：由 `Internal_Cabinet_Tools/sync_to_dify.py` 统一承载。
+- **增量扫描逻辑**：脚本对比本地 MD 的 `mtime`（修改时间）与 Dify 侧 Document 的 `created_at`，仅同步变更文件。
+- **API 灌顶**：利用 Dify Knowledge API (`POST /v1/knowledge/documents`) 进行无感刷新索引。
+- **物理清理 **(Garbage Collection)：本地删除 MD 后，脚本必须通过 API 销毁 Dify 侧对应的虚空索引（`DELETE /v1/knowledge/datasets/{dataset_id}/documents/{doc_id}`），防止数据残留污染检索结果。
+
+### 6.2 目录与 Dataset 映射规范 (Mapping & Isolation)
+为防止主权数据污染，严格执行以下隔离策略：
+
+| Obsidian 物理路径 | Dify Dataset 名称 | 刷新频率 | 权限等级 (Auth) | 备注 |
+| :--- | :--- | :--- | :--- | :--- |
+| `000_Cabinet_System/Persona/` | `Persona_DB_Kenny` | **实时 **(Watchdog) | `System-Only` | 画像驱动，仅统帅可见。 |
+| `030_Knowledge/Standard/` | `Global_Knowledge_Base` | **每日 **(Cron) | `User-Level` | 公开标准知识，可对外分发。 |
+| `200_Operations/summaries/` | `L1_Summary_Archive` | **异步 **(Post-Enseal) | `System-Only` | 仅在 L1/L2 炼化完成后归档同步。 |
+
+### 6.3 画像驱动 (Persona-Driven) 准则
+在 L1/L2 工作流中，调用知识库必须遵循以下逻辑：
+1.  **坐标系注入**：每个分析节点（如 `LLM_Call`）的 System Prompt 或 RAG 检索配置中，须显式关联 `Persona_DB_Kenny`。
+2.  **认知过滤 **(Cognitive Filter)：利用 RAG 检索到的主人特质（如：**主权优先、本地化偏好**）作为 LLM 的“思维过滤器”，而非仅仅是背景资料。**若检索结果违背画像原则，LLM 应拒绝回答或请求澄清**。
+
+### 6.4 运维红线 (The Redlines)
+- **严禁同步对象**：禁止将 `_private/`、`.git/` 目录或包含密码的 `.env` 文件内容上传至任何 Dify Dataset。
+- **强制审计日志**：每次同步脚本必须生成 `sync_log.md`（含文件名、状态码、耗时），存入 `99_Infrastructure/审计/sync_logs/`，供 P2 自动化工具校验完整性。
+
+### **6.5 性能对齐与幻觉护栏**
+
+- **注入限制**：LLM 节点的 System Prompt 中引用的静态画像特征不得超过 500 tokens。
+    
+- **优先级声明**：必须明确指令优先级。_示例：[Primary: Sovereign Principles] > [Secondary: General Knowledge]_。
+    
+- **幻觉审计**：若发现 LLM 出现非预期的行为偏离，应首先检查是否因画像描述过于宽泛导致了“认知干扰”。
 ---
 
 ## 7. 设计文档模板与新人 Checklist

@@ -5,8 +5,8 @@ lead_agent: xiaoyi
 cabinet_dify_slug: wf_inbox_l1_summary
 ref_id: INFRA-COGNITIVE-L1L2-20260329-01
 version: "0.1"
-dify_artifact: pending_export
-dify_exported_at: ""
+dify_artifact: 000_Cabinet_System/Dify/_exports/wf_inbox_l1_summary_20260329.yml
+dify_exported_at: "2026-03-29T03:05:00Z"
 ---
 
 # WF_Inbox_L1_Summary（设计真源）
