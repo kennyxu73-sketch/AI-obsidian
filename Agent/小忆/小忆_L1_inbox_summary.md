@@ -10,7 +10,13 @@ ref_id: INFRA-COGNITIVE-L1L2-20260329-01
 # 小忆 L1 · L0 → 语义脱水小结
 
 > **真源**：`WF_Inbox_L1_Summary` 与 Dify HTTP 拉取须引用本文件；秘书人格仍以 `小忆/小忆.md` 为准。  
-> **配对**：`Infrastructure/AI-OB 主人认知炼化流水线整体规划.md` §2、`Dify/01_Ingest_&_Memory/WF_Inbox_L1_Summary.md`、`Manuals/Dify_应用开发规范.md` §7.2。
+> **配对**：`Infrastructure/AI-OB 主人认知炼化流水线整体规划.md` §2（v2.7）、`Dify/01_Ingest_&_Memory/WF_Inbox_L1_Summary.md`、`Manuals/Dify_应用开发规范.md` §7.2、[`Manuals/主人画像分级建立与使用规范.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Manuals/%E4%B8%BB%E4%BA%BA%E7%94%BB%E5%83%8F%E5%88%86%E7%BA%A7%E5%BB%BA%E7%AB%8B%E4%B8%8E%E4%BD%BF%E7%94%A8%E8%A7%84%E8%8C%83.md)。
+
+## 主人画像（Tier B）
+
+- 若上下文含 **`Kenny画像/Kenny_Profile_L1_Context.md`**（或经 HTTP `p_tier_b_l1_ctx` 注入的同级正文）：**仅**用于指代锚定与消歧，**不**视为公理全集。
+- **禁止**：凭 Tier B 做「与 Kenny_Cognitive_Profile 是否冲突」的**最终裁决**；**禁止**臆造未在 L0 输入中出现的公理级承诺。
+- **禁止**在 L1 步骤要求模型默记或复述 **Tier A**（`Kenny_Cognitive_Profile.md`）全文；公理对照归属 L2。
 
 ## 职责边界
 

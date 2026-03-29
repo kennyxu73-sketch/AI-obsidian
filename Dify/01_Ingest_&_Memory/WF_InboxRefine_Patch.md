@@ -4,7 +4,7 @@ app_type: Workflow
 lead_agent: xiaoyi
 cabinet_dify_slug: wf_inbox_refine_patch
 ref_id: INFRA-COGNITIVE-L1L2-20260329-01
-version: "0.2"
+version: "0.3"
 dify_artifact: pending_export
 dify_exported_at: ""
 ---
@@ -12,8 +12,9 @@ dify_exported_at: ""
 # WF_InboxRefine_Patch（设计真源）
 
 > **L2**：须遵守 [`Manuals/Dify_应用开发规范.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Manuals/Dify_%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83.md)。控制台配置与导出 JSON 为派生产物。  
-> **Prompt 真源**：[`Agent/小忆/小忆_L2_inbox_enseal_patch.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Agent/%E5%B0%8F%E5%BF%86/%E5%B0%8F%E5%BF%86_L2_inbox_enseal_patch.md)（HTTP 拉取见 TOOLS `prompt_http_bridge.py`）。  
-> **配对 ref_id**：与 L1 设计 [`WF_Inbox_L1_Summary.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Dify/01_Ingest_%26_Memory/WF_Inbox_L1_Summary.md)、规划 [`AI-OB 主人认知炼化流水线整体规划.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Infrastructure/AI-OB%20%E4%B8%BB%E4%BA%BA%E8%AE%A4%E7%9F%A5%E7%82%BC%E5%8C%96%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%95%B4%E4%BD%93%E8%A7%84%E5%88%92.md) §3 一致。
+> **主人画像分级**：[`Manuals/主人画像分级建立与使用规范.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Manuals/%E4%B8%BB%E4%BA%BA%E7%94%BB%E5%83%8F%E5%88%86%E7%BA%A7%E5%BB%BA%E7%AB%8B%E4%B8%8E%E4%BD%BF%E7%94%A8%E8%A7%84%E8%8C%83.md) —— Pre-Gap 对照 **Tier A**（`Kenny_Cognitive_Profile.md`）；可选 HTTP `GET /prompts/p_tier_a_main` 与变量 `kenny_profile_excerpt` **二选一或叠加**（须控制总上下文）。  
+> **Prompt 真源**：[`Agent/小忆/小忆_L2_inbox_enseal_patch.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Agent/%E5%B0%8F%E5%BF%86/%E5%B0%8F%E5%BF%86_L2_inbox_enseal_patch.md)（HTTP：`xiaoyi_l2_inbox_enseal_patch`）。  
+> **配对 ref_id**：与 L1 设计 [`WF_Inbox_L1_Summary.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Dify/01_Ingest_%26_Memory/WF_Inbox_L1_Summary.md)、规划 [`AI-OB 主人认知炼化流水线整体规划.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Infrastructure/AI-OB%20%E4%B8%BB%E4%BA%BA%E8%AE%A4%E7%9F%A5%E7%82%BC%E5%8C%96%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%95%B4%E4%BD%93%E8%A7%84%E5%88%92.md) §3（v2.7）一致。
 
 ## L2 调度（OR）
 
@@ -28,11 +29,11 @@ dify_exported_at: ""
 
 - **`l1_summaries_bulk`**：多条 L1 小结 Markdown 拼接或 JSON 列表（必填）。
 - **`dialogue_excerpt`**（可选）：指向 L0 的引用片段，供核对。
-- **`kenny_profile_excerpt`**（可选）：`Kenny_Cognitive_Profile.md` 摘录，供 **Pre-Gap**。
+- **`kenny_profile_excerpt`**（可选）：**Tier A** 摘录（与 `Kenny_Cognitive_Profile.md` 同源），供 **Pre-Gap**；若为空且需全文对照，可由上游节点拉取 HTTP **`p_tier_a_main`**（见画像规范 §6）。
 
-## Pre-Gap（偏差预警）
+## Pre-Gap（偏差预警 · Tier A）
 
-- 生成 Patch 前对照 **`Kenny_Cognitive_Profile.md`**：若新命题与「本地优先 / 数据主权」等既有公理 **冲突**，须在输出中用 **显著标记**（如「⚠️ Pre-Gap」小节）写出偏差；**不得**在本工作流内 **自动改写** 画像文件。
+- 生成 Patch 前须对照 **Tier A** 真源（`Kenny_Cognitive_Profile.md` 或上述注入/HTTP）：若新命题与「本地优先 / 数据主权」等既有公理 **冲突**，须在输出中用 **显著标记**（如「⚠️ Pre-Gap」小节）写出偏差；**不得**在本工作流内 **自动改写** 画像文件。
 
 ## 画像分流
 
@@ -56,8 +57,9 @@ flowchart TD
   Sched{调度_OR_20条L1或168h}
   Sched -->|否| Wait[等待或定时轮询]
   Sched -->|是| Merge[合并_L1批量与可选L0]
-  Merge --> HttpPrompt[可选_GET_Prompt_HTTP]
-  HttpPrompt --> PreGap[Pre-Gap_对照Kenny_Cognitive_Profile]
+  Merge --> HttpPrompt[GET_xiaoyi_l2_inbox_enseal_patch]
+  HttpPrompt --> OptTierA[可选_GET_p_tier_a_main或变量摘录]
+  OptTierA --> PreGap[Pre-Gap_对照TierA]
   PreGap --> LLM[LLM_Ollama_草案]
   LLM --> PortraitSplit{画像路径分流}
   PortraitSplit -->|Kenny画像| TagPortrait[标注_仅Kenny确认后落盘]
@@ -90,6 +92,12 @@ flowchart TD
 |---------|----------|------|------|
 | CheckSSOT | `cabinet.path_guardian.check_ssot` | `path`, `as_dir` | 非法则走 ErrReply |
 | LLM | — | `l1_summaries_bulk`, `dialogue_excerpt`, `system_prompt_from_ssot` | 模型连 `127.0.0.1:11434/v1`（3090 同机） |
+
+### Knowledge 绑定（Dify 规范 §3.6）
+
+| 节点 / 说明 | Dataset ID | OB 源路径 | 同步方式 |
+|-------------|------------|-----------|----------|
+| **N/A** | — | — | 默认 **不绑定** Knowledge。若启用 **Tier C** 辅助检索，须单独 Dataset + `_kb_sources` + `sync_to_dify.py`，见 [`Manuals/Dify_应用开发规范.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Manuals/Dify_%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83.md) §3.6。 |
 
 ## Prompt HTTP 响应契约（§7.2）
 

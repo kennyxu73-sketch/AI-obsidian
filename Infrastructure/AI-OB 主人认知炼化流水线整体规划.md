@@ -6,9 +6,11 @@
 
 ---
 
-# 📥 AI-OB 认知炼化流水线整体规划 (v2.6 · 混合记忆预备版)
+# 📥 AI-OB 认知炼化流水线整体规划 (v2.7 · 混合记忆预备版)
 
 # 核心原则：L1 语义脱水 (清洗), L2 跨度炼化 (封印)；预留 Qdrant 接口，衔接补全引擎。
+
+**v2.7 变更摘要**：与 [`Manuals/主人画像分级建立与使用规范.md`](../Manuals/%E4%B8%BB%E4%BA%BA%E7%94%BB%E5%83%8F%E5%88%86%E7%BA%A7%E5%BB%BA%E7%AB%8B%E4%B8%8E%E4%BD%BF%E7%94%A8%E8%A7%84%E8%8C%83.md)（v1.0）对齐——**画像 Tier A/B/C**、L1 仅轻量 **Tier B** 注入、L2 **Pre-Gap** 显式对照 **Tier A**；Prompt HTTP 桥 slug `p_tier_*` 与 `Kenny画像/` 受保护路径见该 Manual §6。
 
 ## 1. 📂 架构分层与混合存储 (Infrastructure)
 
@@ -25,12 +27,19 @@
 | **L0 法典落盘** | `RUNTIME_ROOT/ai_dialogue_inbox/*.md` + `inbox_manifest.jsonl` | 与 [`多源对话收件法典.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Infrastructure/%E5%A4%9A%E6%BA%90%E5%AF%B9%E8%AF%9D%E6%94%B6%E4%BB%B6%E6%B3%95%E5%85%B8.md)、TOOLS `dialog_inbox.py` 一致；`RUNTIME_ROOT` 在 vault 侧通常对应 `obsidian_vault/200_Operations/`。 |
 | **历史别名** | `100_Inbox_Intelligence/ai_dialogue_inbox/` | v2.5 及更早文档中的路径；**不再**作为唯一真源，仅作迁移/别名参照。 |
 
+### 主人画像与分级（SSOT）
+
+- **物理区**：`Agent/小忆/Kenny画像/` 存放主人画像类 Markdown（及侧车 YAML 等）；与 L1/L2 **逻辑编排**分离，由 **分级规范** 定义谁在读哪一层。
+- **契约真源**：[`Manuals/主人画像分级建立与使用规范.md`](../Manuals/%E4%B8%BB%E4%BA%BA%E7%94%BB%E5%83%8F%E5%88%86%E7%BA%A7%E5%BB%BA%E7%AB%8B%E4%B8%8E%E4%BD%BF%E7%94%A8%E8%A7%84%E8%8C%83.md) —— 含 **Tier A/B/C**、**使用矩阵**、**`p_tier_*` HTTP slug**、Kenny画像 **HTTP 仅显式放行**。
+- **引用层优先**：分级首先是 **注入方式与 Prompt 约束**；Dify Knowledge（Tier C）为可选，见 [Dify_应用开发规范](../Manuals/Dify_%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83.md) §6。
+
 ---
 
 ## 2. 💧 L1 级：语义脱水小结 (WF_Inbox_L1_Summary)
 
 **定位**：将“碎碎念”与“复制噪音”转化为“高信噪比语义块”。
 
+- **画像注入（Tier B）**：L1 **仅**使用 **Tier B** 轻量上下文（指代锚定、项目偏好），实现上优先 **HTTP** `GET .../prompts/p_tier_b_l1_ctx`（见画像规范 §6）或等价 **短变量**；**禁止**默认挂载 **Tier A**（`Kenny_Cognitive_Profile.md`）全文，避免挤占脱水窗口或越权「公理裁决」。Tier B **不可替代** Tier A 做冲突终审。
 - **弹性触发（OR）**：
     - **跨度**：满 **50 轮**原生对话（User/Assistant 计轮方式与运维/Dify 一致）。
     - **脱水后体量**：待小结窗口内先做 **噪音折叠**（复制素材仅保留 Ref_Index/Metadata，不计入净区）后，**可摘要净内容**累计达 **30,000 token**（计数口径与 Ollama tokenizer 或统一 tiktoken 策略一致，Runbook 写死）。
@@ -73,8 +82,8 @@
     - **时间闸**：**自然滚动 168 小时**——自 **上次 L2 总炼化成功完成** 时刻起算，满 **7×24h** 即满足时间分支（非日历周、非周一零点）。
 - **一致性 / 质量分析（触发后）**：在已满足上述 OR 而选定的批次内，寻找 **跨越 50 轮以上的“逻辑共振”** 等模式，用于 Patch 质量与叙事，**不**单独作为与条数并列的硬门槛。
 
-- **补全预览 (Pre-Gap Engine)**：
-    - 小忆在生成 Patch 时，需初步判断新逻辑是否与 `Kenny_Cognitive_Profile.md` 中的既有公理冲突。
+- **补全预览 (Pre-Gap Engine)**（**Tier A** 对照）：
+    - 小忆在生成 Patch 时，须对照 **Tier A** 真源 [`Kenny_Cognitive_Profile.md`](../Agent/%E5%B0%8F%E5%BF%86/Kenny%E7%94%BB%E5%83%8F/Kenny_Cognitive_Profile.md)（或工作流注入的 `kenny_profile_excerpt` / HTTP `p_tier_a_main`），判断新命题是否与既有公理冲突。详见 [主人画像分级建立与使用规范](../Manuals/%E4%B8%BB%E4%BA%BA%E7%94%BB%E5%83%8F%E5%88%86%E7%BA%A7%E5%BB%BA%E7%AB%8B%E4%B8%8E%E4%BD%BF%E7%94%A8%E8%A7%84%E8%8C%83.md) **§5 使用矩阵**。
     - **偏差预警**：若当前方案违背“本地优先/数据主权”，必须显著标红。
 
 - **画像分流**：Patch / 一般 SSOT 更新与 **`Kenny画像/`**（含 `Kenny_Cognitive_Profile.md`）**分岔**；画像内容 **仅**在 Kenny 确认后由人工或受控流程写入。
@@ -97,13 +106,14 @@
 
 - **Qdrant 接入点**：L1 小结的 `Metadata` 字段可直接映射为 Qdrant 的 Payload 结构。
 - **Gap Engine 挂载**：L2 炼化过程已被定义为“结构师”模式，未来只需将“对比逻辑”替换为向量检索对比即可。
-- **画像进化**：画像不再是静态文档，而是“MD 公理 + 向量潜台词”的混合体。
+- **画像进化**：画像不再是静态文档，而是“MD 公理 + 向量潜台词”的混合体。**Tier C** 切片与 Gap 对照的边界见 [主人画像分级建立与使用规范](../Manuals/%E4%B8%BB%E4%BA%BA%E7%94%BB%E5%83%8F%E5%88%86%E7%BA%A7%E5%BB%BA%E7%AB%8B%E4%B8%8E%E4%BD%BF%E7%94%A8%E8%A7%84%E8%8C%83.md) §3 / §7。
 
 ---
 
 ## 🛡️ 运行红线 (Safety & Red Lines)
 
 - ❌ **严禁跳级**：任何认知更新必须经过 L1 脱水，禁止将含噪音的 RAW 直接炼化为画像。
+- ❌ **L1 不得越级裁决**：L1 不得使用 **Tier A** 作「最终公理判决」或编造未在输入中出现的公理级承诺；公理冲突识别与 Pre-Gap **归属 L2**（见画像规范）。
 - ❌ **隐私硬隔离**：在未引入 P2 向量加密方案前，所有画像炼化必须在 3090 本地完成。
 - ✅ **路径守卫**：所有 Patch 路径必须通过 `check_ssot` 校验，确保资产主权。
 

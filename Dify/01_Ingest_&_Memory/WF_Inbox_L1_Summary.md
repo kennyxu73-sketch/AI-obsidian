@@ -4,7 +4,7 @@ app_type: Workflow
 lead_agent: xiaoyi
 cabinet_dify_slug: wf_inbox_l1_summary
 ref_id: INFRA-COGNITIVE-L1L2-20260329-01
-version: "0.1"
+version: "0.2"
 dify_artifact: 000_Cabinet_System/Dify/_exports/wf_inbox_l1_summary_20260329.yml
 dify_exported_at: "2026-03-29T03:05:00Z"
 ---
@@ -12,16 +12,18 @@ dify_exported_at: "2026-03-29T03:05:00Z"
 # WF_Inbox_L1_Summary（设计真源）
 
 > **L1**：须遵守 [`Manuals/Dify_应用开发规范.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Manuals/Dify_%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83.md)。控制台配置与导出 JSON 为派生产物。  
-> **Prompt 真源**：[`Agent/小忆/小忆_L1_inbox_summary.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Agent/%E5%B0%8F%E5%BF%86/%E5%B0%8F%E5%BF%86_L1_inbox_summary.md)（HTTP 拉取：`GET /prompts/xiaoyi_l1_inbox_summary`，见 TOOLS `prompt_http_bridge.py`）。  
-> **规划真源**：[`Infrastructure/AI-OB 主人认知炼化流水线整体规划.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Infrastructure/AI-OB%20%E4%B8%BB%E4%BA%BA%E8%AE%A4%E7%9F%A5%E7%82%BC%E5%8C%96%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%95%B4%E4%BD%93%E8%A7%84%E5%88%92.md) §2。
+> **主人画像分级**：[`Manuals/主人画像分级建立与使用规范.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Manuals/%E4%B8%BB%E4%BA%BA%E7%94%BB%E5%83%8F%E5%88%86%E7%BA%A7%E5%BB%BA%E7%AB%8B%E4%B8%8E%E4%BD%BF%E7%94%A8%E8%A7%84%E8%8C%83.md) —— L1 **仅 Tier B**；HTTP `GET /prompts/p_tier_b_l1_ctx`（与 `xiaoyi_l1_inbox_summary` 可并行拉取后合并上下文）。  
+> **Prompt 真源**：[`Agent/小忆/小忆_L1_inbox_summary.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Agent/%E5%B0%8F%E5%BF%86/%E5%B0%8F%E5%BF%86_L1_inbox_summary.md)（HTTP：`GET /prompts/xiaoyi_l1_inbox_summary`）。  
+> **规划真源**：[`Infrastructure/AI-OB 主人认知炼化流水线整体规划.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Infrastructure/AI-OB%20%E4%B8%BB%E4%BA%BA%E8%AE%A4%E7%9F%A5%E7%82%BC%E5%8C%96%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%95%B4%E4%BD%93%E8%A7%84%E5%88%92.md) §2（v2.7）。
 
 ## Mermaid（逻辑）
 
 ```mermaid
 flowchart TD
   Trig[触发_轮数或脱水Token或16k护栏] --> FetchL0[读取_L0_RAW_片段或会话]
-  FetchL0 --> HttpPrompt[可选_GET_Prompt_HTTP]
-  HttpPrompt --> MergeCtx[合并_系统提示]
+  FetchL0 --> HttpPrompt[GET_xiaoyi_l1_inbox_summary]
+  HttpPrompt --> GetTierB[GET_p_tier_b_l1_ctx_TierB画像]
+  GetTierB --> MergeCtx[合并_系统提示与TierB锚点]
   MergeCtx --> LLM[LLM_Ollama_L1小结]
   LLM --> Parse[解析_Ref_ID与四段字段]
   Parse --> Tier{TieredEnseal_落点}
@@ -62,10 +64,16 @@ flowchart TD
 |--------|------|
 | `cabinet.path_guardian.check_ssot` | 若未来扩展写 SSOT 外路径前的校验（默认 L1 只写 RUNTIME） |
 
+### Knowledge 绑定（Dify 规范 §3.6）
+
+| 节点 / 说明 | Dataset ID | OB 源路径 | 同步方式 |
+|-------------|------------|-----------|----------|
+| **N/A** | — | — | 本工作流 **默认不绑定** Dify Knowledge。若后续启用 **Tier C** 检索，须填 Dataset、`_kb_sources` 并登记 `sync_to_dify.py`，见 [`Manuals/Dify_应用开发规范.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Manuals/Dify_%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83.md) §3.6 / §6。 |
+
 ## 网络（L0.6.2）
 
 - Dify → Ollama：`http://127.0.0.1:11434/v1`
-- Dify → Mac Prompt 桥：ZeroTier IP + `8765`（与 `preflight_dify_zt.py` 一致）
+- Dify → Mac Prompt 桥：ZeroTier IP + `8765`（与 `preflight_dify_zt.py` 一致）；画像 Tier B：`/prompts/p_tier_b_l1_ctx`（Bearer 同 `CABINET_PROMPT_TOKEN`）
 
 ## 导出
 

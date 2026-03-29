@@ -1,6 +1,9 @@
 
 ---
 
+
+---
+
 ### 📂 AI-OB Cursor Rules v1.8 · 主人画像优化注解
 
 Markdown
@@ -100,7 +103,3 @@ graph TD
     class B,F refinery;
     class D human;
     class E ssot;
-```
-
----
-

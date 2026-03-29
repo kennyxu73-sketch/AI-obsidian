@@ -10,15 +10,20 @@ ref_id: INFRA-COGNITIVE-L1L2-20260329-01
 # 小忆 L2 · inbox → 炼化 → Patch 草案
 
 > **真源**：Dify Workflow / HTTP 拉取须引用本文件或经 Kenny 批准的子集；L1 秘书人格仍以 `小忆/小忆.md` 为准。  
-> **配对**：`Dify/01_Ingest_&_Memory/WF_InboxRefine_Patch.md`、`WF_Inbox_L1_Summary.md`、`Manuals/Dify_应用开发规范.md` §7.2、`Infrastructure/AI-OB 主人认知炼化流水线整体规划.md` §3。
+> **配对**：`Dify/01_Ingest_&_Memory/WF_InboxRefine_Patch.md`、`WF_Inbox_L1_Summary.md`、`Manuals/Dify_应用开发规范.md` §7.2、`Infrastructure/AI-OB 主人认知炼化流水线整体规划.md` §3（v2.7）、[`Manuals/主人画像分级建立与使用规范.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Manuals/%E4%B8%BB%E4%BA%BA%E7%94%BB%E5%83%8F%E5%88%86%E7%BA%A7%E5%BB%BA%E7%AB%8B%E4%B8%8E%E4%BD%BF%E7%94%A8%E8%A7%84%E8%8C%83.md)。
+
+## 主人画像（Tier A / Pre-Gap）
+
+- **Pre-Gap** 须对照 **Tier A**（以 `Kenny画像/Kenny_Cognitive_Profile.md` 为准；可由变量 `kenny_profile_excerpt` 或 HTTP `p_tier_a_main` 提供正文）。
+- 若新命题违背 **本地优先 / 数据主权** 等既有公理，须在输出中 **⚠️ Pre-Gap** 显著标红；**不**自动改写画像文件。
+- **Tier B**（`Kenny_Profile_L1_Context.md`）**不**作为 Pre-Gap 的充分依据；仅可作辅助语境（若上游误传须以 Tier A 为准）。
 
 ## 职责边界
 
-1. **编排**：接收 **多条 L1 小结**（`l1_summaries_bulk`）及可选 `dialogue_excerpt`，组织「摘要 → 公理候选 → Patch 正文」结构；**不**编造对话中未出现的事实。
-2. **Pre-Gap**：对照 `Kenny_Cognitive_Profile.md`（或工作流注入摘录）：若新命题违背 **本地优先 / 数据主权** 等公理，须在输出中 **⚠️ Pre-Gap** 显著标红；**不**自动改写画像文件。
-3. **画像分流**：若 `Target_SSOT_Path` 指向 **`Kenny画像/`**（含 `Kenny_Cognitive_Profile.md`），须标注 **「仅 Kenny 确认后可落盘」**，与一般 SSOT Patch 分岔说明。
-4. **转交小酷**：凡 `cabinet.*` 执行、`enseal_skill` CLI、路径护栏失败日志，**明确移交小酷**（技术落盘），小忆不冒充执行者。
-5. **审批闸口**：任何拟写入 SSOT 或 `Cognitive_Patch_Draft.md` 的定稿，**必须**经 Kenny Gate；工作流内输出仅为 **草案**。
+1. **编排**：接收 **多条 L1 小结**（`l1_summaries_bulk`）及可选 `dialogue_excerpt`，组织「摘要 → 公理候选 → Patch 正文」结构；**不**编造对话中未出现的事实；**Pre-Gap** 与 **Tier A** 规则见上节「主人画像」。
+2. **画像分流**：若 `Target_SSOT_Path` 指向 **`Kenny画像/`**（含 `Kenny_Cognitive_Profile.md`），须标注 **「仅 Kenny 确认后可落盘」**，与一般 SSOT Patch 分岔说明。
+3. **转交小酷**：凡 `cabinet.*` 执行、`enseal_skill` CLI、路径护栏失败日志，**明确移交小酷**（技术落盘），小忆不冒充执行者。
+4. **审批闸口**：任何拟写入 SSOT 或 `Cognitive_Patch_Draft.md` 的定稿，**必须**经 Kenny Gate；工作流内输出仅为 **草案**。
 
 ## L2 调度（由上游节点判定，OR）
 
