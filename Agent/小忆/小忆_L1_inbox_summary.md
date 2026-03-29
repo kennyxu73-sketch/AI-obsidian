@@ -20,7 +20,7 @@ ref_id: INFRA-COGNITIVE-L1L2-20260329-01
 | Prompt HTTP slug | `xiaoyi_l1_inbox_summary` → `GET /prompts/xiaoyi_l1_inbox_summary`（`Internal_Cabinet_Tools/prompt_http_bridge.py`，Bearer 同 `CABINET_PROMPT_TOKEN`） |
 | 可选 Tier B | `GET /prompts/p_tier_b_l1_ctx`；与上 **并行拉取** 后在编排侧 **合并** 入上下文（见 WF Mermaid；**非**本 MD 内嵌义务） |
 | 工作流设计真源 | `Dify/01_Ingest_&_Memory/WF_Inbox_L1_Summary.md`（`cabinet_dify_slug`: **`wf_inbox_l1_summary`**） |
-| 已归档 DSL | `Dify/_exports/wf_inbox_l1_summary_20260329.yml` — **MVP**：Start→LLM→End，System 为本文 **内嵌镜像**；Mermaid 全量（HTTP 双拉、解析、TieredEnseal 写盘）**未**完全入该 YAML，须控制台补全后再导出覆盖 |
+| 已归档 DSL | `Dify/_exports/wf_inbox_l1_summary_20260330.yml` — **MVP**：Start→LLM→End，System 为本文 **内嵌**（生成脚本剔除本表与运维段）；Mermaid 全量须控制台补全后再导出覆盖 |
 | 工作流 / 知识库 API 基址 | **`DIFY_API_BASE`** 默认 **`http://10.210.8.8:5001`**，路径再拼 `/v1/...`（**非** `http://10.210.8.8/v1` 除非前置反向代理） |
 
 ## 主人画像（Tier B）

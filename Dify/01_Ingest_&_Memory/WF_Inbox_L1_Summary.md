@@ -4,9 +4,9 @@ app_type: Workflow
 lead_agent: xiaoyi
 cabinet_dify_slug: wf_inbox_l1_summary
 ref_id: INFRA-COGNITIVE-L1L2-20260329-01
-version: "0.3"
-dify_artifact: 000_Cabinet_System/Dify/_exports/wf_inbox_l1_summary_20260329.yml
-dify_exported_at: "2026-03-29T12:00:00Z"
+version: "0.5"
+dify_artifact: 000_Cabinet_System/Dify/_exports/wf_inbox_l1_summary_20260330.yml
+dify_exported_at: "2026-03-30T10:30:00Z"
 ---
 
 # WF_Inbox_L1_Summary（设计真源）
@@ -64,8 +64,8 @@ flowchart TD
 |------|------|
 | **设计真源** | 本节上文 Mermaid、输入输出表、触发与 Kenny Gate |
 | **Prompt 真源** | [`Agent/小忆/小忆_L1_inbox_summary.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Agent/%E5%B0%8F%E5%BF%86/%E5%B0%8F%E5%BF%86_L1_inbox_summary.md)（内含 **Dify/DSL 配对**速查表） |
-| **当前归档 DSL** | Frontmatter `dify_artifact`：`wf_inbox_l1_summary_20260329.yml` — **MVP**：`dialogue_excerpt` 等四输入 → LLM（Ollama `qwen3.5:9b`）→ `l1_summary_markdown`；L1 系统提示为真源 **内嵌** |
-| **与 Mermaid 差距** | HTTP 双拉（`xiaoyi_l1_inbox_summary` + `p_tier_b_l1_ctx`）、解析 Ref_ID/四段、TieredEnseal 写 `summaries/`、可选 Changelog **未**纳入该 YAML；须在 Dify 控制台补节点后 **再导出** 覆盖，并更新 `dify_exported_at` |
+| **当前归档 DSL** | `wf_inbox_l1_summary_20260330.yml`：**Start → 知识库检索（Tier C `dataset-SLkcbzIPqlKfRjql3OH3JQKF`，query=`dialogue_excerpt`）→ LLM（Context=`result` + User 含 `{{#context#}}`）→ End**。System 内嵌 [`小忆_L1_inbox_summary.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Agent/%E5%B0%8F%E5%BF%86/%E5%B0%8F%E5%BF%86_L1_inbox_summary.md)（已剔运维表） |
+| **与 Mermaid 差距** | HTTP 双拉 L1 Prompt + `p_tier_b_l1_ctx`、解析 Ref_ID/四段、TieredEnseal 写 `summaries/`、Changelog **仍**未入 YAML；由 `gen_dify_inbox_workflows.py` 维护 |
 | **L2 下游** | 炼化与 Patch 草案见 [`WF_InboxRefine_Patch.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Dify/01_Ingest_%26_Memory/WF_InboxRefine_Patch.md) / [`小忆_L2_inbox_enseal_patch.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Agent/%E5%B0%8F%E5%BF%86/%E5%B0%8F%E5%BF%86_L2_inbox_enseal_patch.md) |
 
 ## Skill Map（可选）
@@ -78,8 +78,8 @@ flowchart TD
 
 | 节点 / 说明 | Dataset ID | OB 源路径 | 同步方式 |
 |-------------|------------|-----------|----------|
-| **N/A** | — | — | 本工作流 **默认不绑定** Dify Knowledge。若后续启用 **Tier C** 检索，须填 Dataset、`_kb_sources` 并登记 `sync_to_dify.py`，见 [`Manuals/Dify_应用开发规范.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Manuals/Dify_%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83.md) §3.6 / §6。 |
-| **可选 · Tier C · Kenny 画像 RAG** | `dataset-SLkcbzIPqlKfRjql3OH3JQKF` | `000_Cabinet_System/Dify/_kb_sources/kenny_portrait_tier_c/` | `sync_to_dify.py`（`TOOLS_PATH` / `Internal_Cabinet_Tools` 仓库根）；命令、禁令与 **切片粒度**见 [`kenny_portrait_tier_c/README.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Dify/_kb_sources/kenny_portrait_tier_c/README.md)（§脱水切片粒度）。**启用时**：在 Dify 增加 Knowledge 节点，将检索结果接入 **Context 变量**，**不替换** System 中 Tier A 及既有系统指令。 |
+| **N/A** | — | — | 见下行；同步与禁令仍适用。 |
+| **Tier C · Kenny 画像 RAG** | `dataset-SLkcbzIPqlKfRjql3OH3JQKF` | `000_Cabinet_System/Dify/_kb_sources/kenny_portrait_tier_c/` | **已编入** 归档 DSL（知识库节点 query=`dialogue_excerpt`）；内容维护：`sync_to_dify.py`、切片见 [`kenny_portrait_tier_c/README.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Dify/_kb_sources/kenny_portrait_tier_c/README.md)。检索结果经 **Context** 注入 LLM（`{{#context#}}`），**不替换** Tier A / 系统指令。 |
 
 ## 网络（L0.6.2）
 

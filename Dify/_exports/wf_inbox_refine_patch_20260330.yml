@@ -1,0 +1,238 @@
+app:
+  description: L1 批量→L2 Patch 草案（DSL 20260330）。l2_patch_markdown；已绑 Tier C Dataset `dataset-SLkcbzIPqlKfRjql3OH3JQKF`（检索 query=l1_summaries_bulk）。
+    ref_id INFRA-COGNITIVE-L1L2-20260329-01。 check_ssot/TieredEnseal 在下游。 DIFY_API_BASE=http://10.210.8.8:5001 + /v1/...
+  icon: books
+  icon_background: '#E8E2F7'
+  mode: workflow
+  name: WF_InboxRefine_Patch
+workflow:
+  features:
+    file_upload:
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: knowledge-retrieval
+      id: 1885600100010-source-1885600100055-target
+      source: '1885600100010'
+      sourceHandle: source
+      target: '1885600100055'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: 1885600100055-source-1885600100020-target
+      source: '1885600100055'
+      sourceHandle: source
+      target: '1885600100020'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1885600100020-source-1885600100030-target
+      source: '1885600100020'
+      sourceHandle: source
+      target: '1885600100030'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - type: paragraph
+          label: 多条 L1 小结（l1_summaries_bulk）
+          variable: l1_summaries_bulk
+          required: true
+        - type: paragraph
+          label: 可选 L0 引用 dialogue_excerpt
+          variable: dialogue_excerpt
+          required: false
+        - type: paragraph
+          label: 可选 Tier A 摘录 kenny_profile_excerpt（Pre-Gap）
+          variable: kenny_profile_excerpt
+          required: false
+      height: 54
+      id: '1885600100010'
+      position:
+        x: 80
+        y: 260
+      positionAbsolute:
+        x: 80
+        y: 260
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: Kenny 画像 RAG；仅作 Context，不替代 Tier A/B 注入。
+        selected: false
+        title: 画像知识库 Tier C
+        type: knowledge-retrieval
+        query_variable_selector:
+        - '1885600100010'
+        - l1_summaries_bulk
+        query_attachment_selector: []
+        dataset_ids:
+        - dataset-SLkcbzIPqlKfRjql3OH3JQKF
+        retrieval_mode: multiple
+        multiple_retrieval_config:
+          top_k: 5
+          score_threshold: null
+          reranking_enable: false
+      height: 92
+      id: '1885600100055'
+      position:
+        x: 340
+        y: 260
+      positionAbsolute:
+        x: 340
+        y: 260
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1885600100055'
+          - result
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen3.5:9b
+          provider: ollama
+        prompt_template:
+        - id: 447c0b79-0ee5-4907-af45-1827c99ce4fc
+          role: system
+          text: "# 小忆 L2 · inbox → 炼化 → Patch 草案\n\n> **真源**：Dify Workflow / HTTP 拉取须引用本文件或经 Kenny 批准的子集；L1 秘书人格仍以 `小忆/小忆.md`\
+            \ 为准。  \n> **配对**：`Dify/01_Ingest_&_Memory/WF_InboxRefine_Patch.md`、`WF_Inbox_L1_Summary.md`、`Manuals/Dify_应用开发规范.md`\
+            \ §7.2、`Infrastructure/AI-OB 主人认知炼化流水线整体规划.md` §3（v2.7）、[`Manuals/主人画像分级建立与使用规范.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Manuals/%E4%B8%BB%E4%BA%BA%E7%94%BB%E5%83%8F%E5%88%86%E7%BA%A7%E5%BB%BA%E7%AB%8B%E4%B8%8E%E4%BD%BF%E7%94%A8%E8%A7%84%E8%8C%83.md)。\n\
+            \n\n## 主人画像（Tier A / Pre-Gap）\n\n- **Pre-Gap** 须对照 **Tier A**（以 `Kenny画像/Kenny_Cognitive_Profile.md` 为准；可由变量 `kenny_profile_excerpt`\
+            \ 或 HTTP `p_tier_a_main` 提供正文）。\n- 若新命题违背 **本地优先 / 数据主权** 等既有公理，须在输出中 **⚠️ Pre-Gap** 显著标红；**不**自动改写画像文件。\n- **Tier\
+            \ B**（`Kenny_Profile_L1_Context.md`）**不**作为 Pre-Gap 的充分依据；仅可作辅助语境（若上游误传须以 Tier A 为准）。\n\n## 职责边界\n\n1. **编排**：接收\
+            \ **多条 L1 小结**（`l1_summaries_bulk`）及可选 `dialogue_excerpt`，组织「摘要 → 公理候选 → Patch 正文」结构；**不**编造对话中未出现的事实；**Pre-Gap**\
+            \ 与 **Tier A** 规则见上节「主人画像」。\n2. **画像分流**：若 `Target_SSOT_Path` 指向 **`Kenny画像/`**（含 `Kenny_Cognitive_Profile.md`），须标注\
+            \ **「仅 Kenny 确认后可落盘」**，与一般 SSOT Patch 分岔说明。\n3. **转交小酷**：凡 `cabinet.*` 执行、`enseal_skill` CLI、路径护栏失败日志，**明确移交小酷**（技术落盘），小忆不冒充执行者。\n\
+            4. **审批闸口**：任何拟写入 SSOT 或 `Cognitive_Patch_Draft.md` 的定稿，**必须**经 Kenny Gate；工作流内输出仅为 **草案**。\n\n## L2 调度（由上游节点判定，OR）\n\
+            \n- **≥20 条 L1** 小结，**或** 自 **`last_l2_completed_at`** 起满 **滚动 168h**（7×24h，非日历周）。详见 `WF_InboxRefine_Patch.md`\
+            \ 与 Runbook。\n\n## 分级封印 Tiered Enseal（意识层）\n\n- **`check_ssot` 通过后**：若目标为 RUNTIME / 非真值文档且路径在白名单 → **方案 A**（可自动合并\
+            \ + CHANGELOG 审计，TOOLS 迭代实现）。若命中 **`000_Cabinet_System/` 核心区**、画像、战略公理、Agent 角色定义 → **强制方案 B**（草案 + Diff + Kenny\
+            \ Gate / `enseal_skill`）。\n\n## 输出格式（路径 B）\n\nLLM 最终输出须为 Markdown，且包含**单独一行**（机器解析）：\n\n```text\nTarget_SSOT_Path:\
+            \ <相对 000_Cabinet_System 根的 POSIX 子路径，如 Manuals 或 Infrastructure>\n```\n\n该行上方为补丁标题（`##` 级）与正文要点。路径 **须** 在下游由\
+            \ `cabinet.path_guardian.check_ssot` 校验；非法则向 Kenny 返回 **报错回执**（见 L2 设计文档 Error Handling）。\n\n## 红线\n\n- L1/L2\
+            \ 级隐私：**不得**将完整画像或未脱敏对话送入不可信云端；本链路默认 **3090 同机 Ollama + 自托管 Dify**。\n- **禁止**在工作流中自动 `seal_batch`；封印仅在人放置 `.seal_ready`\
+            \ 或 `approved` 后由小酷/统帅执行（**方案 B**）。\n\n## 与路径 A 的差异\n\n若仅整段归档 inbox，**不**强制本 L2 全文；改用 `enseal_skill --materialize-from-inbox`（Mac\
+            \ CLI），小忆 L2 可缩略为「提示用户选择路径 A/B」。"
+        - id: 5cef7eea-b990-4130-b088-af67b950c91a
+          role: user
+          text: '请根据系统指令，基于下列输入生成 **认知 Patch 草案**（Markdown）。
+
+
+            以下为 **Tier C 知识库检索片段**（`{{#context#}}`）：仅作辅助背景；**Pre-Gap 仍以 kenny_profile_excerpt / Tier A 为准**，不得用 Tier C 覆盖公理。
+
+
+            硬性要求：
+
+            - 输出须包含**单独一行**（机器解析）：`Target_SSOT_Path: <相对 000_Cabinet_System 根的 POSIX 子路径>`
+
+            - 若与 Tier A / kenny_profile_excerpt 中已列公理冲突，须有 **⚠️ Pre-Gap** 显著说明
+
+            - 画像路径 `Agent/小忆/Kenny画像/` 须标明「仅 Kenny 确认后可落盘」；本节点输出仅为草案，不经 Kenny Gate 不得视为定稿
+
+
+            ## l1_summaries_bulk（必填）
+
+            {{#1885600100010.l1_summaries_bulk#}}
+
+
+            ## dialogue_excerpt（可选，L0 引用）
+
+            {{#1885600100010.dialogue_excerpt#}}
+
+
+            ## kenny_profile_excerpt（可选，Tier A 摘录，Pre-Gap）
+
+            {{#1885600100010.kenny_profile_excerpt#}}'
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1885600100020'
+      position:
+        x: 620
+        y: 260
+      positionAbsolute:
+        x: 620
+        y: 260
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - variable: l2_patch_markdown
+          label: l2_patch_markdown
+          value_selector:
+          - '1885600100020'
+          - text
+        selected: false
+        title: 结束
+        type: end
+      height: 54
+      id: '1885600100030'
+      position:
+        x: 900
+        y: 260
+      positionAbsolute:
+        x: 900
+        y: 260
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 0
+      y: 0
+      zoom: 1

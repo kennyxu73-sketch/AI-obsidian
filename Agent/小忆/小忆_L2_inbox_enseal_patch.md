@@ -19,7 +19,7 @@ ref_id: INFRA-COGNITIVE-L1L2-20260329-01
 | `ref_id` | 与 L1 真源、[`WF_InboxRefine_Patch.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Dify/01_Ingest_%26_Memory/WF_InboxRefine_Patch.md) 同为 **`INFRA-COGNITIVE-L1L2-20260329-01`** |
 | Prompt HTTP slug | `xiaoyi_l2_inbox_enseal_patch` → `GET /prompts/xiaoyi_l2_inbox_enseal_patch`（`prompt_http_bridge.py`） |
 | 工作流设计真源 | `Dify/01_Ingest_&_Memory/WF_InboxRefine_Patch.md`（`cabinet_dify_slug`: **`wf_inbox_refine_patch`**） |
-| 已归档 DSL | **尚未**：Frontmatter `dify_artifact: pending_export`；画布以 WF **Mermaid** 与节点表为准，定稿后导出至 `Dify/_exports/` 并回写 Frontmatter |
+| 已归档 DSL | `Dify/_exports/wf_inbox_refine_patch_20260330.yml` — **MVP**：三输入 → LLM → `l2_patch_markdown`；System 为本文 **内嵌**（生成脚本剔除本表）；全量见 `WF_InboxRefine_Patch.md` Mermaid；Frontmatter 与 WF 双链 |
 | 工作流 / 知识库 API 基址 | 同 L1：**`DIFY_API_BASE`** → `http://10.210.8.8:5001` + `/v1/...` |
 
 ## 主人画像（Tier A / Pre-Gap）

@@ -4,9 +4,9 @@ app_type: Workflow
 lead_agent: xiaoyi
 cabinet_dify_slug: wf_inbox_refine_patch
 ref_id: INFRA-COGNITIVE-L1L2-20260329-01
-version: "0.4"
-dify_artifact: pending_export
-dify_exported_at: ""
+version: "0.6"
+dify_artifact: 000_Cabinet_System/Dify/_exports/wf_inbox_refine_patch_20260330.yml
+dify_exported_at: "2026-03-30T10:30:00Z"
 ---
 
 # WF_InboxRefine_Patch（设计真源）
@@ -30,6 +30,10 @@ dify_exported_at: ""
 - **`l1_summaries_bulk`**：多条 L1 小结 Markdown 拼接或 JSON 列表（必填）。
 - **`dialogue_excerpt`**（可选）：指向 L0 的引用片段，供核对。
 - **`kenny_profile_excerpt`**（可选）：**Tier A** 摘录（与 `Kenny_Cognitive_Profile.md` 同源），供 **Pre-Gap**；若为空且需全文对照，可由上游节点拉取 HTTP **`p_tier_a_main`**（见画像规范 §6）。
+
+## 输出（DSL / API）
+
+- **`l2_patch_markdown`**：LLM 全文输出；须含 **`Target_SSOT_Path:`** 单独一行；可含 ⚠️ Pre-Gap、画像分流文案。下游再跑 `cabinet.path_guardian.check_ssot` 与 Tiered Enseal（见 Mermaid）。
 
 ## Pre-Gap（偏差预警 · Tier A）
 
@@ -56,8 +60,8 @@ dify_exported_at: ""
 |------|------|
 | **设计真源** | 本节 Mermaid、调度 OR、Pre-Gap、画像分流、Tiered Enseal、`check_ssot`、Error Handling |
 | **Prompt 真源** | [`Agent/小忆/小忆_L2_inbox_enseal_patch.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Agent/%E5%B0%8F%E5%BF%86/%E5%B0%8F%E5%BF%86_L2_inbox_enseal_patch.md)（内含 **Dify/DSL 配对**速查表） |
-| **当前归档 DSL** | **`pending_export`** — 尚无 `Dify/_exports/wf_inbox_refine_patch_*.yml`；实现以画布 + 本文件为准 |
-| **上游 L1** | [`WF_Inbox_L1_Summary.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Dify/01_Ingest_%26_Memory/WF_Inbox_L1_Summary.md) / [`小忆_L1_inbox_summary.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Agent/%E5%B0%8F%E5%BF%86/%E5%B0%8F%E5%BF%86_L1_inbox_summary.md) / 已归档 `wf_inbox_l1_summary_20260329.yml`（MVP） |
+| **当前归档 DSL** | `wf_inbox_refine_patch_20260330.yml`：**Start → 知识库检索（Tier C `dataset-SLkcbzIPqlKfRjql3OH3JQKF`，query=`l1_summaries_bulk`）→ LLM（Context=`result` + `{{#context#}}`）→ End**。System 内嵌 [`小忆_L2_inbox_enseal_patch.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Agent/%E5%B0%8F%E5%BF%86/%E5%B0%8F%E5%BF%86_L2_inbox_enseal_patch.md)；Mermaid 全量（HTTP、`check_ssot`、TieredEnseal）**未**入 YAML |
+| **上游 L1** | [`WF_Inbox_L1_Summary.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Dify/01_Ingest_%26_Memory/WF_Inbox_L1_Summary.md) / [`小忆_L1_inbox_summary.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Agent/%E5%B0%8F%E5%BF%86/%E5%B0%8F%E5%BF%86_L1_inbox_summary.md) / `wf_inbox_l1_summary_20260330.yml`（MVP） |
 | **导出后** | 将 DSL 放入 `_exports/`，Frontmatter 填写 `dify_artifact`、`dify_exported_at`（与规范 §5.1 双链） |
 
 ## Mermaid（逻辑）
@@ -107,8 +111,8 @@ flowchart TD
 
 | 节点 / 说明 | Dataset ID | OB 源路径 | 同步方式 |
 |-------------|------------|-----------|----------|
-| **N/A** | — | — | 默认 **不绑定** Knowledge。若启用 **Tier C** 辅助检索，须单独 Dataset + `_kb_sources` + `sync_to_dify.py`，见 [`Manuals/Dify_应用开发规范.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Manuals/Dify_%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83.md) §3.6。 |
-| **可选 · Tier C · Kenny 画像 RAG** | `dataset-SLkcbzIPqlKfRjql3OH3JQKF` | `000_Cabinet_System/Dify/_kb_sources/kenny_portrait_tier_c/` | `sync_to_dify.py`（`TOOLS_PATH` / `Internal_Cabinet_Tools` 仓库根）；命令、禁令与 **切片粒度**见 [`kenny_portrait_tier_c/README.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Dify/_kb_sources/kenny_portrait_tier_c/README.md)（§脱水切片粒度）。**启用时**：在 Dify 增加 Knowledge 节点，将检索结果接入 **Context 变量**，**不替换** System 中 Tier A 及既有系统指令。 |
+| **N/A** | — | — | 见下行。 |
+| **Tier C · Kenny 画像 RAG** | `dataset-SLkcbzIPqlKfRjql3OH3JQKF` | `000_Cabinet_System/Dify/_kb_sources/kenny_portrait_tier_c/` | **已编入** DSL（query=`l1_summaries_bulk`）；同步与切片见 [`kenny_portrait_tier_c/README.md`](file:///Volumes/Cabinet/cabinet/obsidian_vault/000_Cabinet_System/Dify/_kb_sources/kenny_portrait_tier_c/README.md)。Context **辅助** Pre-Gap，**不替代** `kenny_profile_excerpt` / Tier A。 |
 
 ## Prompt HTTP 响应契约（§7.2）
 
